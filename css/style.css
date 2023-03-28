@@ -1,0 +1,104 @@
+body {
+  margin-top: 0px;
+  font-family: 'Raleway';
+}
+
+.container {
+  display: grid; 
+  grid-template-columns: 1fr;
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "topo"
+    "imagem"
+    "noticias"
+    "links"
+    "apresentacao"
+    "mapa"
+    "footer";     
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.topo {
+  display: grid; 
+  grid-template-columns: 1fr;
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "cabecalho"
+    "menu"; 
+  grid-area: topo; 
+  background-color: rgb(79, 230, 87);  
+}
+
+.cabecalho-wrapper {
+  max-width: 1170px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cabecalho { 
+  background-color: blue;
+  grid-area: cabecalho; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  background-color: white;
+  height: 83px;
+  max-width: 170px;
+  margin: 24px 30px 24px 0px
+  
+}
+
+.brasao {
+  background-color: white;
+  height: 83px;
+  width: 58px;
+  margin: 24px 0px 24px 10px;
+}
+
+.menu-wrapper {
+  background-color: chartreuse;  
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.menu { 
+  max-height: 45x;
+  grid-area: menu; 
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  width: 100%;
+  max-width: 1170px;
+}
+.imagem { 
+  grid-area: imagem;
+  background-color: aqua;
+}
+.noticias { 
+  grid-area: noticias; 
+  background-color: brown;
+}
+.links { 
+  grid-area: links; 
+  background-color: cornflowerblue;
+}
+.apresentacao { 
+  grid-area: apresentacao; 
+  background-color: darkgoldenrod;
+}
+.mapa { 
+  grid-area: mapa; 
+  background-color: blueviolet;
+}
+.footer { 
+  grid-area: footer; 
+  background-color: darkmagenta;
+}
