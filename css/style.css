@@ -100,22 +100,39 @@ body {
 }
 
 .menu-wrapper {
-  background-color: chartreuse;  
+  background-color: #E15323;  
   margin: 0 auto;
   width: 100%;
+  max-height: 45px;
   display: flex;
   justify-content: center;
 }
 
 .menu { 
-  max-height: 45x;
+  height: auto;
   grid-area: menu; 
   
   display: flex;
   justify-content: space-between;
-  align-items: left;
   width: 100%;
-  max-width: 1170px;
+  max-width: 1170px;  
+  padding-top: 10px;
+  padding-bottom: 14px;
+}
+
+.menu ul {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 27px;
+  margin: 0px;
+
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  list-style-type: none;
 }
 
 .imagem {   
@@ -127,11 +144,105 @@ body {
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px -16px 16px rgba(0, 0, 0, 0.25);
 }
 
+.corpo {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 60px;
+}
+
+.secoes {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 34px;
+
+  color: #666666;
+}
+
+.conteudo {
+  min-height: 415px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.noticias-coluna {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 
 .noticias { 
+  width: 1170px;
   grid-area: noticias; 
-  background-color: brown;
 }
+
+.noticia-sem-img {
+  width: auto;
+  min-height: 200px;
+
+  padding-top: 16px;
+  padding-left: 26px;
+  padding-right: 26px;
+  padding-bottom: 32px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.noticia-data-tag {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;    
+}
+
+.texto-pequeno-sem-img {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #8D8B8B;
+
+  
+}
+
+.noticia-sem-img-titulo-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.noticia-sem-img-titulo {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 32px;
+  color: #E15323;
+
+}
+
+.mais-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
 .links { 
   grid-area: links; 
   background-color: cornflowerblue;
