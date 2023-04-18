@@ -6,6 +6,8 @@ body {
 }
 
 .container {
+  width: 100%;
+
   display: grid; 
   grid-template-columns: 1fr;
   gap: 0px 0px; 
@@ -22,28 +24,34 @@ body {
 }
 
 .topo {
-  display: grid; 
-  grid-template-columns: 1fr;
-  gap: 0px 0px; 
-  grid-template-areas: 
-    "cabecalho"
-    "menu"; 
+  display: flex;   
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   grid-area: topo; 
+  margin: 0 auto;
     
 }
 
 .cabecalho-wrapper {
-  max-width: 1170px;
-  margin: 0 auto;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   
+  width: 100%;  
+  
 }
 
 .cabecalho {   
   grid-area: cabecalho; 
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: center;   
+  max-width: 1170px; 
   width: 100%;
+  margin: 0 30px;
+  
 }
 
 .cabecalho-esquerda {
@@ -51,13 +59,13 @@ body {
   flex-direction: row;
   align-items: center;
   padding: 0px;
-  gap: 32px;
+  gap: 30px;  
 }
 
 .logo {
   background-color: white;
   height: 83px;   
-  display: flex;  
+  display: flex;    
 }
 
 .titulos {
@@ -118,6 +126,7 @@ body {
   max-width: 1170px;  
   padding-top: 10px;
   padding-bottom: 14px;
+  margin: 0 30px;
 }
 
 .menu ul {
@@ -145,6 +154,7 @@ body {
 }
 
 .corpo {
+  width: 100%;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
@@ -160,6 +170,10 @@ body {
   line-height: 34px;
 
   color: #666666;
+}
+
+.preto {
+  color: #000000;
 }
 
 .conteudo {
@@ -179,7 +193,8 @@ body {
 }
 
 .noticias { 
-  width: 1170px;
+  max-width: 1170px;
+  margin: 0px 30px;
   grid-area: noticias; 
 }
 
@@ -240,17 +255,69 @@ body {
 .mais-link {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  /*justify-content: flex-end; */
+
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+
+  /* identical to box height, or 111% */
+
+  color: #E15323;
 }
 
 .links { 
-  grid-area: links; 
-  background-color: cornflowerblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+
+  width: 100%;
+  height: 222px;
+
+  /* BG BLOCO */
+  background: #F2F2F2;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
 }
 .apresentacao { 
-  grid-area: apresentacao; 
-  background-color: darkgoldenrod;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 30px;
+  margin: 0 30px;
+  gap: 30px;
+
+  max-width: 1110px;
+  width: 100%;
+  height: auto;
+
+  /* BG BLOCO */
+  background: #F2F2F2;
 }
+
+.apresentacao>div {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 50%;
+}
+
+.apresentacao-conteudo {
+  display: flex; 
+  flex-direction: column; 
+  gap: 16px
+}
+
+.youtube {
+  height: 304px;
+  width: 100%;  
+}
+
 .mapa { 
   grid-area: mapa; 
   background-color: blueviolet;
