@@ -281,21 +281,77 @@ body {
   color: #E15323;
 }
 
-.links {
-  grid-area: links;
+.links-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0;
-
+  grid-area: links;
   width: 100%;
-  height: 222px;
+  justify-content: center;
+
+  background-color: #F2F2F2;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+}
+
+.links {  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 0 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  max-width: 1170px;
+  height: auto;
 
   /* BG BLOCO */
   background: #F2F2F2;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+  
 }
+
+.link-full {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+}
+
+.link-image-wrapper {
+  width: 100px;
+  height: 100px;
+  border: 3px solid #E15323;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link-image {
+  display: block;
+  width: 60%;
+  height: 60%;
+}
+
+.link-text {
+  width: 120px;
+
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+
+  /* or 125% */
+  text-align: center;
+
+  color: #111111;
+}
+
 .apresentacao1 {
   /* Auto layout */
   display: grid;
@@ -337,7 +393,21 @@ body {
 }
 
 @media only screen and (max-width: 800px) {
-  .apresentacao {
+  .conteudo {
+    min-height: 415px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+  
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "coluna1"
+    "coluna2";
+    gap: 30px;
+  }
+
+  .corpo .apresentacao {
     /* Auto layout */
     display: grid;
     grid-template-columns: 1fr ;
