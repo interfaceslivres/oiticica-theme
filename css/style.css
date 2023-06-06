@@ -6,6 +6,11 @@ body {
   
 }
 
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
 .container {
   width: 100%;
   display: grid;
@@ -129,8 +134,8 @@ body {
   justify-content: space-between;
     width : 100%;
   max-width: 1170px;
-  padding-top: 10px;
-  padding-bottom: 14px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   margin: 0 30px;
 }
 
@@ -139,6 +144,7 @@ body {
   flex-direction: row;
   gap: 10px;
   width: 52px;
+  padding: 10px 0 14px;
 }
 
 .menu ul {
@@ -147,13 +153,59 @@ body {
   flex-direction: row;
   align-items: flex-start;
   padding: 0px;
-  gap: 27px;
-  margin: 0px;
+  gap: 0px;
+  margin: 0;
 
   color: white;
   font-size: 18px;
   font-weight: bold;
   list-style-type: none;
+
+  
+}
+
+.menu ul li a{  
+  display: block;
+  margin-right: 26px;  
+  padding: 10px 0 14px;
+  box-sizing: border-box;
+}
+
+.menu ul li ul {  
+  margin-top: 0px;
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 200px;
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.menu ul li ul li a{
+  display: block;
+  color: #E15323;
+  font-size: 16px;
+  font-weight: 600;
+  list-style-type: none;
+  padding: 10px 16px 10px;
+  margin: 0;
+  text-decoration: none;
+}
+
+.menu ul li ul li a:hover {
+  background-color: #f2f2f2;
+  text-decoration: none;
+}
+
+.menu ul li:hover ul {
+  display: block;
+}
+
+.menu ul li a:hover {
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
 }
 
 .imagem {
