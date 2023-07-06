@@ -382,6 +382,36 @@ a {
   color: #E15323;
 }
 
+.mais-link::after {
+  content: url('../img/arrow.svg');
+  display: inline-block;
+  width:18px;
+  height: 16px;
+  margin-left: 6px;
+
+  transition-property: transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+
+.mais-link:hover::after {
+  content: "";
+  display: inline-block;
+  width:18px;
+  height: 16px;
+  margin-left: 6px;
+  background-color: #E15323;
+  mask: url('../img/arrow.svg');
+  mask-size: cover;
+
+  transform: translateX(6px);
+  transition-property: transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+
 .links-wrapper {
   display: flex;
   flex-direction: row;
