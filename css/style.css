@@ -383,11 +383,13 @@ a {
 }
 
 .mais-link::after {
-  content: url('../img/arrow.svg');
+  content: "  ";
   display: inline-block;
   width:18px;
   height: 16px;
   margin-left: 6px;
+  background-clip: url('../img/arrow.svg');
+  background-color: #E15323;
 
   transition-property: transform;
   transition-duration: 150ms;
@@ -396,14 +398,11 @@ a {
 }
 
 .mais-link:hover::after {
-  content: "";
+  content: url('../img/arrow.svg');
   display: inline-block;
   width:18px;
   height: 16px;
-  margin-left: 6px;
-  background-color: #E15323;
-  mask: url('../img/arrow.svg');
-  mask-size: cover;
+  margin-left: 6px;  
 
   transform: translateX(6px);
   transition-property: transform;
@@ -631,7 +630,7 @@ width: 100%;justify-content: center;
 #footer-wrapper {
   display: flex;
   width: 100%;
-  background-color: #202020;
+  background-color: #000000;
   justify-content: center;  
   margin: 0 auto;
 }
@@ -666,14 +665,15 @@ width: 100%;justify-content: center;
 #footer-dados > div {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-width: 400px;
+  gap: 10px;
+  max-width: 500px;
 }
 
 #footer-dados > div > div:first-child {
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 26px;
+  line-height: 30px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 #footer-top {
@@ -686,15 +686,24 @@ width: 100%;justify-content: center;
 }
 
 #footer-logo {
-  height: 122px;
+  height: 200px;
+}
+
+.footer-direita {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  
 }
 
 #footer-contato {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   padding: 0px;
-  gap: 10px;
+  gap: 16px;
 
  
 
@@ -708,7 +717,7 @@ width: 100%;justify-content: center;
 #redes-sociais {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 16px;
   height: 24px;
 }
 
@@ -723,8 +732,12 @@ width: 100%;justify-content: center;
 }
 
 .img-creditos {
-  width: 25px;
   height: 100%;
+}
+
+.botao-menu {
+  height: 100%;
+  width: 25px;
 }
 
 #footer-bottom {
@@ -739,6 +752,7 @@ width: 100%;justify-content: center;
   width: 100%;
   height: 2px;
   background-color: white;
+  margin-top: 10px;
 }
 
 #footer-ultima-linha {
