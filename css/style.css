@@ -1,14 +1,49 @@
+* { padding: 0; margin: 0; }
+
 body {
   margin-top: 0px;
-  font-family: 'Raleway';
+  font-family: 'Rawline', 'Raleway', sans-serif;
   background-color: white;
-  margin: 0px;  
-  
+  margin: 0px;
+}
+
+:root {
+  --cor-tema: #E15323;
+  --cor-background: white;
+  --cor-footer: black;
+  --cor-middleground: #F2F2F2;
+  --cor-highlight: #E15323;
+  --cor-footer-conteudo: white;
+  --cor-item-nav: var(--cor-background);
+  --cor-texto-escuro: #333333;
+  --cor-texto-claro: white;
+
+  font-size: 14px;
 }
 
 a {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
+}
+
+p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--cor-texto-escuro);  
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 2.074rem;
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 32px;
+}
+
+.camada-1 {
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16) ;
 }
 
 .container {
@@ -383,11 +418,20 @@ a {
 }
 
 .mais-link::after {
-  content: "<i class="fa-regular fa-arrow-right"></i>";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f061";
+  color: #E15323;
+
+  vertical-align: middle;
+
+  margin-left: 0.5rem;  
+
   display: inline-block;
-  width:18px;
-  height: 16px;
-  margin-left: 6px;  
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  --webkit-font-smoothing: antialiased;
 
   transition-property: transform;
   transition-duration: 150ms;
@@ -396,13 +440,22 @@ a {
 }
 
 .mais-link:hover::after {
-  content: url('../img/arrow.svg');
-  display: inline-block;
-  width:18px;
-  height: 16px;
-  margin-left: 6px;  
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f061";
+  color: #E15323;
 
-  transform: translateX(6px);
+  vertical-align: middle;
+
+  margin-left: 0.5rem; 
+
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  --webkit-font-smoothing: antialiased;
+
+  transform: translateX(5px);
   transition-property: transform;
   transition-duration: 150ms;
   transition-timing-function: ease-in-out;
@@ -631,7 +684,7 @@ width: 100%;justify-content: center;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
 
   width: 100%;
 }
@@ -644,9 +697,8 @@ width: 100%;justify-content: center;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
-  
+  justify-content: flex-end;  
+  align-items: flex-end;
 }
 
 #footer-contato {
