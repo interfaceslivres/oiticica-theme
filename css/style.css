@@ -275,10 +275,10 @@ address {
 
 .corpo {
   width: 100%;
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 40px;
 
   gap: 40px;
 }
@@ -705,7 +705,7 @@ footer {
   height: 50px;
 }
 
-.img-creditos {
+#footer-creditos a {
   height: 100%;
 }
 
@@ -782,7 +782,7 @@ footer {
   }
 
   .corpo {
-    gap: 40px;
+    gap: 30px;
   }
 
   .noticias {
@@ -925,8 +925,20 @@ footer {
     gap: 20px;
   }
 
+  #footer-dados {
+    flex-direction: row-reverse;
+  }
+
+  .footer-direita {
+    display: block;
+  }
+
+  #footer-creditos {
+    justify-content: flex-start;
+  }
+
   #footer-logo {
-    height: 150px;
+    height: 100px;
   }
 
   #footer-ultima-linha {
