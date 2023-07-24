@@ -42,10 +42,10 @@ p {
 
 h1 {
   font-size: var(--fonte-3up);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.15;
   color: var(--cor-texto-medio);
-  margin-bottom: 32px;
+  margin-bottom: var(--fonte-3up);
 }
 
 img {
@@ -133,6 +133,10 @@ img {
   display: flex;
 }
 
+.centro-titulo:hover {
+  color: var(--cor-tema);
+}
+
 .departamento-titulo {
   font-style: normal;
   font-weight: 700;
@@ -182,6 +186,11 @@ img {
 #menu-buttons {
   display: flex;
   flex-direction: row;
+}
+
+#menu-buttons i:hover {
+  background-color: var(--cor-background);
+  color: var(--cor-tema);
 }
 
 #menu-buttons i {
@@ -262,6 +271,8 @@ img {
   background-image: url("../img/banner.jpg");
   background-position: center;
   background-size: cover; 
+
+  box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.16);
 }
 
 .corpo {
@@ -476,7 +487,7 @@ img {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;  
+  gap: 30px;  
   margin: 0 20px;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -665,7 +676,6 @@ footer a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
 
   width: 100%;
 }
@@ -750,6 +760,7 @@ footer a {
 
 #footer-ultima-linha a {
   text-decoration: underline;
+  display: inline-block;
 }
 
 #footer-ultima-linha div:nth-child(2) a {  
@@ -764,7 +775,30 @@ footer a {
 
 @media only screen and (max-width: 800px) {
   :root {
-    font-size: 12px;
+    font-size: 11px;
+  }
+
+  .cabecalho{
+    flex-direction: row-reverse;
+    gap: 12px;
+    margin: 20px 20px;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .departamento-titulo {
+    font-size: var(--fonte-2up);
+  }
+
+  .centro-titulo {
+    font-size: var(--fonte-base);
+    line-height: 1.45;
+  }
+
+  .imagem {
+    height: 10vh;
   }
 
   .corpo {
@@ -777,7 +811,7 @@ footer a {
   }
 
   #noticia-principal {
-    font-size: var(--fonte-1up);
+    font-size: var(--fonte-2up);
     font-weight: 600;
   }
 
@@ -795,7 +829,6 @@ footer a {
 
   .conteudo {
     min-height: 415px;
-    margin-top: 40px;
     margin-bottom: 30px;
   
     display: grid;
@@ -809,18 +842,14 @@ footer a {
 
   .noticias-coluna {
     gap: 20px;
-  }
-
-  .noticia-com-img {
-    min-height: 150px;
-  }
+  }  
 
   .links {  
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;  
+    gap: 10px;  
     margin: 0 20px;
     padding-top: 30px;
     padding-bottom: 30px;
@@ -862,6 +891,10 @@ footer a {
     height: 60%;
   }
 
+  .link-text {
+    width: 100px;
+  }
+
   .corpo .apresentacao {
     /* Auto layout */
     display: grid;
@@ -896,9 +929,16 @@ footer a {
     display: none;
   }
 
-  .menu ul {
+  .cabecalho {
+    margin: 20px 20px;
+  }
+
+  .menu {
     display: none;   
+    margin: 0 20px;
   }  
+
+
 
   footer {
     font-size: var(--fonte-base);
