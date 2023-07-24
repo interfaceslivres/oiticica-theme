@@ -52,6 +52,10 @@ img {
   height: 100%;
 }
 
+address {
+  font-style: inherit;
+}
+
 .camada-1 {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16) ;
 }
@@ -97,7 +101,7 @@ img {
     align-items : center;
   max-width: 1170px;
   width: 100%;
-  margin: 24px 30px;
+  margin: 20px 30px 15px;
 
 }
 
@@ -106,19 +110,13 @@ img {
   flex-direction: row;
   align-items: center;
   padding: 0px;
-  gap: 30px;
 }
 
 .logo {
   background-color: white;
   height: 83px;
   display: flex;
-}
-
-.titulos {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;  
+  margin-right: 20px;
 }
 
 .centro-titulo {
@@ -282,20 +280,7 @@ img {
   flex-direction: column;
   align-items: center;
 
-  gap: 60px;
-}
-
-.secoes {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 34px;
-
-  color: #666666;
-}
-
-.preto {
-  color: #000000;
+  gap: 40px;
 }
 
 .noticias {
@@ -480,6 +465,8 @@ img {
   justify-content: center;
 
   background-color: var(--cor-middleground);
+
+  margin-bottom: 16px;
 }
 
 .links {  
@@ -565,9 +552,6 @@ img {
   background: var(--cor-middleground);
 }
 
-.apresentacao-conteudo {
-}
-
 .youtube {
   height: 100%;
   min-height: 240px;
@@ -578,8 +562,7 @@ img {
   max-width: 1170px;
   margin: 0 30px;
   display: grid;
-  grid-template-rows: min-content min-content;
-  
+  grid-template-rows: min-content min-content;  
 }
 
 .mapa-grid {
@@ -603,11 +586,8 @@ img {
 
 .mapa img {
   width: 100%;
-  height: 100%;
   object-fit: cover;
-
 }
-
 
 #footer-wrapper {
   display: flex;
@@ -627,14 +607,10 @@ footer {
   align-items: flex-start; 
 
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: var(--fonte-base);
   line-height: 1.45;  
   color: var(--cor-texto-claro);
-}
-
-footer a {
-  
 }
 
 #footer-dados {  
@@ -656,7 +632,7 @@ footer a {
 #footer-dados > div > a {
   font-size: var(--fonte-base);
   color: var(--cor-texto-claro);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.45;
   margin-bottom: 0;
   text-decoration: none;
@@ -669,7 +645,7 @@ footer a {
 #footer-dados > div > div:first-child {
   font-size: var(--fonte-2up);
   line-height: 1.15;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 #footer-top {
@@ -797,6 +773,10 @@ footer a {
     line-height: 1.45;
   }
 
+  .brasao {
+    height: 80px;
+  }
+
   .imagem {
     height: 10vh;
   }
@@ -912,10 +892,6 @@ footer a {
     /* BG BLOCO */
     background: var(--cor-middleground);
   }
-  
-  .apresentacao-conteudo {
-    margin-top: 10px;
-  }
 
   .mapa .mapa-grid {
     display: grid;
@@ -930,15 +906,13 @@ footer a {
   }
 
   .cabecalho {
-    margin: 20px 20px;
+    margin: 20px 20px 15px;
   }
 
   .menu {
     display: none;   
     margin: 0 20px;
   }  
-
-
 
   footer {
     font-size: var(--fonte-base);
@@ -955,27 +929,8 @@ footer a {
     height: 150px;
   }
 
-  .footer-direita {  
-  }
-
-  #footer-dados > div{
-  }
-
-  #footer-dados > div > div:first-child {
-  }
-
-  #footer-contato {    
-  }
-
-  #footer-creditos {
-  }
-
   #footer-ultima-linha {
     flex-direction: column;
     gap: 4px;
   }
-
-  #redes-sociais {
-  }
-
 }
