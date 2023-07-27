@@ -25,6 +25,7 @@ body {
   --fonte-1up: 1.563rem;
   --fonte-2up: 1.953rem;
   --fonte-3up: 2.441rem;
+  --fonte-4up: 3.052rem;
 }
 
 a {
@@ -101,20 +102,20 @@ address {
     align-items : center;
   max-width: 1170px;
   width: 100%;
-  margin: 20px 30px 15px;
+  margin: 20px 30px 25px;
 
 }
 
 .cabecalho-esquerda {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   padding: 0px;
 }
 
 .logo {
   background-color: white;
-  height: 83px;
+  height: 100px;
   display: flex;
   margin-right: 20px;
 }
@@ -264,7 +265,7 @@ address {
 }
 
 .imagem {
-  height: 15vh;
+  height: 30vh;
   width: 100%;
   background-image: url("../img/banner.jpg");
   background-position: center;
@@ -277,10 +278,32 @@ address {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 40px;
+  align-items: center;  
 
-  gap: 40px;
+  gap: var(--fonte-4up);
+  margin-top: var(--fonte-2up);
+}
+
+#index.corpo {
+  margin-bottom: var(--fonte-4up);
+  margin-top: 0px;
+}
+
+#index.corpo .imagem {
+  height: 15vh;
+}
+
+
+
+
+
+.corpo-grid {
+  max-width: 1170px;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  gap: 30px;
+  grid-template-areas: "sidebar conteudo";
+  margin: 0 30px;
 }
 
 .noticias {
@@ -329,6 +352,19 @@ address {
   flex-direction: column;
 }
 
+.noticia-sem-img-wide {
+  max-width: 970px;
+
+  box-sizing: content-box;
+
+  background: var(--cor-background);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;  
+}
+
 .noticia-sem-img:hover {
   background: var(--cor-middleground);
 }
@@ -364,6 +400,8 @@ address {
   line-height: 1.45;
   color: var(--cor-texto-medio);
   margin: 16px var(--fonte-2up);
+
+  gap: var(--fonte-2up);
 } 
 
 .noticia-sem-img-titulo {  
@@ -378,6 +416,22 @@ address {
   display: flex;
   align-items: center;
   margin: 0 var(--fonte-2up) 33.4px;
+}
+
+.noticia-sem-img-wide .rotulo {
+  margin: 16px var(--fonte-2up) 0px;
+}
+
+.noticia-sem-img-wide .noticia-sem-img-titulo {
+  margin: 0 var(--fonte-2up);
+}
+
+.noticia-sem-img-wide p {
+  margin: 0 var(--fonte-2up) var(--fonte-2up);
+  overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  align-self: stretch;
 }
 
 .noticia-com-img-titulo {  
@@ -778,10 +832,12 @@ footer {
   }
 
   .imagem {
+    display: none;
     height: 10vh;
   }
 
   .corpo {
+    margin-top: 20px;
     gap: 30px;
   }
 
