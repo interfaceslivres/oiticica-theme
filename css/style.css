@@ -20,6 +20,7 @@ body {
 
   font-size: 12px;
 
+  --fonte-1down: 1rem;
   --fonte-base: 1.25rem;
   --fonte-1up: 1.563rem;
   --fonte-2up: 1.953rem;
@@ -548,6 +549,94 @@ address {
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 25%, var(--cor-middleground) 100%);
 }
 
+/*NOTICIA*/
+
+.noticia-h2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  font-size: var(--fonte-base);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--cor-texto-escuro);
+
+  margin-bottom: var(--fonte-2up);
+}
+
+.noticia-categorias a {
+  color: var(--cor-tema);
+  text-decoration: underline;
+}
+
+.noticia-categorias {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.noticia-compartilhe {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.noticia-redes {
+  color: var(--cor-tema);
+}
+
+.noticia-redes a:hover {
+  color: var(--cor-texto-escuro);
+}
+
+.noticia-imagem {
+  height: auto;
+  width: 100%;
+}
+
+.noticia-imagem-legenda {
+  font-size: var(--fonte-1down);
+}
+
+.noticia-links-relacionados {
+  margin-bottom: var(--fonte-3up);
+}
+
+.noticia-link-relacionado {
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--fonte-1up);
+  line-height: 1.15;
+  color: var(--cor-tema);
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.noticia-link-relacionado::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f019";
+  color: var(--cor-tema);
+
+  margin-right: 0.5rem;  
+
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  --webkit-font-smoothing: antialiased;
+}
+
+.noticias-relacionadas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/*FIM DE NOTICIA*/
+
 .mais-link {
   display: block;
   flex-shrink: 1; 
@@ -830,14 +919,14 @@ footer {
   line-height: 100%;
 }
 
-#redes-sociais {
+.redes-sociais {
   display: flex;
   flex-direction: row; 
   gap: 10px;
 }
 
 
-#redes-sociais i {
+.redes-sociais i {
   height: 48px;
   display: flex;
   align-items: center;
@@ -959,6 +1048,21 @@ footer {
   }
 
 
+  .noticias-relacionadas {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .noticia-h2 {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .noticia-compartilhe {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
 
   .apresentacao {
     margin-left: 20px;
