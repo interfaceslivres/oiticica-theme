@@ -41,6 +41,19 @@ p {
   margin-bottom: 16px;
 }
 
+p a {
+  text-decoration: underline;
+  color: #0000EE;
+}
+
+p a:visited {
+  color: #551A8B;
+}
+
+p a:hover {
+  background-color: var(--cor-middleground);
+}
+
 h1 {
   font-size: var(--fonte-3up);
   font-weight: 400;
@@ -193,7 +206,7 @@ address {
 
 #menu-buttons {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
 
 #menu-buttons i:hover {
@@ -565,8 +578,11 @@ address {
 }
 
 .noticia-categorias a {
-  color: var(--cor-tema);
   text-decoration: underline;
+}
+
+.noticia-categorias a:hover {
+  background-color: var(--cor-middleground);
 }
 
 .noticia-categorias {
