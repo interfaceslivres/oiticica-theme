@@ -653,6 +653,54 @@ address {
 
 /*FIM DE NOTICIA*/
 
+/*DOCUMENTOS*/
+.documentos-lista-categorias {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.documentos-categoria {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.documentos-categoria div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+.documentos-categoria h3 {
+  color: var(--cor-texto-escuro);
+  font-size: var(--fonte-1up);
+  font-weight: 500;
+  width: 100%;
+  line-height: 2;
+  border-bottom: 1px solid var(--cor-middleground);
+}
+
+.documentos-categoria a {
+  font-size: var(--fonte-base);
+  text-decoration: underline;
+  color: var(--cor-tema);
+  line-height: 1.45;
+  margin-left: 20px;
+}
+
+.documentos-categoria a:hover {
+  background-color: var(--cor-middleground);
+}
+
+.documentos-categoria a:visited {
+  color: #551A8B;
+}
+
+
+/*FIM DE DOCUMENTOS*/
+
 .mais-link {
   display: block;
   flex-shrink: 1; 
