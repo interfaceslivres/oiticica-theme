@@ -54,7 +54,7 @@
             <li><a href="noticias.html">Notícias</a></li>
             <li><a href="">Eventos</a></li>
             <li><a href="documentos.html">Documentos</a></li>
-            <li><a href="">Contato</a></li>
+            <li><a href="contato.html">Contato</a></li>
           </ul>
           <div id="menu-buttons">
             <!--img class="botao-menu" src="img/busca.svg" alt=""-->
@@ -71,38 +71,53 @@
         <h1>Notícias</h1>
         <div class="conteudo">
           <div class="noticias-coluna-unica">
-            <a class="noticia-sem-img camada-1" href="noticia.html">
+
+            <div class="noticia-wrapper">
               <div class="rotulo">
                 <div>15 de Setembro de 2022</div>
-                <div>Notícia, Cataclisma</div>
+                <div>
+                  <a href="ufpb.br">Notícia</a>, <a href="ufpb.br">Calamidade</a>
+                </div>
               </div>
-              <div class="noticia-sem-img-titulo" id="noticia-principal">Resultado final do concurso de "Áudio Digital"</div>
-            </a>  
+              <a class="noticia-sem-img camada-1" href="noticia.html"> 
+                <div class="noticia-sem-img-titulo" id="noticia-principal">Resultado final do concurso de "Áudio Digital"</div>
+              </a>               
+            </div>            
+
+
           </div>        
           <div class="noticias-coluna">
-            <a href="noticia.html" class="noticia-com-img camada-1" style="
-            background-image:
-            linear-gradient(180deg, rgba(0,   0,   0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), 
-            linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 85%),
-            url('img/noticia.jpeg')">
-              <div class="background-wrapper">
-                <div class="rotulo">
-                  <div>15 de Setembro de 2022</div>
-                  <div>Notícia, Cataclisma</div>
-                </div>
-                <div class="noticia-com-img-titulo">Resultado final do concurso de "Marketing Digital e Empreendedorismo"</div>
-               </div>                          
-            </a>
-            <a href="noticia.html" class="noticia-sem-img camada-1">
+            <div class="noticia-wrapper">
+              <div class="rotulo-claro">
+                <div>15 de Setembro de 2022</div>
+                <div><a href="ufpb.br">Notícia</a>, <a href="ufpb.br">Calamidade</a></div>
+              </div>
+              <a href="noticia.html" class="noticia-com-img camada-1" style="
+              background-image:
+              linear-gradient(180deg, rgba(0,   0,   0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), 
+              linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 85%),
+              url('img/noticia.jpeg')">
+                <div class="background-wrapper">                  
+                  <div class="noticia-com-img-titulo">Resultado final do concurso de "Marketing Digital e Empreendedorismo"</div>
+                </div>                          
+              </a>
+            </div>
+
+            <div class="noticia-wrapper">
               <div class="rotulo">
                 <div>15 de Setembro de 2022</div>
-                <div>Notícia, Cataclisma</div>
+                <div><a href="ufpb.br">Notícia</a>, <a href="ufpb.br">Calamidade</a></div>
               </div>
-              <div class="noticia-sem-img-titulo">Resultado final do concurso de "Áudio Digital"</div>              
-            </a>
-          </div>
+              <a href="noticia.html" class="noticia-sem-img camada-1">              
+                <div class="noticia-sem-img-titulo">Resultado final do concurso de "Áudio Digital"</div>              
+              </a>
+              </div>
+            </div>
+            
         </div>
+        <div class="link-wrapper justify-end">
           <a class="mais-link" href="noticias.html">Mais Notícias</a>           
+        </div>
       </div>   
 
       <div class="links-wrapper camada-1">
@@ -153,8 +168,12 @@
             <p>
               O Departamento de Mídias Digitais (DEMID) pertence ao Centro de Ciências Humanas, Letras e Artes (CCHLA) da Universidade Federal da Paraíba (UFPB). O Curso de Bacharelado em Comunicação em Mídias Digitais (CCMD) está vinculado ao Departamento e foi criado pela Resolução nº 38/2009 do Conselho de Ensino, Pesquisa e Extensão (CONSEPE/UFPB). Seria muito interessante se este texto de apresentação fosse maior.
             </p>
-            <a class="mais-link" href="#">Apresentação</a>
-            <a class="mais-link" href="#">Projeto Político-Pedagógico</a>
+            <div class="link-wrapper">
+              <a class="mais-link" href="#">Apresentação</a>
+            </div>
+            <div class="link-wrapper">
+              <a class="mais-link" href="#">Projeto Político-Pedagógico</a>
+            </div>
           </div>          
         </div>
         <div class="youtube">
@@ -194,7 +213,9 @@
               </div>
               <address>R. Ver. João Freire - Conj. Pres. Castelo Branco III, João Pessoa - PB, 58050-420</address>
               <a href="tel:+55 (83) 3216-7847">+55 (83) 3216-7847</a>
-              <a class="mais-link" href="#">Contato</a>
+              <div class="link-wrapper">
+                <a class="mais-link" href="#">Contato</a>
+              </div>              
               <div>Segunda à Sexta, 12h00 às 19h00</div>
             </div>
           </div>
