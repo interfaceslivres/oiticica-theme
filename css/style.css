@@ -226,6 +226,7 @@ address {
 }
 
 .menu ul {
+  z-index: 2;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -321,7 +322,6 @@ address {
 
 .corpo-grid {
   max-width: 1170px;
-  width: 100%;
   display: grid;
   grid-template-columns: 2fr 10fr;
   gap: 30px;
@@ -547,7 +547,7 @@ address {
   height: 100%;
 }
 
-.noticia-wrapper:hover .noticia-sem-img{
+#noticias .noticia-wrapper:hover .noticia-sem-img{
   background: var(--cor-middleground);
 }
 
@@ -573,10 +573,6 @@ address {
   padding: 16px 0 16px var(--fonte-2up);
 }
 
-
-.noticia-sem-img:hover {
-  background: var(--cor-middleground);
-}
 
 #noticias .noticia-com-img {
   background-size: contain;
