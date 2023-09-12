@@ -183,6 +183,18 @@ address {
   min-height: 48px;
 }
 
+.top-fixed {
+  top: 0;
+  z-index: 100;
+  position: fixed;
+}
+
+.sidebar-fixed {
+  top: 71.436px;
+  z-index: 90;
+  position: fixed;
+}
+
 .menu {
   grid-area: menu;
 
@@ -326,6 +338,18 @@ address {
   grid-template-columns: 2fr 10fr;
   gap: 30px;
   margin: 0 30px 60px;
+  width: 100%;
+
+  grid-template-areas:
+  "sb ct";
+}
+
+.sidebar {
+  width: 190px;
+}
+
+.content-grid {
+  grid-area: ct;
 }
 
 .menu-lateral {

@@ -17,13 +17,15 @@
   <link href="assets/fontawesome6/css/brands.css" rel="stylesheet">
   <link href="assets/fontawesome6/css/regular.css" rel="stylesheet">
   <link href="assets/fontawesome6/css/solid.css" rel="stylesheet">
+  <script type="text/javascript" src="js/controller.js"></script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Departamento de Mídias Digitais - UFPB</title>
 </head>
 <body>
     <div class="container">
         <div class="topo camada-1">
-            <div class="cabecalho-wrapper">
+            <div id="cabecalho-id" class="cabecalho-wrapper">
                 <div class="cabecalho">
                 <div class="cabecalho-esquerda">
                     <a href="index.html"><img class="logo" src="img/logo.jpeg"></a>
@@ -37,7 +39,7 @@
                 </a>
                 </div>
             </div>
-            <div class="menu-wrapper">
+            <div id="menu-nav" class="menu-wrapper">
                 <div class="menu">
                 <ul>
                     <li><a href="">Institucional</a></li>
@@ -75,7 +77,7 @@
         </div> 
         <div class="corpo" id="documentos">
             <div class="corpo-grid">
-                <div class="sidebar">
+                <div id="sidebar-menu" class="sidebar">
                     <h2>Filtrar documentos</h2>
                     <ul class="menu-lateral">
                         <li><a href="#">Todos os documentos</a></li>
@@ -85,7 +87,7 @@
                         <li><a href="#formularios">Formulários</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="content-grid">
                     <h1>Documentos</h1>
                     <div class="documentos-lista-categorias">
                         <div class="documentos-categoria">
