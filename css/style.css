@@ -193,6 +193,15 @@ address {
   top: 71.436px;
   z-index: 90;
   position: fixed;
+  width: 190px;
+}
+
+.sidebar-end {
+  align-self: end;
+}
+
+.sidebar-wrapper {
+  align-self: flex-start;
 }
 
 .menu {
@@ -346,6 +355,7 @@ address {
 
 .sidebar {
   width: 190px;
+  display: flex;
 }
 
 .content-grid {
@@ -392,6 +402,138 @@ address {
 .noticias {
   max-width: 1170px;
   margin: 0px 30px;
+}
+
+.paginas-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  justify-content: center;
+  color: var(--cor-texto-escuro);
+}
+
+.paginas-nav *{
+  display: inline;
+  font-weight: 600;
+  font-size: var(--fonte-1up);
+  line-height: 1.15;
+}
+
+.paginas-nav a {
+  color: var(--cor-tema);
+}
+
+.clickable-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 50%;
+}
+
+.pagina-link-nav {
+  text-decoration: underline;
+}
+
+.pagina-link-nav:hover {
+  color: var(--cor-texto-claro);
+  text-decoration: none;
+  background-color: var(--cor-tema);
+}
+
+#seta-proximo {
+  margin-left: 0.5rem;
+}
+
+#seta-anterior {
+  margin-right: 0.5rem;
+}
+
+
+#seta-proximo::after {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f061";
+  color: var(--cor-tema);
+
+  margin-left: 0.5rem;  
+
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  --webkit-font-smoothing: antialiased;
+
+  transition-property: transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  line-height: 1;
+}
+
+#seta-proximo:hover::after {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f061";
+  color: var(--cor-tema);
+
+  margin-left: 0.5rem; 
+
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  --webkit-font-smoothing: antialiased;
+
+  transform: translateX(5px);
+  transition-property: transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+
+#seta-anterior::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f060";
+  color: var(--cor-tema);
+
+  margin-right: 0.5rem;  
+
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  --webkit-font-smoothing: antialiased;
+
+  transition-property: transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  line-height: 1;
+}
+
+#seta-anterior:hover::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f060";
+  color: var(--cor-tema);
+
+  margin-right: 0.5rem; 
+
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  --webkit-font-smoothing: antialiased;
+
+  transform: translateX(-5px);
+  transition-property: transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
 }
 
 .conteudo {
@@ -1253,6 +1395,8 @@ footer {
   .sidebar {
     display: none;
   }
+
+  
 
   .noticias {
     margin-left: 20px;
