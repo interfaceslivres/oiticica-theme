@@ -180,8 +180,41 @@ address {
   margin: 0 auto;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   min-height: 48px;
+}
+
+.busca-teste {
+  width: 100%;
+  max-width: 1170px;
+  height: 48px;
+  margin: 0 30px;
+  display: flex;
+  align-self: center;
+  justify-content: end;
+  align-items: center;
+
+  font-size: var(--fonte-1up);
+  line-height: 1.15;
+  font-weight: 500;
+  gap: 10px;
+}
+
+.busca-teste div a {
+  color: var(--cor-texto-claro);
+}
+
+#barraConfig {
+  font-family: 'Rawline', sans-serif;
+  font-size: var(--fonte-1up);
+  line-height: 1.15;
+  font-weight: 500;
+  border: none;
+}
+
+#busca-botao {
+  color: var(--cor-texto-claro);
 }
 
 .top-fixed {
@@ -214,7 +247,6 @@ address {
   max-width: 1170px;
   margin: 0 30px;
 
-  display: flex;
   flex-direction: row;
   align-items: flex-start;
   padding: 0px;
