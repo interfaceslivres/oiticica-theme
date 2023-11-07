@@ -201,14 +201,80 @@ address {
   gap: 10px;
 }
 
+.busca-teste div {
+  display: flex;
+  /*flex-direction: column;*/
+
+  justify-content: end;
+  align-items: stretch;
+}
+
+form {
+  color: var(--cor-background);
+  display: flex;
+  align-items: center;
+  border: 1px solid currentColor;
+  background: var(--cor-background);
+}
+
+input[type="search"] {
+  border: none;
+  margin: 0;
+  padding: 4px 4px;
+  font-size: var(--fonte-1up);
+  color: var(--cor-texto-escuro);
+  border: 1px solid transparent;
+  border-radius: inherit;
+}
+
+input[type="search"]::placeholder {
+  color: var(--cor-texto-medio);
+}
+
+button[type="submit"] {
+  padding: 0 4px;
+  border: 1px solid transparent;
+  border-radius: inherit;  
+  color: var(--cor-texto-medio);
+  background: inherit;
+}
+
+button[type="submit"] i {
+  font-size: var(--fonte-2up);
+}
+
+button[type="submit"]:hover {
+  color: var(--cor-tema);
+}
+
+button[type="submit"]:focus,
+input[type="search"]:focus {
+  outline: none;
+}
+
 .busca-teste div a {
+  color: var(--cor-texto-claro);
+}
+
+.busca-teste .link-wrapper {
+  height: 48px;
+  margin-bottom: 0px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.busca-teste div a::after {
+  color: var(--cor-texto-claro);
+}
+
+.busca-teste div a:hover::after {
   color: var(--cor-texto-claro);
 }
 
 #barraConfig {
   font-family: 'Rawline', sans-serif;
   font-size: var(--fonte-1up);
-  line-height: 1.15;
+  line-height: 1.45;
   font-weight: 500;
   border: none;
 }
@@ -224,6 +290,7 @@ address {
 }
 
 .sidebar-fixed {
+  /*top: 71.436px;*/
   top: 71.436px;
   z-index: 90;
   position: fixed;

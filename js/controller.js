@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var sidebarHeight = sidebar.offsetHeight;
 
     console.log('cabecalho height:' + offsetValue);
+    console.log('menu height:' + menuHeight);
     console.log('corpo height:' + corpoHeight);
     console.log('sidebar height:' + sidebarHeight);
     
