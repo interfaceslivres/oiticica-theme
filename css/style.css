@@ -191,21 +191,19 @@ address {
   height: 48px;
   margin: 0 30px;
   display: flex;
-  align-self: center;
-  justify-content: end;
+  flex-direction: row;
+  justify-content: stretch;
   align-items: center;
 
   font-size: var(--fonte-1up);
   line-height: 1.15;
   font-weight: 500;
-  gap: 10px;
 }
 
 .busca-teste div {
+  width: 100%;
   display: flex;
-  /*flex-direction: column;*/
-
-  justify-content: end;
+  flex-direction: column;
   align-items: stretch;
 }
 
@@ -218,10 +216,11 @@ form {
 }
 
 input[type="search"] {
+  width: 100%;
   border: none;
   margin: 0;
-  padding: 4px 4px;
-  font-size: var(--fonte-1up);
+  padding: 6px 8px;
+  font-size: var(--fonte-base);
   color: var(--cor-texto-escuro);
   border: 1px solid transparent;
   border-radius: inherit;
@@ -232,7 +231,7 @@ input[type="search"]::placeholder {
 }
 
 button[type="submit"] {
-  padding: 0 4px;
+  padding: 0 8px;
   border: 1px solid transparent;
   border-radius: inherit;  
   color: var(--cor-texto-medio);
@@ -248,6 +247,64 @@ button[type="submit"]:hover {
 }
 
 button[type="submit"]:focus,
+input[type="search"]:focus {
+  outline: none;
+}
+
+button[type="button"] {
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: inherit;  
+  color: var(--cor-texto-medio);
+  background: inherit;
+}
+
+button[type="button"] i {
+  font-size: var(--fonte-2up);
+}
+
+button[type="button"]:hover {
+  color: var(--cor-tema);
+}
+
+button[type="button"]:focus,
+input[type="search"]:focus {
+  outline: none;
+}
+
+button[type="nav"] {
+  border: none;
+  background: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+button[type="nav"] div {
+  margin-right: 16px;
+  color: white;
+  font-size: var(--fonte-1up);
+  font-weight: 500;
+  list-style-type: none;
+  line-height: 1.15;
+}
+
+button[type="nav"] i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  font-size: var(--fonte-2up);
+  line-height: 1.15;
+  color: var(--cor-item-nav);
+  min-width: 40px;
+}
+
+button[type="nav"]:hover {
+  
+}
+
+button[type="nav"]:focus,
 input[type="search"]:focus {
   outline: none;
 }
