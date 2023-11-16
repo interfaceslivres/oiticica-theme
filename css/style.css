@@ -180,8 +180,8 @@ address {
   margin: 0 auto;
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
   min-height: 48px;
 }
 
@@ -189,7 +189,7 @@ address {
   width: 100%;
   max-width: 1170px;
   height: 48px;
-  margin: 0 30px;
+  margin: 0 0px;
   display: flex;
   flex-direction: row;
   justify-content: stretch;
@@ -198,6 +198,10 @@ address {
   font-size: var(--fonte-1up);
   line-height: 1.15;
   font-weight: 500;
+}
+
+.busca-teste.hidden, #desktop-menu.hidden, #menu-buttons.hidden {
+  display: none;
 }
 
 .busca-teste div {
@@ -228,6 +232,14 @@ input[type="search"] {
 
 input[type="search"]::placeholder {
   color: var(--cor-texto-medio);
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: inherit;
 }
 
 button[type="submit"] {
@@ -275,7 +287,7 @@ input[type="search"]:focus {
 button[type="nav"] {
   border: none;
   background: inherit;
-  display: flex;
+  display: none;
   flex-direction: row;
   align-items: center;
 }
@@ -297,7 +309,7 @@ button[type="nav"] i {
   font-size: var(--fonte-2up);
   line-height: 1.15;
   color: var(--cor-item-nav);
-  min-width: 40px;
+  margin-right: 12px;
 }
 
 button[type="nav"]:hover {
@@ -1710,10 +1722,14 @@ footer {
     margin: 20px 20px 15px;
   }
 
-  .menu {
-    display: none;   
-    margin: 0 20px;
-  }  
+  button[type="nav"] {    
+    display: flex;
+    
+  }
+
+  #desktop-menu {
+    display: none;
+  }
 
   footer {
     font-size: var(--fonte-base);

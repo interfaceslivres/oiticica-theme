@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    var searchButton = document.getElementById('busca');
+    var closeSearchButton = document.getElementById('busca-fecha');
+    var searchBar = document.getElementById('busca-barra');
+    var menuBar = document.getElementById('desktop-menu');
+    var menuButtons = document.getElementById('menu-buttons');
+
+
+    searchButton.addEventListener('click', buscaClick);
+    closeSearchButton.addEventListener('click', buscaClick);
+
+    function buscaClick() {
+        searchBar.classList.toggle('hidden');
+        menuBar.classList.toggle('hidden');
+        menuButtons.classList.toggle('hidden');
+    }
+
     var menuNav = document.getElementById('menu-nav');
     var sideBar = document.getElementById('sidebar-menu');
     var cabecalho = document.getElementById('cabecalho-id');
@@ -9,14 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
     var corpoHeight = corpo.offsetHeight;
     var sidebarHeight = sidebar.offsetHeight;
 
-    console.log('cabecalho height:' + offsetValue);
+    /*console.log('cabecalho height:' + offsetValue);
     console.log('menu height:' + menuHeight);
     console.log('corpo height:' + corpoHeight);
-    console.log('sidebar height:' + sidebarHeight);
+    console.log('sidebar height:' + sidebarHeight);*/
     
     window.addEventListener('scroll', function () {
         // Use console.log to determine when you want the nav bar to stick.
-        console.log(window.pageYOffset);
+        //console.log(window.pageYOffset);
         
         if (window.pageYOffset >= offsetValue) {
             menuNav.classList.add('top-fixed');
@@ -30,17 +47,18 @@ document.addEventListener('DOMContentLoaded', function () {
             sideBar.classList.add('sidebar-fixed');
             sideBar.classList.remove('sidebar-wrapper');
             sideBar.classList.remove('sidebar-end');
-            console.log('fixed');
+            //console.log('fixed');
         } else if (window.pageYOffset >= (offsetValue + corpoHeight - sidebarHeight)){
             sideBar.classList.remove('sidebar-fixed');
             sideBar.classList.remove('sidebar-wrapper');
             sideBar.classList.add('sidebar-end');
-            console.log('end');
+            //console.log('end');
         } else {
             sideBar.classList.remove('sidebar-fixed');
             sideBar.classList.remove('sidebar-end');
             sideBar.classList.add('sidebar-wrapper');
-            console.log('nada');
+            //console.log('nada');
         }
     });
 });
+

@@ -41,10 +41,14 @@
             </div>
             <div id="menu-nav" class="menu-wrapper">
                 <div class="menu">
-                <ul>
+                <button type="nav" id="hamburger">
+                    <i class="fa-solid fa-bars"></i>
+                    <div>Menu</div>
+                </button>
+                <ul id="desktop-menu">
                     <li><a href="">Institucional</a></li>
-                    <li><a href="">Equipe</a></li>
-                    <li><a href="">Ensino</a></li>
+                    <!--li><a href="">Equipe</a></li>
+                    <li><a href="">Ensino</a></li-->
                     <li><a href="">Oportunidades</a>
                     <ul>
                         <li><a href="">Projetos de Pesquisa</a></li>
@@ -54,7 +58,7 @@
                     </ul>
                     </li>
                     <li><a href="noticias.html">Notícias</a></li>
-                    <li><a href="">Eventos</a></li>
+                    <!--li><a href="">Eventos</a></li-->
                     <li><a href="">Documentos</a>
                     <ul>
                         <li><a href="documentos.html#">Todos os documentos</a></li>
@@ -66,31 +70,40 @@
                     </li>
                     <li><a href="contato.html">Contato</a></li>
                 </ul>
+                <div class="busca-teste hidden" id="busca-barra">                    
+                    <div>
+                        <form action="">
+                            <input type="search" placeholder="O que você procura?">                            
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="button" id="busca-fecha"><i class="fa-solid fa-times"></i></button>
+                        </form>
+                    </div>
+                </div>
                 <div id="menu-buttons">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    
                     <i class="fa-solid fa-universal-access"></i>        
                 </div>
                 </div>
-                <div class="busca-teste">
-                    <button type="nav" id="hamburger">
-                        <i class="fa-solid fa-bars"></i>
-                        <div>Menu</div>
-                    </button>
+                <!--div class="busca-teste">                    
                     <div>
                         <form action="">
                             <input type="search" placeholder="O que você procura?">                            
                             <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             <button type="button"><i class="fa-solid fa-times"></i></button>
                         </form>
-                    </div>                  
-                                        
-                    <!--div class="barra">
-                        <input type="text" placeholder="Digite sua pesquisa..." id="barraConfig">
                     </div>
-                    <div class="link-wrapper">
-                        <a class="mais-link" href="#">Pesquisar</a>
-                    </div--> 
-                </div>
+                </div-->
+                <!--div class="busca-teste">
+                    <button type="nav" id="hamburger">
+                        <i class="fa-solid fa-bars"></i>
+                        <div>Menu</div>
+                    </button>
+                    <div id="menu-buttons">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-universal-access"></i>        
+                    </div>
+                </div-->
             </div>
         </div> 
         <div class="corpo" id="documentos">
