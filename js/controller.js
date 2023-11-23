@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    var windowHeight = window.innerHeight;
+
     var overlay = document.getElementById('menu-overlay');
     var corpo_doc= document.getElementById('documentos');
 
@@ -21,10 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
         menuButtons.classList.toggle('hidden');        
     }
 
-    function toggleMenuOverlay() {
-        overlay.classList.toggle('hidden');
-        document.body.classList.toggle('stop-scrolling');
-    }
+    
+
+    window.addEventListener('resize', function (){
+        windowHeight = window.innerHeight;
+        
+    })
 
     var menuNav = document.getElementById('menu-nav');    
     var sideBar = document.getElementById('sidebar-menu');
@@ -36,7 +40,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var corpoHeight = corpo.offsetHeight;
     var sidebarHeight = sidebar.offsetHeight;
 
-    overlay.style.top = offsetValue + menuHeight - window.pageYOffset + 'px';
+    overlay.style.top = offsetValue + menuHeight - window.scrollY + 'px';
+
+    function toggleMenuOverlay() {
+        if (window.scrollY < offsetValue) {
+            var altura = windowHeight - offsetValue - menuHeight + window.scrollY + 'px';
+            overlay.style.height = altura;
+        } else {
+            var altura = windowHeight - menuHeight + 'px';
+            overlay.style.height = altura;
+        }
+
+        overlay.classList.toggle('hidden');
+        document.body.classList.toggle('stop-scrolling');
+    }
 
     /*console.log('cabecalho height:' + offsetValue);
     console.log('menu height:' + menuHeight);

@@ -192,8 +192,8 @@ address {
 #menu-overlay {
   width: 100%;
   background-color: var(--cor-background);
-  height: 100%;
-  overflow: scroll;
+  height: 500px;
+  overflow-y: scroll;
 }
 
 #menu-overlay ul {
