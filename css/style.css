@@ -18,7 +18,7 @@ body {
   --cor-texto-medio: #555555;
   --cor-texto-claro: white;
 
-  font-size: 12px;
+  font-size: 12.5px;
 
   --fonte-1down: 1rem;
   --fonte-base: 1.25rem;
@@ -39,7 +39,9 @@ p {
   line-height: 1.45;
   color: var(--cor-texto-escuro);  
   margin-bottom: 16px;
+  max-width: 55ch;
 }
+
 
 p a {
   text-decoration: underline;
@@ -581,7 +583,6 @@ input[type="search"]:focus {
   grid-template-columns: 2fr 10fr;
   gap: 30px;
   margin: 0 30px 60px;
-  width: 100%;
 
   grid-template-areas:
   "sb ct";
@@ -1122,6 +1123,7 @@ input[type="search"]:focus {
 
 .noticia-imagem {
   height: auto;
+  max-width: 60rem;
   width: 100%;
 }
 
@@ -1241,7 +1243,7 @@ input[type="search"]:focus {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   content: "\f061";
-  color: var(--cor-tema);
+  color: inherit;
 
   margin-left: 0.5rem;  
 
@@ -1262,7 +1264,7 @@ input[type="search"]:focus {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   content: "\f061";
-  color: var(--cor-tema);
+  color: inherit;
 
   margin-left: 0.5rem; 
 
@@ -1457,7 +1459,7 @@ footer {
   margin-bottom: 0;
 }
 
-#footer-dados > div > div > a {
+#footer-dados .mais-link {
   font-size: var(--fonte-base);
   color: var(--cor-texto-claro);
   font-weight: 400;
@@ -1580,7 +1582,11 @@ footer {
 
 @media only screen and (max-width: 800px) {
   :root {
-    font-size: 11px;
+    font-size: 12.5px;
+  }
+
+  p {
+    font-size: var(--fonte-base);
   }
 
   .cabecalho{
@@ -1629,7 +1635,8 @@ footer {
 
   .corpo-grid {
     max-width: 1170px;
-    display: grid;
+    width: 100%;
+    display: block;
     grid-template-columns: 1fr;
     margin: 0 20px ;
     gap: 0px;
