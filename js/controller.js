@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var menuNav = document.getElementById('menu-nav');    
     var sideBar = document.getElementById('sidebar-menu');
     var cabecalho = document.getElementById('cabecalho-id');
-    var corpo = document.getElementById('conteudo');
+    var corpo = document.getElementById('index');
     var sidebar = document.getElementById('sidebar-menu');
     var offsetValue = cabecalho.offsetHeight;
     var menuHeight = menuNav.offsetHeight;
     var corpoHeight = corpo.offsetHeight;
-    var sidebarHeight = sidebar.offsetHeight;
+    //var sidebarHeight = sidebar.offsetHeight;
 
     overlay.style.top = offsetValue + menuHeight - window.scrollY + 'px';
 
@@ -62,9 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     window.addEventListener('scroll', function () {
         // Use console.log to determine when you want the nav bar to stick.
-        //console.log(window.pageYOffset);
-        
-        
+        //console.log(window.pageYOffset);       
 
         if (window.pageYOffset >= offsetValue) {
             menuNav.classList.add('top-fixed');
