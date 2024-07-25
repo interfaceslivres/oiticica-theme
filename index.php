@@ -7,7 +7,6 @@
         <h1>Notícias</h1>
         <div class="conteudo">
           <div class="noticias-coluna-unica">
-
             <div class="noticia-wrapper">
               <div class="rotulo">
                 <div>15 de Setembro de 2022</div>
@@ -18,9 +17,7 @@
               <a class="noticia-sem-img camada-1" href="noticia.html"> 
                 <div class="noticia-sem-img-titulo" id="noticia-principal">Resultado final do concurso de "Áudio Digital"</div>
               </a>               
-            </div>            
-
-
+            </div> 
           </div>        
           <div class="noticias-coluna">
             <div class="noticia-wrapper">
@@ -30,8 +27,8 @@
               </div>
               <a href="noticia.html" class="noticia-com-img camada-1" style="
               background-image:
-              linear-gradient(180deg, rgba(0,   0,   0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), 
-              linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 85%),
+              /*linear-gradient(180deg, rgba(0,   0,   0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), 
+              linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 85%),*/
               url('<?php echo get_bloginfo("template_directory"); ?>/img/noticia.jpeg')">
                 <div class="background-wrapper">                  
                   <div class="noticia-com-img-titulo">Resultado final do concurso de "Marketing Digital e Empreendedorismo"</div>

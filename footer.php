@@ -3,7 +3,9 @@
             <footer>          
                 <div id="footer-top">
                     <div id="footer-dados">
-                    <img id="footer-logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg">
+                    <a href="https://ufpb.br">
+                        <img id="footer-logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg">
+                    </a>
                     <div>
                         <div>Departamento de Mídias Digitais</div>
                         <div class="redes-sociais">
@@ -21,9 +23,8 @@
                     </div>
                     <div class="footer-direita">              
                     <div id="footer-creditos">
-                        <a href="#"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/il-logo.jpg" alt=""></a>
-                        <a href="#"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/cchla-logo.png" alt=""></a>
-                        <a href="#"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg" alt=""></a>
+                        <a href="https://www.sti.ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/sti-logo-branco.png" alt="Marca da STI"></a>
+                        <a href="https://ufpb.br"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg" alt="Marca da UFPB"></a>
                     </div>
                     </div>            
                 </div>
@@ -31,7 +32,7 @@
                 <div id="footer-bottom">
                     <div id="footer-ultima-linha">
                     <div>© 2023 Universidade Federal da Paraíba.</div>
-                    <div>
+                    <div id="footer-acesso-info">
                         <a href="#">Acesso à Informação</a>
                         <a href="#">Acessibilidade</a>
                         <a href="#">Dados Abertos UFPB</a> 

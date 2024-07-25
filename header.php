@@ -29,10 +29,17 @@
             <div id="cabecalho-id" class="cabecalho-wrapper">
                 <div class="cabecalho">
                 <div class="cabecalho-esquerda">
-                    <a href="index.html"><img class="logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/logo.jpeg"></a>
+                    <a href="<?php echo get_home_url(); ?>">
+                        <!--<img class="logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/logo.jpeg">-->
+                        <div class="logo">
+                            <?php the_custom_logo(); ?>
+                        </div>  
+                    </a>
                     <div>
-                    <a href="#" class="centro-titulo">Centro de Ciências Humanas, Letras e Artes</a>
-                    <a href="index.html" class="departamento-titulo">Departamento de Mídias Digitais</a>
+                        <a href="<?php $custom_urlcentro = esc_url(get_theme_mod('custom_urlcentro')); echo esc_url($custom_urlcentro) ?>" class="centro-titulo">
+                            <?php $custom_centro = get_theme_mod('custom_centro'); echo esc_html($custom_centro);?>
+                        </a><br />
+                        <a href="<?php echo get_home_url(); ?>" class="departamento-titulo"><?php echo get_bloginfo( 'name' ); ?></a>
                     </div>
                 </div>
                 <a href="http://ufpb.br" class="brasao">
