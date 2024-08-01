@@ -154,14 +154,21 @@ address {
   flex-direction: row;
   align-items: flex-end;
   padding: 0px;
+  gap: var(--fonte-1up);
+}
+
+.cabecalho-esquerda > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
 }
 
 .logo img {
   background-color: white;
-  max-height: 100px;
+  height: 100px;
   display: flex;
-  margin-right: 20px;
   width: 100%;
+  object-fit: contain;
 }
 
 .centro-titulo {
@@ -187,6 +194,18 @@ address {
   line-height: 1.15;
 
   color: var(--cor-texto-escuro);
+
+  display: flex;
+  flex-shrink: 1;
+}
+
+.departamento-titulo:hover {
+  font-style: normal;
+  font-weight: 700;
+  font-size: var(--fonte-3up);
+  line-height: 1.15;
+
+  color: var(--cor-tema);
 
   display: flex;
   flex-shrink: 1;
@@ -562,11 +581,26 @@ input[type="search"]:focus {
 .imagem {
   height: 30vh;
   width: 100%;
-  background-image: url("img/banner.jpg");
+  /*background-image: url("img/banner.jpg");
   background-position: center;
-  background-size: cover; 
+  background-size: cover; */  
+  position: relative;
+  bottom: 0;
+  right: 0;
+}
 
-  box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.16);
+.imagem-sombra {
+  box-shadow: inset 0px 6px 6px rgba(0, 0, 0, 0.16);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.imagem img {
+  object-fit: cover;
+  width: 100%;
+  /*box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.16);*/
 }
 
 .corpo {
@@ -657,7 +691,7 @@ input[type="search"]:focus {
 .noticias-wrapper {
   width: 100%;
   margin: 0 auto;
-  max-width: 1170px;
+  max-width: 1230px;
   padding: 0 30px;
   box-sizing: border-box;
 }
@@ -1398,7 +1432,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;  
-  padding: 50px 30px;
+  padding: 30px 30px 40px;
   margin: 0 30px;
   column-gap: 30px;
 
@@ -1407,6 +1441,16 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
   /* BG BLOCO */
   background: var(--cor-middleground);
+}
+
+.apresentacao-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fonte-1down);
+}
+
+.apresentacao-links li {
+  list-style-type: none;
 }
 
 .youtube {
@@ -1623,8 +1667,8 @@ footer a:hover {
   }
 
   .cabecalho{
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: space-between;
     gap: 12px;
     margin: 20px 20px;
   }
@@ -1809,14 +1853,11 @@ footer a:hover {
     /* Auto layout */
     display: grid;
     grid-template-columns: 1fr ;
-    grid-template-rows: auto auto auto;
-    grid-template-areas:
-      "titulo-apresentacao"
-      "yt"
-      "texto-apresentacao";
+    grid-template-rows: auto auto;    
     padding: 20px;
     margin: 0 0px;
     column-gap: 30px;
+    row-gap: var(--fonte-1up);
     max-width: 1110px;
     height: auto;
     /* BG BLOCO */
