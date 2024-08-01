@@ -22,7 +22,7 @@ body {
 }
 
 :root {
-  --cor-tema: #102d69;
+  /*--cor-tema: #102d69;*/
   --cor-background: white;
   --cor-footer: var(--cor-tema);
   --cor-middleground: #F0F0F0;
@@ -1482,18 +1482,52 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 }
 
 .mapa {
-  max-width: 1170px;
-  margin: 0 30px;
+  
+  
   display: grid;
   grid-template-rows: min-content min-content;  
+  max-width: 1230px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 30px;
+  box-sizing: border-box;
 }
 
 .mapa-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-  "mapa-e-foto so-foto";
+  grid-template-rows: 1fr 1fr;  
+  grid-template-areas: 'mapa  foto2' 'foto1 foto1';
   gap: 30px;
+  max-height: 800px;
+}
+
+#mapa-inlay {
+  grid-area: mapa;
+}
+
+#mapa-inlay iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.foto {
+  height: 100%;
+  max-height: 370px;
+}
+
+.foto2 img {
+  max-height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+#foto1 {
+  grid-area: foto1;
+}
+
+#foto2 {
+  grid-area: foto2;
 }
 
 #mapa-coluna1 {
@@ -1801,9 +1835,15 @@ footer a:hover {
   }
 
   .mapa {
-    margin-left: 20px;
-    margin-right: 20px;
+    padding: 0 20px;
   }  
+
+  #mapa-coluna1 {
+    grid-area: mapa-e-foto;
+    display: grid;
+    grid-template-rows: 3fr 2fr;
+    gap: 30px;
+  }
 
   .conteudo {
     min-height: 415px;
@@ -1877,7 +1917,7 @@ footer a:hover {
     display: grid;
     grid-template-columns: 1fr ;
     grid-template-rows: auto auto;    
-    padding: 20px;
+    padding: 20px 20px 30px;
     margin: 0 0px;
     column-gap: 30px;
     row-gap: var(--fonte-1up);
@@ -1890,12 +1930,13 @@ footer a:hover {
   .mapa .mapa-grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas:
-    "mapa-e-foto";
-    gap: 30px;
+    grid-template-rows: 1fr 1fr 1fr;  
+    grid-template-areas: 'mapa' 'mapa' 'foto1';
+    gap: 20px;
+    max-height: 800px;
   }
 
-  #mapa-coluna2 {
+  #foto2 {
     display: none;
   }
 

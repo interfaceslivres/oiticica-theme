@@ -2,6 +2,31 @@
 
 add_theme_support( 'post-thumbnails' );
 
+//Cor personalizada
+function meu_tema_personalizado($wp_customize) {
+
+    // Adicionando a seção de cores personalizadas
+    $wp_customize->add_section('cores_personalizadas', array(
+      'title' => __('Cor do site', 'meu-tema'),
+      'description' => __('Personalize a cor do site', 'meu-tema'),
+      'priority' => 30
+    ));
+  
+    // Adicionando a opção de cor padrão do tema
+    $wp_customize->add_setting('cor_padrao', array(
+      'default' => '#102d69',
+      'transport' => 'refresh'
+    ));
+  
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_padrao', array(
+      'label' => __('Cor Padrão do Tema', 'meu-tema'),
+      'section' => 'cores_personalizadas',
+      'settings' => 'cor_padrao'
+    )));  
+}
+add_action('customize_register', 'meu_tema_personalizado');
+
+
 //LOGO
 function themename_custom_logo_setup() {
     $defaults = array(
@@ -35,6 +60,37 @@ function adicionar_controle_imagem_banner($wp_customize) {
     )));
 }
 add_action('customize_register', 'adicionar_controle_imagem_banner');
+
+// imagens na seção de mapa
+function adicionar_controle_imagens_mapa($wp_customize) {
+    $wp_customize->add_section('secao_imagens_mapa', array(
+        'title' => 'Imagems de apresentação',
+        'priority' => 30,
+    ));
+
+    $wp_customize->add_setting('imagem1_mapa', array(
+        'default' => '',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'imagem1_mapa', array(
+        'label' => 'Escolha a primeira para apresentar a instituição, que aparecerá abaixo do mapa (use https://tinypng.com/ para otimizar o carregamento.)',
+        'section' => 'secao_imagens_mapa',
+        'settings' => 'imagem1_mapa',        
+    )));   
+    
+    $wp_customize->add_setting('imagem2_mapa', array(
+        'default' => '',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'imagem2_mapa', array(
+        'label' => 'Escolha a segunda imagem, que aparecerá ao lado do mapa',
+        'section' => 'secao_imagens_mapa',
+        'settings' => 'imagem2_mapa',        
+    )));   
+}
+add_action('customize_register', 'adicionar_controle_imagens_mapa');
 
 //registrar menus
 function register_menus() { 
@@ -349,6 +405,21 @@ class WidgetLinksRapidos extends WP_Widget {
 
     public function widget($args, $instance) {
         // Extrair os valores dos campos do widget
+        $text_primeiro = $instance['text_primeiro'];
+        $text_segundo = $instance['text_segundo'];
+        $text_terceiro = $instance['text_terceiro'];
+        $text_quarto = $instance['text_quarto'];
+        $text_quinto = $instance['text_quinto'];
+        $text_sexto = $instance['text_sexto'];
+
+        $icon_primeiro = $instance['icon_primeiro'];
+        $icon_segundo = $instance['icon_segundo'];
+        $icon_terceiro = $instance['icon_terceiro'];
+        $icon_quarto = $instance['icon_quarto'];
+        $icon_quinto = $instance['icon_quinto'];
+        $icon_sexto = $instance['icon_sexto'];
+
+        
         $primeiro = $instance['primeiro'];
         $segundo = $instance['segundo'];
         $terceiro = $instance['terceiro'];
@@ -357,46 +428,46 @@ class WidgetLinksRapidos extends WP_Widget {
         $sexto = $instance['sexto'];
 
         echo $args['before_widget'];
-        echo '<h1>oiiiii</h1>';
+        //echo '<h1>oiiiii</h1>';
         echo '
         <div class="links-wrapper camada-1">
             <div class="links">
 
             <a href="' . esc_url($primeiro) . '" class="link-full">
                 <div class="link-image-wrapper">              
-                    <i class="fa-solid fa-calendar"></i>              
+                    <i class="' . esc_attr($icon_primeiro) . '"></i>              
                 </div>          
-                <div class="link-text" href="#">Calendário Acadêmico</div>
+                <div class="link-text" href="#">' . esc_html($text_primeiro) . '</div>
             </a>
             <a href="' . esc_url($segundo) . '" class="link-full">
                 <div class="link-image-wrapper">
-                <i class="fa-solid fa-pen-fancy"></i>
+                    <i class="' . esc_attr($icon_segundo) . '"></i>
                 </div>          
-                <div class="link-text" href="#">Concursos</div>
+                <div class="link-text" href="#">' . esc_html($text_segundo) . '</div>
             </a>
             <a href="' . esc_url($terceiro) . '" class="link-full">
                 <div class="link-image-wrapper">
-                <i class="fa-solid fa-users"></i>
+                    <i class="' . esc_attr($icon_terceiro) . '"></i>
                 </div>          
-                <div class="link-text" href="#">Equipe</div>
+                <div class="link-text" href="#">' . esc_html($text_terceiro) . '</div>
             </a>
             <a href="' . esc_url($quarto) . '" class="link-full">
                 <div class="link-image-wrapper">
-                <i class="fa-solid fa-microscope"></i>
+                    <i class="' . esc_attr($icon_quarto) . '"></i>
                 </div>          
-                <div class="link-text" href="#">Pesquisa e Extensão</div>
+                <div class="link-text" href="#">' . esc_html($text_quarto) . '</div>
             </a>
             <a href="' . esc_url($quinto) . '" class="link-full">
                 <div class="link-image-wrapper">
-                <i class="fa-solid fa-file"></i>
+                    <i class="' . esc_attr($icon_quinto) . '"></i>
                 </div>          
-                <div class="link-text" href="#">Documentos</div>
+                <div class="link-text" href="#">' . esc_html($text_quinto) . '</div>
             </a>
             <a href="' . esc_url($sexto) . '" class="link-full">
             <div class="link-image-wrapper">
-                <i class="fa-solid fa-newspaper"></i>
+                    <i class="' . esc_attr($icon_sexto) . '"></i>
                 </div>          
-                <div class="link-text" href="#">Newsletter</div>
+                <div class="link-text" href="#">' . esc_html($text_sexto) . '</div>
             </a>';
         
         echo '
@@ -407,38 +478,108 @@ class WidgetLinksRapidos extends WP_Widget {
 
     public function form($instance) {
         // Exibir o formulário de configuração do widget
-        $primeiro = !empty($instance['primeiro']) ? esc_attr($instance['primeiro']) : '#';
-        $segundo = !empty($instance['segundo']) ? esc_attr($instance['segundo']) : '#';
-        $terceiro = !empty($instance['terceiro']) ? esc_attr($instance['terceiro']) : '#';
-        $quarto = !empty($instance['quarto']) ? esc_attr($instance['quarto']) : '#';
-        $quinto = !empty($instance['quinto']) ? esc_textarea($instance['quinto']) : '#';
-        $sexto = !empty($instance['sexto']) ? esc_attr($instance['sexto']) : '#';        
+        // nomes dos links, para exibição
+        $text_primeiro = !empty($instance['text_primeiro']) ? esc_html($instance['text_primeiro']) : 'Pri';
+        $text_segundo = !empty($instance['text_segundo']) ? esc_html($instance['text_segundo']) : 'Seg';
+        $text_terceiro = !empty($instance['text_terceiro']) ? esc_html($instance['text_terceiro']) : 'Ter';
+        $text_quarto = !empty($instance['text_quarto']) ? esc_html($instance['text_quarto']) : 'Qua';
+        $text_quinto = !empty($instance['text_quinto']) ? esc_html($instance['text_quinto']) : 'Qui';
+        $text_sexto = !empty($instance['text_sexto']) ? esc_html($instance['text_sexto']) : 'Sex';
+
+        //icones do fontawesome
+        $icon_primeiro = !empty($instance['icon_primeiro']) ? esc_attr($instance['icon_primeiro']) : 'fa-solid fa-pen-fancy';
+        $icon_segundo = !empty($instance['icon_segundo']) ? esc_attr($instance['icon_segundo']) : 'fa-solid fa-pen-fancy';
+        $icon_terceiro = !empty($instance['icon_terceiro']) ? esc_attr($instance['icon_terceiro']) : 'fa-solid fa-pen-fancy';
+        $icon_quarto = !empty($instance['icon_quarto']) ? esc_attr($instance['icon_quarto']) : 'fa-solid fa-pen-fancy';
+        $icon_quinto = !empty($instance['icon_quinto']) ? esc_attr($instance['icon_quinto']) : 'fa-solid fa-pen-fancy';
+        $icon_sexto = !empty($instance['icon_sexto']) ? esc_attr($instance['icon_sexto']) : 'fa-solid fa-pen-fancy';
+
+        //links dos... bem, links
+        $primeiro = !empty($instance['primeiro']) ? esc_url($instance['primeiro']) : '#';
+        $segundo = !empty($instance['segundo']) ? esc_url($instance['segundo']) : '#';
+        $terceiro = !empty($instance['terceiro']) ? esc_url($instance['terceiro']) : '#';
+        $quarto = !empty($instance['quarto']) ? esc_url($instance['quarto']) : '#';
+        $quinto = !empty($instance['quinto']) ? esc_url($instance['quinto']) : '#';
+        $sexto = !empty($instance['sexto']) ? esc_url($instance['sexto']) : '#';        
 
         // Formulário de configuração do widget
         ?>
         <p>
+            <label for="<?php echo $this->get_field_id('text_primeiro'); ?>">Título do primeiro link:</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('text_primero'); ?>" name="<?php echo $this->get_field_name('text_primeiro'); ?>" type="text" value="<?php echo $text_primeiro; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('icon_primeiro'); ?>">Ícone do primeiro link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('icon_primero'); ?>" name="<?php echo $this->get_field_name('icon_primeiro'); ?>" type="text" value="<?php echo $icon_primeiro; ?>">
+        </p>
+        <p>
             <label for="<?php echo $this->get_field_id('primeiro'); ?>">Endereço do primeiro link rápido:</label>
             <input class="widefat" id="<?php echo $this->get_field_id('primero'); ?>" name="<?php echo $this->get_field_name('primeiro'); ?>" type="url" value="<?php echo $primeiro; ?>">
+        </p><br>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('text_segundo'); ?>">Título do segundo link:</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('text_segundo'); ?>" name="<?php echo $this->get_field_name('text_segundo'); ?>" type="text" value="<?php echo $text_segundo; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('icon_segundo'); ?>">Ícone do primeiro link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('icon_segundo'); ?>" name="<?php echo $this->get_field_name('icon_segundo'); ?>" type="text" value="<?php echo $icon_segundo; ?>">
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('segundo'); ?>">Endereço do segundo link rápido:</label>
             <input class="widefat" id="<?php echo $this->get_field_id('segundo'); ?>" name="<?php echo $this->get_field_name('segundo'); ?>" type="url" value="<?php echo $segundo; ?>">
+        </p><br>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('text_terceiro'); ?>">Título do terceiro link:</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('text_terceiro'); ?>" name="<?php echo $this->get_field_name('text_terceiro'); ?>" type="text" value="<?php echo $text_terceiro; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('icon_terceiro'); ?>">Ícone do primeiro link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('icon_terceiro'); ?>" name="<?php echo $this->get_field_name('icon_terceiro'); ?>" type="text" value="<?php echo $icon_terceiro; ?>">
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('terceiro'); ?>">Endereço do terceiro link rápido:</label>
             <input class="widefat" id="<?php echo $this->get_field_id('terceiro'); ?>" name="<?php echo $this->get_field_name('terceiro'); ?>" type="url" value="<?php echo $terceiro; ?>">
+        </p><br>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('text_quarto'); ?>">Título do quarto link:</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('text_quarto'); ?>" name="<?php echo $this->get_field_name('text_quarto'); ?>" type="text" value="<?php echo $text_quarto; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('icon_quarto'); ?>">Ícone do primeiro link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('icon_quarto'); ?>" name="<?php echo $this->get_field_name('icon_quarto'); ?>" type="text" value="<?php echo $icon_quarto; ?>">
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('quarto'); ?>">Endereço do quarto link rápido:</label>
             <input class="widefat" id="<?php echo $this->get_field_id('quarto'); ?>" name="<?php echo $this->get_field_name('quarto'); ?>" type="url" value="<?php echo $quarto; ?>">
+        </p><br>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('text_quinto'); ?>">Título do quinto link:</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('text_quinto'); ?>" name="<?php echo $this->get_field_name('text_quinto'); ?>" type="text" value="<?php echo $text_quinto; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('icon_quinto'); ?>">Ícone do primeiro link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('icon_quinto'); ?>" name="<?php echo $this->get_field_name('icon_quinto'); ?>" type="text" value="<?php echo $icon_quinto; ?>">
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('quinto'); ?>">Endereço do quinto link rápido:</label>
-            <textarea class="widefat" id="<?php echo $this->get_field_id('quinto'); ?>" name="<?php echo $this->get_field_name('quinto'); ?>" rows="5"><?php echo $quinto; ?></textarea>
+            <input class="widefat" id="<?php echo $this->get_field_id('quinto'); ?>" name="<?php echo $this->get_field_name('quinto'); ?>" type="url" value="<?php echo $quinto; ?>">
+        </p><br>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('text_sexto'); ?>">Título do sexto link:</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('text_sexto'); ?>" name="<?php echo $this->get_field_name('text_sexto'); ?>" type="text" value="<?php echo $text_sexto; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('icon_sexto'); ?>">Ícone do primeiro link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('icon_sexto'); ?>" name="<?php echo $this->get_field_name('icon_sexto'); ?>" type="text" value="<?php echo $icon_sexto; ?>">
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('sexto'); ?>">Endereço do sexto link rápido:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('sexto'); ?>" name="<?php echo $this->get_field_name('sexto'); ?>" type="text" value="<?php echo $sexto; ?>">
+            <input class="widefat" id="<?php echo $this->get_field_id('sexto'); ?>" name="<?php echo $this->get_field_name('sexto'); ?>" type="url" value="<?php echo $sexto; ?>">
         </p>        
         <?php
     }
@@ -446,12 +587,29 @@ class WidgetLinksRapidos extends WP_Widget {
     public function update($new_instance, $old_instance) {
         // Atualizar os valores do widget
         $instance = $old_instance;
-        $instance['primeiro'] = !empty($new_instance['primeiro']) ? esc_url($new_instance['primeiro']) : '';
-        $instance['segundo'] = !empty($new_instance['segundo']) ? esc_url($new_instance['segundo']) : '';
-        $instance['terceiro'] = !empty($new_instance['terceiro']) ? esc_url($new_instance['terceiro']) : '';
-        $instance['quarto'] = !empty($new_instance['quarto']) ? esc_url($new_instance['quarto']) : '';
-        $instance['quinto'] = !empty($new_instance['quinto']) ? esc_textarea($new_instance['quinto']) : '';
-        $instance['sexto'] = !empty($new_instance['sexto']) ? esc_html($new_instance['sexto']) : '';
+        $instance['text_primeiro'] = !empty($new_instance['text_primeiro']) ? esc_html($new_instance['text_primeiro']) : 'erro';
+        $instance['icon_primeiro'] = !empty($new_instance['icon_primeiro']) ? esc_attr($new_instance['icon_primeiro']) : 'fa-solid fa-pen-fancy';
+        $instance['primeiro'] = !empty($new_instance['primeiro']) ? esc_url($new_instance['primeiro']) : '#';
+
+        $instance['text_segundo'] = !empty($new_instance['text_segundo']) ? esc_html($new_instance['text_segundo']) : 'erro';
+        $instance['icon_segundo'] = !empty($new_instance['icon_segundo']) ? esc_attr($new_instance['icon_segundo']) : 'fa-solid fa-pen-fancy';
+        $instance['segundo'] = !empty($new_instance['segundo']) ? esc_url($new_instance['segundo']) : '#';
+
+        $instance['text_terceiro'] = !empty($new_instance['text_terceiro']) ? esc_html($new_instance['text_terceiro']) : 'erro';
+        $instance['icon_terceiro'] = !empty($new_instance['icon_terceiro']) ? esc_attr($new_instance['icon_terceiro']) : 'fa-solid fa-pen-fancy';
+        $instance['terceiro'] = !empty($new_instance['terceiro']) ? esc_url($new_instance['terceiro']) : '#';
+
+        $instance['text_quarto'] = !empty($new_instance['text_quarto']) ? esc_html($new_instance['text_quarto']) : 'erro';
+        $instance['icon_quarto'] = !empty($new_instance['icon_quarto']) ? esc_attr($new_instance['icon_quarto']) : 'fa-solid fa-pen-fancy';
+        $instance['quarto'] = !empty($new_instance['quarto']) ? esc_url($new_instance['quarto']) : '#';
+
+        $instance['text_quinto'] = !empty($new_instance['text_quinto']) ? esc_html($new_instance['text_quinto']) : 'erro';
+        $instance['icon_quinto'] = !empty($new_instance['icon_quinto']) ? esc_attr($new_instance['icon_quinto']) : 'fa-solid fa-pen-fancy';
+        $instance['quinto'] = !empty($new_instance['quinto']) ? esc_url($new_instance['quinto']) : '#';
+
+        $instance['text_sexto'] = !empty($new_instance['text_sexto']) ? esc_html($new_instance['text_sexto']) : 'erro';
+        $instance['icon_sexto'] = !empty($new_instance['icon_sexto']) ? esc_attr($new_instance['icon_sexto']) : 'fa-solid fa-pen-fancy';
+        $instance['sexto'] = !empty($new_instance['sexto']) ? esc_url($new_instance['sexto']) : '#';
 
         return $instance;
     }
@@ -462,5 +620,86 @@ function registrar_widget_links_rapidos() {
     register_widget('WidgetLinksRapidos');
 }
 add_action('widgets_init', 'registrar_widget_links_rapidos');
+
+
+class WidgetMapaEFotos extends WP_Widget {
+
+    public function __construct() {
+        parent::__construct(
+            'widget_mapa',
+            'Widget de Mapa e Fotos',
+            array(
+                'description' => 'Widget com a localização e fotos da instituição.'
+            )
+        );
+    }
+
+    public function widget($args, $instance) {
+        // Extrair os valores dos campos do widget
+        $titulo = !empty($instance['titulo']) ? $instance['titulo'] : 'Encontre-nos!';
+        $mapa_iframe = !empty($instance['mapa_iframe']) ? $instance['mapa_iframe'] : '';        
+        $image_1 = ! empty(get_theme_mod('imagem2_mapa')) ? get_theme_mod('imagem2_mapa') : '';  
+        $image_2 = ! empty(get_theme_mod('imagem1_mapa')) ? get_theme_mod('imagem1_mapa') : '';         
+
+        echo $args['before_widget'];
+        echo '
+        <div class="mapa">
+        <div>
+            <h1>' . esc_html($titulo) . '</h1>
+            <div class="mapa-grid">                
+                <div id="mapa-inlay">
+                    ' . $mapa_iframe . '         
+                </div>
+
+                <div id="foto1" class="foto">
+                    <img src="' . esc_url($image_1) . '" alt="Imagem decorativa do site">
+                    <!--img src="<?php echo get_bloginfo("template_directory"); ?>/img/foto1.jpg" alt=""-->
+                </div>
+                
+                <div id="foto2" class="foto">
+                    <img src="' . esc_url($image_2) . '" alt="Imagem decorativa do site">
+                    <!--img src="<?php echo get_bloginfo("template_directory"); ?>/img/foto2.png" alt=""-->
+                </div>
+            </div>
+        </div>
+        </div>';
+        
+        echo $args['after_widget']; 
+    }
+
+    public function form($instance) {
+        // Exibir o formulário de configuração do widget
+        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : 'Encontre-nos!';
+        $mapa_iframe = !empty($instance['mapa_iframe']) ? $instance['mapa_iframe'] : 'iframe_do_mapa';         
+
+        // Formulário de configuração do widget
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('titulo'); ?>">Título da seção:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('mapa_iframe'); ?>">Código de embed (iframe) do google maps, obtido através do compartilhar do maps:</label>
+            <textarea class="widefat" id="<?php echo $this->get_field_id('mapa_iframe'); ?>" name="<?php echo $this->get_field_name('mapa_iframe'); ?>" type="html" value="<?php echo $mapa_iframe; ?>"></textarea>
+        </p> 
+        <?php
+    }
+
+    public function update($new_instance, $old_instance) {
+        // Atualizar os valores do widget
+        $instance = $old_instance;
+        $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : '';
+        $instance['mapa_iframe'] = !empty($new_instance['mapa_iframe']) ? $new_instance['mapa_iframe'] : 'cagou-se';  
+        return $instance;
+    }
+}
+
+function registrar_widget_mapa() {
+    register_widget('WidgetMapaEFotos');
+}
+add_action('widgets_init', 'registrar_widget_mapa');
+
+
 
 ?>

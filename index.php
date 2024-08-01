@@ -365,7 +365,7 @@
 
   <?php $widget_values = dynamic_sidebar('widgets-da-home'); ?>
 
-  <div class="mapa">
+  <!--div class="mapa">
     <h1>Encontre o Departamento</h1>
     <div class="mapa-grid">
       <div id="mapa-coluna1">
@@ -380,7 +380,7 @@
         <img src="<?php echo get_bloginfo("template_directory"); ?>/img/foto2.png" alt="">
       </div>
     </div>
-  </div>      
+  </div-->      
 </div>
 	
 	
