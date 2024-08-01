@@ -76,7 +76,15 @@ function registrar_widgets_personalizados() {
         'before_title'  => '',
         'after_title'   => '',
     ));
-    // Registrar mais areas de widgets personalizados, se necessário
+    register_sidebar(array(
+        'name'          => 'Área do Widget de Links Rápidos',
+        'id'            => 'widget-links-rapidos',
+        'description'   => 'Defina os Links rápidos e seus respectivos ícones.',
+        'before_widget' => '',
+        'after_widget'  => '',
+        'before_title'  => '',
+        'after_title'   => '',
+    ));
 }
 // Hook para registrar os widgets
 add_action('widgets_init', 'registrar_widgets_personalizados');
@@ -327,5 +335,132 @@ function registrar_widget_footer_top() {
     register_widget('WidgetRedesSociais');
 }
 add_action('widgets_init', 'registrar_widget_footer_top');
+
+class WidgetLinksRapidos extends WP_Widget {
+    public function __construct() {
+        parent::__construct(
+            'widget_links_rapidos',
+            'Widget de Links Rápidos',
+            array(
+                'description' => 'Widget para adicionar 6 links rápidos'
+            )
+        );
+    }
+
+    public function widget($args, $instance) {
+        // Extrair os valores dos campos do widget
+        $primeiro = $instance['primeiro'];
+        $segundo = $instance['segundo'];
+        $terceiro = $instance['terceiro'];
+        $quarto = $instance['quarto'];
+        $quinto = $instance['quinto'];
+        $sexto = $instance['sexto'];
+
+        echo $args['before_widget'];
+        echo '<h1>oiiiii</h1>';
+        echo '
+        <div class="links-wrapper camada-1">
+            <div class="links">
+
+            <a href="' . esc_url($primeiro) . '" class="link-full">
+                <div class="link-image-wrapper">              
+                    <i class="fa-solid fa-calendar"></i>              
+                </div>          
+                <div class="link-text" href="#">Calendário Acadêmico</div>
+            </a>
+            <a href="' . esc_url($segundo) . '" class="link-full">
+                <div class="link-image-wrapper">
+                <i class="fa-solid fa-pen-fancy"></i>
+                </div>          
+                <div class="link-text" href="#">Concursos</div>
+            </a>
+            <a href="' . esc_url($terceiro) . '" class="link-full">
+                <div class="link-image-wrapper">
+                <i class="fa-solid fa-users"></i>
+                </div>          
+                <div class="link-text" href="#">Equipe</div>
+            </a>
+            <a href="' . esc_url($quarto) . '" class="link-full">
+                <div class="link-image-wrapper">
+                <i class="fa-solid fa-microscope"></i>
+                </div>          
+                <div class="link-text" href="#">Pesquisa e Extensão</div>
+            </a>
+            <a href="' . esc_url($quinto) . '" class="link-full">
+                <div class="link-image-wrapper">
+                <i class="fa-solid fa-file"></i>
+                </div>          
+                <div class="link-text" href="#">Documentos</div>
+            </a>
+            <a href="' . esc_url($sexto) . '" class="link-full">
+            <div class="link-image-wrapper">
+                <i class="fa-solid fa-newspaper"></i>
+                </div>          
+                <div class="link-text" href="#">Newsletter</div>
+            </a>';
+        
+        echo '
+            </div>
+        </div>';
+        echo $args['after_widget'];            
+    }
+
+    public function form($instance) {
+        // Exibir o formulário de configuração do widget
+        $primeiro = !empty($instance['primeiro']) ? esc_attr($instance['primeiro']) : '#';
+        $segundo = !empty($instance['segundo']) ? esc_attr($instance['segundo']) : '#';
+        $terceiro = !empty($instance['terceiro']) ? esc_attr($instance['terceiro']) : '#';
+        $quarto = !empty($instance['quarto']) ? esc_attr($instance['quarto']) : '#';
+        $quinto = !empty($instance['quinto']) ? esc_textarea($instance['quinto']) : '#';
+        $sexto = !empty($instance['sexto']) ? esc_attr($instance['sexto']) : '#';        
+
+        // Formulário de configuração do widget
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('primeiro'); ?>">Endereço do primeiro link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('primero'); ?>" name="<?php echo $this->get_field_name('primeiro'); ?>" type="url" value="<?php echo $primeiro; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('segundo'); ?>">Endereço do segundo link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('segundo'); ?>" name="<?php echo $this->get_field_name('segundo'); ?>" type="url" value="<?php echo $segundo; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('terceiro'); ?>">Endereço do terceiro link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('terceiro'); ?>" name="<?php echo $this->get_field_name('terceiro'); ?>" type="url" value="<?php echo $terceiro; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('quarto'); ?>">Endereço do quarto link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('quarto'); ?>" name="<?php echo $this->get_field_name('quarto'); ?>" type="url" value="<?php echo $quarto; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('quinto'); ?>">Endereço do quinto link rápido:</label>
+            <textarea class="widefat" id="<?php echo $this->get_field_id('quinto'); ?>" name="<?php echo $this->get_field_name('quinto'); ?>" rows="5"><?php echo $quinto; ?></textarea>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('sexto'); ?>">Endereço do sexto link rápido:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('sexto'); ?>" name="<?php echo $this->get_field_name('sexto'); ?>" type="text" value="<?php echo $sexto; ?>">
+        </p>        
+        <?php
+    }
+
+    public function update($new_instance, $old_instance) {
+        // Atualizar os valores do widget
+        $instance = $old_instance;
+        $instance['primeiro'] = !empty($new_instance['primeiro']) ? esc_url($new_instance['primeiro']) : '';
+        $instance['segundo'] = !empty($new_instance['segundo']) ? esc_url($new_instance['segundo']) : '';
+        $instance['terceiro'] = !empty($new_instance['terceiro']) ? esc_url($new_instance['terceiro']) : '';
+        $instance['quarto'] = !empty($new_instance['quarto']) ? esc_url($new_instance['quarto']) : '';
+        $instance['quinto'] = !empty($new_instance['quinto']) ? esc_textarea($new_instance['quinto']) : '';
+        $instance['sexto'] = !empty($new_instance['sexto']) ? esc_html($new_instance['sexto']) : '';
+
+        return $instance;
+    }
+
+}
+
+function registrar_widget_links_rapidos() {
+    register_widget('WidgetLinksRapidos');
+}
+add_action('widgets_init', 'registrar_widget_links_rapidos');
 
 ?>

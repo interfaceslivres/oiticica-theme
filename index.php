@@ -300,7 +300,9 @@
   </div>
   </div>         
 
-  <div class="links-wrapper camada-1">
+  <?php $widget_values = dynamic_sidebar('widget-links-rapidos'); ?>
+
+  <!--div class="links-wrapper camada-1">
     <div class="links">
       <a href="#" class="link-full"> 
         <div class="link-image-wrapper">              
@@ -339,7 +341,7 @@
         <div class="link-text" href="#">Newsletter</div>
       </a>
     </div>
-  </div>
+  </div-->
   
   <!--div class="apresentacao camada-1"> 
     <div>
