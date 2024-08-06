@@ -33,23 +33,19 @@
         <div class="topo camada-1">
             <div id="cabecalho-id" class="cabecalho-wrapper">
                 <div class="cabecalho">
-                <div class="cabecalho-esquerda">
-                    <a class="logo" href="<?php echo get_home_url(); ?>">
-                        <!--<img class="logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/logo.jpeg">-->
-                        <div >
-                            <?php the_custom_logo(); ?>
-                        </div>  
-                    </a>
-                    <div>
-                        <a href="<?php $custom_urlcentro = esc_url(get_theme_mod('custom_urlcentro', 'https://www.ufpb.br/ufpb/menu/institucional/centros-de-ensino')); echo esc_url($custom_urlcentro) ?>" class="centro-titulo">
-                            <?php $custom_centro = get_theme_mod('custom_centro', 'Centro de Alguma Coisa'); echo esc_html($custom_centro);?>
-                        </a>
-                        <a href="<?php echo get_home_url(); ?>" class="departamento-titulo"><?php echo get_bloginfo( 'name' ); ?></a>
+                    <div class="cabecalho-esquerda">
+                        
+                        <?php the_custom_logo(); ?>
+                        <div class="site-titulos">
+                            <a href="<?php $custom_urlcentro = esc_url(get_theme_mod('custom_urlcentro', 'https://www.ufpb.br/ufpb/menu/institucional/centros-de-ensino')); echo esc_url($custom_urlcentro) ?>" class="centro-titulo">
+                                <?php $custom_centro = get_theme_mod('custom_centro', 'Centro de Alguma Coisa'); echo esc_html($custom_centro);?>
+                            </a>
+                            <a href="<?php echo get_home_url(); ?>" class="departamento-titulo"><?php echo get_bloginfo( 'name' ); ?></a>
+                        </div>
                     </div>
-                </div>
-                <a href="http://ufpb.br" class="brasao">
-                    <img src="<?php echo get_bloginfo("template_directory"); ?>/img/SVG final.svg">
-                </a>
+                    <a href="http://ufpb.br" class="brasao">
+                        <img src="<?php echo get_bloginfo("template_directory"); ?>/img/SVG final.svg">
+                    </a>
                 </div>
             </div>
             <div id="menu-nav" class="menu-wrapper">

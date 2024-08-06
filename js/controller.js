@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var menuNav = document.getElementById('menu-nav');    
     var sideBar = document.getElementById('sidebar-menu');
     var cabecalho = document.getElementById('cabecalho-id');
-    var corpo = document.getElementById('index');
+    var corpo = document.getElementById('conteudo_pagina');
     var sidebar = document.getElementById('sidebar-menu');
     var offsetValue = cabecalho.offsetHeight;
     var menuHeight = menuNav.offsetHeight;

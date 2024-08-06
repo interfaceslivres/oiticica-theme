@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="corpo" id="conteudo_pagina">
+<div class="corpo" id="index">
   <div class="imagem">
     <?php
     // Obtém a URL da imagem do Customizer
