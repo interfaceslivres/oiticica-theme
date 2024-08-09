@@ -35,7 +35,7 @@ function themename_custom_logo_setup() {
         'flex-height'          => true,
         'flex-width'           => true,
         'header-text'          => array( 'site-title', 'site-description' ),
-        'unlink-homepage-logo' => true, 
+        'unlink-homepage-logo' => false, 
     );
     add_theme_support( 'custom-logo', $defaults );
 }
@@ -97,7 +97,8 @@ function register_menus() {
     register_nav_menus(
         array(
             'main-menu' => 'Menu Principal',
-            'localizacao-menu' => 'Links em Localização'
+            'localizacao-menu' => 'Links em Localização',
+            'side-menu' => 'Menu lateral presente em todas as subpágias',            
         )
     ); 
 }
@@ -111,6 +112,119 @@ function add_menu_link_class( $atts, $item, $args ) {
     return $atts;
 }
 add_filter( 'nav_menu_link_attributes', 'add_menu_link_class', 1, 3 );
+
+function cats_related_post() {
+
+    $post_id = get_the_ID();
+    $cat_ids = array();
+    $categories = get_the_category( $post_id );
+
+    if(!empty($categories) && !is_wp_error($categories)):
+        foreach ($categories as $category):
+            array_push($cat_ids, $category->term_id);
+        endforeach;
+    endif;
+
+    $current_post_type = get_post_type($post_id);
+
+    $query_args = array( 
+        'category__in'   => $cat_ids,
+        'post_type'      => $current_post_type,
+        'post__not_in'    => array($post_id),
+        'posts_per_page'  => '2',
+     );
+
+    $related_cats_post = new WP_Query( $query_args );
+
+    if($related_cats_post->have_posts()): ?>
+
+        <h2 id="outras-n">Notícias Relacionadas</h2>
+        <div class="noticias-relacionadas">
+
+        <?php while($related_cats_post->have_posts()): $related_cats_post->the_post(); ?>
+            <?php if ( has_post_thumbnail() ) { ?>
+                    <div class="noticia-wrapper">
+                          <div class="rotulo-claro">
+                            <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
+                            <div class="categorias">
+                              <?php
+                            // Obtém as categorias do post
+                            $categories = get_the_category();
+
+                            // Verifica se existem categorias
+                            if ($categories) {
+                                // Limita a exibição a duas categorias
+                                $categories = array_slice($categories, 0, 2);
+
+                                // Loop pelas categorias
+                                foreach ($categories as $category) {
+                                    // Exibe o nome da categoria como um link
+                                    echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+
+                                    // Adiciona uma vírgula após a categoria, exceto pela última
+                                    if (next($categories)) {
+                                        echo ', ';
+                                    }
+                                }
+                            }
+                            ?>
+                            </div> <!-- fecha categorias -->
+                          </div> <!-- fecha div rotulo-claro -->
+                          <a href="<?php the_permalink();?>" class="noticia-com-img camada-1" style="
+                          background-image:
+                          url(<?php the_post_thumbnail_url(); ?>)">
+                            <div class="background-wrapper">                  
+                              <div class="noticia-com-img-titulo"><?php the_title(); ?></div>
+                            </div>                          
+                          </a>
+                    </div>
+            <?php } else { ?> 
+
+                    <div class="noticia-wrapper">
+                            <div class="rotulo">
+                              <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
+                              <div class="categorias">
+                                <?php
+                              // Obtém as categorias do post
+                              $categories = get_the_category();
+
+                              // Verifica se existem categorias
+                              if ($categories) {
+                                  // Limita a exibição a duas categorias
+                                  $categories = array_slice($categories, 0, 2);
+
+                                  // Loop pelas categorias
+                                  foreach ($categories as $category) {
+                                      // Exibe o nome da categoria como um link
+                                      echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+
+                                      // Adiciona uma vírgula após a categoria, exceto pela última
+                                      if (next($categories)) {
+                                          echo ', ';
+                                      }
+                                  }
+                              }
+                              ?>
+                              </div> <!-- fecha a div categorias -->
+                            </div> <!-- fecha a div rotulo -->
+                            <a href="<?php the_permalink();?>" class="noticia-sem-img camada-1">              
+                            <div class="noticia-sem-img-titulo"><?php the_title(); ?></div>    
+                            </a>
+                    </div>
+
+
+        <?php 
+         } 
+        endwhile;
+
+        // Restore original Post Data
+        wp_reset_postdata();
+        ?> 
+        </div> <!-- fecha div noticias-relacionadas -->
+        <?php
+     endif;
+
+}
 
 // Registrar widgets
 function registrar_widgets_personalizados() {   
@@ -204,7 +318,7 @@ class Widget_Apresentacao extends WP_Widget {
         echo '
         <div class="apresentacao camada-1">
             <div>                 
-                <h1>' . nl2br(esc_html($instance['titulo'])) . '</h1>
+                <h2>' . nl2br(esc_html($instance['titulo'])) . '</h2>
                 <p>' . nl2br(esc_html($instance['texto-apresentacao'])) . '</p>
                 <div class="apresentacao-links">';
 
@@ -295,19 +409,7 @@ class WidgetRedesSociais extends WP_Widget {
 
         // Exibir o conteúdo do widget
         echo $args['before_widget'];
-        if (!empty($instagram)) {
-            echo '<a href="' . esc_url($instagram) . '"><i class="fa-brands fa-square-instagram"></i></a>';
-        }
-        if (!empty($twitter)) {
-            echo '<a href="' . esc_url($twitter) . '"><i class="fa-brands fa-square-twitter"></i></a>';
-        }
-        if (!empty($facebook)) {
-            echo '<a href="' . esc_url($facebook) . '"><i class="fa-brands fa-square-facebook"></i></a>';
-        }
-        if (!empty($youtube)) {
-            echo '<a href="' . esc_url($youtube) . '"><i class="fa-brands fa-square-youtube"></i></a>';
-        }
-        echo '</div>';
+        
         if (!empty($endereco)) {
             echo '<address>' . wp_kses_post($endereco) . '</address>';
         }
@@ -320,6 +422,23 @@ class WidgetRedesSociais extends WP_Widget {
         if (!empty($horario_funcionamento)) {
             echo '<div>' . esc_html($horario_funcionamento) . '</div>';
         }
+        echo '<div class="redes-sociais">';
+                echo '<a href="';
+                echo bloginfo('atom_url');
+                echo '"><i class="fa-solid fa-square-rss"></i></a>';
+            if (!empty($instagram)) {
+                echo '<a href="' . esc_url($instagram) . '"><i class="fa-brands fa-square-instagram"></i></a>';
+            }
+            if (!empty($twitter)) {
+                echo '<a href="' . esc_url($twitter) . '"><i class="fa-brands fa-square-twitter"></i></a>';
+            }
+            if (!empty($facebook)) {
+                echo '<a href="' . esc_url($facebook) . '"><i class="fa-brands fa-square-facebook"></i></a>';
+            }
+            if (!empty($youtube)) {
+                echo '<a href="' . esc_url($youtube) . '"><i class="fa-brands fa-square-youtube"></i></a>';
+            }            
+        echo '</div></div>';
         echo $args['after_widget'];
     }
 
@@ -428,7 +547,6 @@ class WidgetLinksRapidos extends WP_Widget {
         $sexto = $instance['sexto'];
 
         echo $args['before_widget'];
-        //echo '<h1>oiiiii</h1>';
         echo '
         <div class="links-wrapper camada-1">
             <div class="links">
@@ -645,7 +763,7 @@ class WidgetMapaEFotos extends WP_Widget {
         echo '
         <div class="mapa">
         <div>
-            <h1>' . esc_html($titulo) . '</h1>
+            <h2>' . esc_html($titulo) . '</h2>
             <div class="mapa-grid">                
                 <div id="mapa-inlay">
                     ' . $mapa_iframe . '         

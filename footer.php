@@ -5,10 +5,10 @@
         <a href="https://ufpb.br"><img id="footer-logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg"></a>
         <div>
           <div><?php echo get_bloginfo( 'name' ); ?></div>
-          <div class="redes-sociais">
-            <a href="<?php bloginfo('atom_url'); ?>"><i class="fa-solid fa-square-rss"></i></a>
+                     
             <?php $widget_values = dynamic_sidebar('widgets-do-footer'); ?>
-          </div>
+            
+          
         </div>
 
         <div class="footer-direita">

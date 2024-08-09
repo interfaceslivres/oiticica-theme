@@ -18,7 +18,12 @@
     <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap"
-    />
+    />    
+    <link 
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap"
+        rel="stylesheet"
+    >
+
     <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/fontawesome.css" rel="stylesheet">
     <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/brands.css" rel="stylesheet">
     <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/solid.css" rel="stylesheet">
@@ -70,7 +75,7 @@
                             <form action="">
                                 <input type="search" placeholder="O que você procura?">                            
                                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <button type="button" id="busca-fecha"><i class="fa-solid fa-times"></i></button>
+                                <button type="button" id="busca-fecha"><i class="fa-solid fa-xmark"></i></button>
                             </form>
                         </div>
                     </div>
