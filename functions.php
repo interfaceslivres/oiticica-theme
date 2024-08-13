@@ -818,6 +818,24 @@ function registrar_widget_mapa() {
 }
 add_action('widgets_init', 'registrar_widget_mapa');
 
+// get top ancestor
+// from https://www.youtube.com/watch?v=GHTZn3atTcM
+function get_top_ancestor_id() {
+    global $post;
 
+    if ($post->post_parent) {
+        $ancestors = array_reverse(get_post_ancestors($post->ID));
+        return $ancestors[0];
+    }
+    return $post->ID;
+}
+
+// pagina tem filho?
+function has_children() {
+    global $post;
+
+    $pages = get_pages('child_of=' . $post->ID);
+    return count($pages);
+}
 
 ?>

@@ -25,8 +25,13 @@
         <?php
         while ( have_posts() ) :
         the_post(); ?>
-        <div class="content-grid">
-            <div class="noticia-categorias">Categorias:
+        <div class="content-grid">            
+            <h1 class="noticia-titulo"><?php the_title(); ?></h1>
+            <div class="noticia-h2">
+                <div>
+                    <div><?php echo get_the_date( 'l, d \d\e F \d\e Y' ); ?></div>                    
+                </div>   
+                <div class="noticia-categorias">Categorias:
                 <?php
                     // Obtém as categorias do post
                     $categories = get_the_category();
@@ -48,12 +53,7 @@
                         }
                     //}
                 ?>
-            </div>
-            <h1 class="noticia-titulo"><?php the_title(); ?></h1>
-            <div class="noticia-h2">
-                <div>
-                    <div><?php echo get_the_date( 'l, d \d\e F \d\e Y' ); ?></div>                    
-                </div>                                         
+            </div>                                      
             </div>
 
             <?php the_content(); ?>

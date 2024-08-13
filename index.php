@@ -295,7 +295,7 @@
           
       </div>-->
       <div class="link-wrapper justify-end">
-        <a class="mais-link" href="noticias.html">Mais Notícias</a>           
+        <a class="mais-link" href="<?php echo get_home_url(); ?>/noticias/">Mais Notícias</a>           
       </div>
     </div>
     </div>         

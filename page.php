@@ -4,7 +4,30 @@
     <div class="corpo-grid">
         <div class="sidebar">
               
-             
+            <?php
+                if (has_children() OR $post->post_parent > 0) { ?>                
+
+                    <div class="menu-navegacao">
+                        <h2 class="parent-link">
+                            <a href="<?php echo get_the_permalink(get_top_ancestor_id()); ?>">
+                                <?php
+                                echo get_the_title(get_top_ancestor_id());
+                                ?>
+                            </a>    
+                        </h2>
+                        <ul class="menu-lateral">
+                            <?php 
+                            $args = array(
+                                'child_of' => get_top_ancestor_id(),
+                                'title_li' => '',
+                            )                    
+                            ?>
+
+                            <?php wp_list_pages($args); ?>
+                        </ul>
+                        
+                    </div>
+            <?php } ?>  
             <div class="sidebar-wrapper" id="sidebar-menu">
                 <h2>Acesso Rápido</h2>
                 <ul class="menu-lateral">
@@ -21,12 +44,15 @@
                 </ul>                
             </div>                
         </div>
-        
+        <?php
+        while ( have_posts() ) :
+        the_post(); ?>
         <div class="content-grid">            
-          <h1 class="noticia-titulo">Página não encontrada</h1>   
-          <p>A página solicitada não existe. Realize uma busca pelo termo desejado ou entre em contato.</p>      
-                      
-          
+            <h1><?php the_title(); ?></h1>           
+
+            <?php the_content(); ?>
+                                
+        <?php endwhile; ?>           
 
                        
         </div>

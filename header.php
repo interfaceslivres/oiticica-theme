@@ -49,6 +49,7 @@
                         </div>
                     </div>
                     <a href="http://ufpb.br" class="brasao">
+                        <div class="ufpb-nome">UNIVERSIDADE<br>FEDERAL<br>DA PARAÍBA</div>
                         <img src="<?php echo get_bloginfo("template_directory"); ?>/img/SVG final.svg">
                     </a>
                 </div>
@@ -87,7 +88,7 @@
                 </div>      
             </div>            
         </div> 
-        <div id="menu-overlay" class="top-fixed-overlay camada-2 hidden">
+        <div id="menu-overlay" class="top-fixed-overlay hidden">
             <ul id="mobile-menu">            
                 <?php 
                     wp_nav_menu(   
@@ -97,39 +98,6 @@
                             'container' => false,
                         ) 
                     ); 
-                ?>					
-                <!--li><a href="">Institucional</a></li>
-                <li><a href="">Equipe</a></li>
-                <li><a href="">Institucional</a></li>
-                <li><a href="">Equipe</a></li>
-                <li><a href="">Ensino</a></li>
-                <li><a href="">Oportunidades</a>
-                <li><a href="">Institucional</a></li>
-                <li><a href="">Equipe</a></li>
-                <li><a href="">Ensino</a></li>
-                <li><a href="">Oportunidades</a>
-                <li><a href="">Institucional</a></li>
-                <li><a href="">Equipe</a></li>
-                <li><a href="">Ensino</a></li>
-                <li><a href="">Falta 4</a>
-                    <ul>
-                        <li><a href="">Projetos de Pesquisa</a></li>
-                        <li><a href="texto.html">Projetos de Extensão</a></li>
-                        <li><a href="">Monitoria</a></li>
-                        <li><a href="">Estágio</a></li>
-                    </ul>
-                </li>
-                <li><a href="noticias.html">Falta 3</a></li>
-                <li><a href="">Falta 2</a></li>
-                <li><a href="">Falta 1</a>
-                    <ul>
-                        <li><a href="documentos.html#">Todos os documentos</a></li>
-                        <li><a href="documentos.html#documentos-discentes">Documentos discentes</a></li>
-                        <li><a href="documentos.html#documentos-docentes">Documentos docentes</a></li>
-                        <li><a href="documentos.html#resolucoes">Resoluções</a></li>
-                        <li><a href="documentos.html#formularios">Formulários</a></li>
-                    </ul>
-                </li>
-                <li><a href="contato.html">Fim!!!</a></li-->
+                ?>				
             </ul>
         </div>
