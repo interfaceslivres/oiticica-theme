@@ -548,40 +548,40 @@ class WidgetLinksRapidos extends WP_Widget {
 
         echo $args['before_widget'];
         echo '
-        <div class="links-wrapper camada-1">
+        <div class="links-wrapper">
             <div class="links">
 
-            <a href="' . esc_url($primeiro) . '" class="link-full">
+            <a href="' . esc_url($primeiro) . '" class="link-full camada-1">
                 <div class="link-image-wrapper">              
                     <i class="' . esc_attr($icon_primeiro) . '"></i>              
                 </div>          
                 <div class="link-text" href="#">' . esc_html($text_primeiro) . '</div>
             </a>
-            <a href="' . esc_url($segundo) . '" class="link-full">
+            <a href="' . esc_url($segundo) . '" class="link-full camada-1">
                 <div class="link-image-wrapper">
                     <i class="' . esc_attr($icon_segundo) . '"></i>
                 </div>          
                 <div class="link-text" href="#">' . esc_html($text_segundo) . '</div>
             </a>
-            <a href="' . esc_url($terceiro) . '" class="link-full">
+            <a href="' . esc_url($terceiro) . '" class="link-full camada-1">
                 <div class="link-image-wrapper">
                     <i class="' . esc_attr($icon_terceiro) . '"></i>
                 </div>          
                 <div class="link-text" href="#">' . esc_html($text_terceiro) . '</div>
             </a>
-            <a href="' . esc_url($quarto) . '" class="link-full">
+            <a href="' . esc_url($quarto) . '" class="link-full camada-1">
                 <div class="link-image-wrapper">
                     <i class="' . esc_attr($icon_quarto) . '"></i>
                 </div>          
                 <div class="link-text" href="#">' . esc_html($text_quarto) . '</div>
             </a>
-            <a href="' . esc_url($quinto) . '" class="link-full">
+            <a href="' . esc_url($quinto) . '" class="link-full camada-1">
                 <div class="link-image-wrapper">
                     <i class="' . esc_attr($icon_quinto) . '"></i>
                 </div>          
                 <div class="link-text" href="#">' . esc_html($text_quinto) . '</div>
             </a>
-            <a href="' . esc_url($sexto) . '" class="link-full">
+            <a href="' . esc_url($sexto) . '" class="link-full camada-1">
             <div class="link-image-wrapper">
                     <i class="' . esc_attr($icon_sexto) . '"></i>
                 </div>          

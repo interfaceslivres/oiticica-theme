@@ -35,10 +35,10 @@ body {
   --cor-background: white;
   --cor-footer: var(--cor-tema);
   --cor-middleground: #F9F9F9;
-  --cor-middleground-hover: #F0F0F0;
+  --cor-middleground-hover: #F5F5F5;
   --cor-footer-conteudo: white;
   --cor-item-nav: var(--cor-background);
-  --cor-texto-escuro: #000;
+  --cor-texto-escuro: #333333;
   --cor-texto-medio: #555555;
   --cor-texto-claro: white;
 
@@ -566,7 +566,6 @@ input[type="search"]:focus {
   font-weight: 600;
   list-style-type: none;
   line-height: 1.15;  
-  /*! border-bottom: 1px solid blue; */
 }
 
 
@@ -586,7 +585,7 @@ input[type="search"]:focus {
   position: absolute;
   background-color: var(--cor-background);
   min-width: 200px;
-  box-shadow: 0 0 10px rgba(0,0,0,.05),0 3px 3px rgba(0,0,0,.05);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16) ;
   z-index: 1;
 }
 
@@ -599,15 +598,11 @@ input[type="search"]:focus {
   padding: 10px 16px 10px;
   margin: 0;
   text-decoration: none;
-  transition: 0.2s;
-  border-bottom: 3px solid var(--cor-background);
 }
 
 .menu ul li ul li a:hover {
-  background-color: var(--cor-middleground-hover);
+  background-color: var(--cor-middleground);
   text-decoration: none;
-  border-bottom: 3px solid var(--cor-tema);
-  /*! color: var(--cor-tema); */
 }
 
 .menu ul li ul .current_page_item {
@@ -1034,7 +1029,6 @@ input[type="search"]:focus {
   padding: var(--fonte-base);
   box-sizing: border-box;
   min-height: 140px;
-  transition: 0.2s;
 }
 
 .wide-conteudo {
@@ -1094,7 +1088,7 @@ input[type="search"]:focus {
 
 .noticia-sem-img-titulo {  
   font-style: normal;
-  font-weight: 650;
+  font-weight: 700;
   font-size: var(--fonte-1up);
   line-height: 1.15;
   color: var(--cor-tema);
@@ -1488,68 +1482,52 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   width: 100%;
   justify-content: center;
 
-  /*! background-color: var(--cor-middleground); */
+  background-color: var(--cor-middleground);
 
   margin-bottom: 16px;
-  max-width: 1230px;
-  padding: 0 30px;
-  /*! margin: 0 auto; */
-  box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .links {  
     display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /*! justify-content: space-around; */
-  gap: 30px;  
-  /*! margin: 0 20px; */
-  /*! padding-top: 30px; */
-  /*! padding-bottom: 30px; */
+  justify-content: space-around;
+  gap: var(--fonte-3up);  
+  margin: 0 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
   max-width: 1170px;
   height: auto;
 
   /* BG BLOCO */
-  /*! background: var(--cor-middleground); */
+  background: var(--cor-middleground);
   
 }
 
 .link-full {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   padding: 0px;
-  gap: var(--fonte-base);
-  padding: 20px 30px;
-  box-sizing: border-box;
-  background: var(--cor-middleground);
-  width: 100%;
-  max-width: 370px;
-  transition: 0.2s;
-}
-
-.link-full:hover {
-  background: var(--cor-middleground-hover);
+  gap: 10px;
 }
 
 .link-image-wrapper {
-  /*! width: 100px; */
-  /*! height: 100px; */
-  /*! border: 3px solid var(--cor-tema); */
+  width: 100px;
+  height: 100px;
+  border: 3px solid var(--cor-tema);
   color: var(--cor-tema);
-  /*! border-radius: 50%; */
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--fonte-4up);
+  font-size: 3rem;
 } 
 
 .link-full:hover .link-image-wrapper{
-  /*! color: var(--cor-background); */
-  /*! background-color: var(--cor-tema); */
+  color: var(--cor-background);
+  background-color: var(--cor-tema);
 }
 
 .link-full:hover .link-text{
@@ -1563,7 +1541,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 }
 
 .link-text {
-  /*! width: 100%; */
+  width: 120px;
 
   font-style: normal;
   font-weight: 600;
@@ -1571,10 +1549,9 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   line-height: 1.15;
 
   /* or 125% */
-  /*! text-align: center; */
+  text-align: center;
 
   color: var(--cor-texto-escuro);
-  /*! max-width: ; */
 }
 
 .apresentacao {
@@ -2026,8 +2003,6 @@ footer a:hover {
     padding: 0px;
     gap: 10px;
   }
-
-  
 
   .link-image-wrapper {
     width: 60px;
