@@ -6,7 +6,7 @@
               
              
             <div class="sidebar-wrapper" id="sidebar-menu">
-                <h2>Acesso Rápido</h2>
+                <h2 class="menu-lateral-h2">Acesso Rápido</h2>
                 <ul class="menu-lateral">
                     <?php 
                         wp_nav_menu(   

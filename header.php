@@ -73,11 +73,13 @@
 					</ul>            
                     <div class="busca-teste hidden" id="busca-barra">                    
                         <div>
-                            <form action="">
+                            <?php get_search_form(); ?>
+                            <!--form action="">
                                 <input type="search" placeholder="O que você procura?">                            
                                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 <button type="button" id="busca-fecha"><i class="fa-solid fa-xmark"></i></button>
-                            </form>
+                            </form-->
+                            <button type="button" id="busca-fecha"><i class="fa-solid fa-xmark"></i></button>
                         </div>
                     </div>
                     <div id="menu-buttons">

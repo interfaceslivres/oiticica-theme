@@ -8,7 +8,7 @@
                 if (has_children() OR $post->post_parent > 0) { ?>                
 
                     <div class="menu-navegacao">
-                        <h2 class="parent-link">
+                        <h2 class="parent-link class="menu-lateral-h2"">
                             <a href="<?php echo get_the_permalink(get_top_ancestor_id()); ?>">
                                 <?php
                                 echo get_the_title(get_top_ancestor_id());
@@ -29,7 +29,7 @@
                     </div>
             <?php } ?>  
             <div class="sidebar-wrapper" id="sidebar-menu">
-                <h2>Acesso Rápido</h2>
+                <h2 class="menu-lateral-h2">Acesso Rápido</h2>
                 <ul class="menu-lateral">
                     <?php 
                         wp_nav_menu(   
