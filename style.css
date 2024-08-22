@@ -1109,7 +1109,6 @@ input[type="search"]:focus {
   color: var(--cor-tema);
 
   top: 0;
-  height: 100%;
   display: flex;
   align-items: center;
   margin-top: 2rem;
@@ -1125,8 +1124,6 @@ input[type="search"]:focus {
   font-size: var(--fonte-1up);
   line-height: 1.15;
   color: white;
-
-  height: 100%;
   display: flex;
   align-items: flex-end;  
   margin-top: 2rem;
@@ -1743,7 +1740,7 @@ footer a:hover {
 }
 
 #footer-dados > div > div > a::after {
-  color: var(--cor-texto-claro);
+  
   line-height: 1;
 }
 
@@ -1851,6 +1848,56 @@ footer a:hover {
 #footer-acesso-info a:hover {
   text-decoration: underline;
 }
+
+/*=================================CONTRASTE START==============================================*/
+
+.contraste, .contraste .cabecalho-wrapper {
+  background-color: black;
+}
+
+.contraste a, .contraste #menu-buttons i, .contraste .menu ul li ul li a, .contraste .noticia-com-img-titulo, .contraste .noticia-sem-img-titulo, .contraste .link-full div, .contraste .link-full:hover .link-text, .contraste .ufpb-nome, .contraste #footer-dados .mais-link, .contraste button[type="nav"] i, .contraste button[type="nav"] div, .contraste .menu-lateral .page_item a, .contraste #menu-overlay li a, .contraste #menu-overlay li .sub-menu li a{
+  color: #ff0;
+}
+
+.contraste p, .contraste h2, .contraste .rotulo, .contraste h1, .contraste .wp-block-image :where(figcaption), .contraste .noticia-compartilhe, .contraste .noticia-h2, .contraste .parent-link > a:nth-child(1) {
+  color: white;
+}
+
+.contraste .menu-wrapper, .contraste #footer-wrapper, .contraste .menu ul li ul, .contraste .apresentacao, .contraste .noticia-sem-img, .contraste .link-full, .contraste .noticia-wrapper:hover .noticia-sem-img, .contraste .noticia-com-img-titulo, .contraste .noticia-sem-img-titulo, .contraste .rotulo-claro, .contraste #menu-overlay {
+  background-color: #333;
+}
+
+.contraste .link-full:hover .link-text, .contraste .departamento-titulo:hover, .contraste .centro-titulo:hover {
+  color: #ff0;
+  text-decoration: underline;
+}
+
+.contraste .menu ul li ul li a:hover, .contraste #menu-overlay li a:hover, .contraste #menu-overlay li .sub-menu li a:hover {
+  text-decoration: underline;
+  background-color: #333;
+}
+
+.contraste .menu ul li ul li a {
+  border-bottom: 3px solid #333;
+  color: #ff0;
+  background-color: #333;
+}
+
+.contraste #menu-overlay li a, .contraste #menu-overlay li .sub-menu li a:hover {
+  border-bottom: 1px solid #333;
+}
+
+.contraste #menu-buttons i:hover {
+  color: #333;
+  background-color: #ff0;
+}
+
+.contraste .menu-navegacao .menu-lateral .current_page_item a {
+  color: #333;
+}
+
+
+/*=================================CONTRASTE END++==============================================*/
 
 @media only screen and (max-width: 800px) {
   :root {
@@ -2050,7 +2097,6 @@ footer a:hover {
     max-width: 1110px;
     height: auto;
     /* BG BLOCO */
-    background: var(--cor-middleground);
   }
 
   .mapa .mapa-grid {

@@ -33,7 +33,7 @@
     <title><?php echo get_bloginfo( 'name' ); ?> - UFPB</title>
     <?php wp_head(); ?>
 </head>
-<body>
+<body class="">
     <div class="container">
         <div class="topo camada-1">
             <div id="cabecalho-id" class="cabecalho-wrapper">
