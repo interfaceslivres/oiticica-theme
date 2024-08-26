@@ -57,7 +57,7 @@
             <div id="menu-nav" class="menu-wrapper">
                 <div class="menu">
                     <button type="nav" id="hamburger">
-                        <i class="fa-solid fa-bars"></i>
+                        <i id="hamburger-botao" class="fa-solid fa-bars"></i>
                         <div>Menu</div>
                     </button>                         
                     <ul id="desktop-menu">
@@ -84,8 +84,8 @@
                     </div>
                     <div id="menu-buttons">
                         <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        
-                        <i class="fa-solid fa-universal-access"></i>        
+                        <a href="javascript:void(0);" onclick="altoContraste();"><i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i></a>
+                        <a href="javascript:void(0);" onclick="autismo();"><i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i></a>
                     </div>
                 </div>      
             </div>            

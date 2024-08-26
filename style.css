@@ -423,11 +423,14 @@ button[type="nav"] {
 button[type="nav"] div {
   margin-right: 16px;
   color: white;
+  font-weight: 700;
+  font-family: "Open Sans";
   font-size: var(--fonte-base);
-  font-weight: 500;
   list-style-type: none;
   line-height: 1.15;
+  
 }
+
 
 button[type="nav"] i {
   display: flex;
@@ -438,6 +441,7 @@ button[type="nav"] i {
   line-height: 1.15;
   color: var(--cor-item-nav);
   margin-right: 12px;
+  width: 21px;
 }
 
 button[type="nav"]:hover {
@@ -563,7 +567,7 @@ input[type="search"]:focus {
   flex-direction: row;
   align-items: flex-start;
   padding: 0px;
-  gap: 26px;
+  gap: 10px;
   margin: 0;
 
   color: white;
@@ -580,7 +584,7 @@ input[type="search"]:focus {
   height: 48px;
   display: flex;
   /*margin-right: 26px;  */
-  padding: 10px 0 14px;
+  padding: 10px 8px 14px;
   box-sizing: border-box;
   align-items: center;
 }
@@ -1874,7 +1878,7 @@ footer a:hover {
 
 .contraste .menu ul li ul li a:hover, .contraste #menu-overlay li a:hover, .contraste #menu-overlay li .sub-menu li a:hover {
   text-decoration: underline;
-  background-color: #333;
+  /*background-color: #333;*/
 }
 
 .contraste .menu ul li ul li a {
@@ -1896,8 +1900,96 @@ footer a:hover {
   color: #333;
 }
 
+/*=================================CONTRASTE END================================================*/
 
-/*=================================CONTRASTE END++==============================================*/
+/*=================================AUTISMO START================================================*/
+
+.autismo .menu-wrapper {
+  background-color: var(--cor-background);
+}
+
+.autismo .menu ul, .autismo.contraste .menu ul li a {
+  color: var(--cor-texto-escuro);
+}
+
+.autismo .menu ul li ul li a:hover {
+  text-decoration: underline;
+  border-bottom: 0px solid var(--cor-tema);
+}
+
+.autismo .menu ul li ul li a {
+  border-bottom: 0px solid var(--cor-background);
+}
+
+.autismo #menu-buttons i {
+  color: var(--cor-texto-escuro);
+}
+
+.autismo #menu-buttons i:hover {
+  background-color: var(--cor-texto-escuro);
+  color: var(--cor-texto-claro);
+}
+
+.autismo form {
+  background: var(--cor-middleground);
+}
+
+.autismo input[type="text"] {
+  background-color: var(--cor-middleground);
+}
+
+.autismo button[type="nav"] i,  .autismo button[type="nav"] div{
+  color: var(--cor-texto-escuro);
+}
+
+.autismo #mobile-menu li a {
+  color: var(--cor-texto-escuro);
+}
+
+.autismo #menu-overlay li .sub-menu li a {
+  color: var(--cor-texto-escuro);
+}
+
+.autismo #mobile-menu li a:hover {
+  text-decoration: underline;
+}
+
+.autismo #menu-overlay li .sub-menu li a:hover {
+  border-bottom: 1px solid var(--cor-middleground);
+}
+
+.autismo .menu ul li:nth-child(1) a, .autismo #mobile-menu li:nth-child(1) a {
+	background: #F23DA0;
+}
+.autismo .menu ul li:nth-child(2) a, .autismo #mobile-menu li:nth-child(2) a {
+	background: #1AC6D9;
+}
+.autismo .menu ul li:nth-child(3) a, .autismo #mobile-menu li:nth-child(3) a {
+	background: #DCF230;
+}
+.autismo .menu ul li:nth-child(4) a, .autismo #mobile-menu li:nth-child(4) a {
+	background: #F2D027;
+}
+.autismo .menu ul li:nth-child(5) a, .autismo #mobile-menu li:nth-child(5) a {
+	background: #F27141;
+}
+.autismo .menu ul li:nth-child(6) a, .autismo #mobile-menu li:nth-child(6) a {
+	background: #655AF5;
+}
+.autismo .menu ul li:nth-child(7) a, .autismo #mobile-menu li:nth-child(7) a {
+	background: #3DDC8F;
+}
+.autismo .menu ul li:nth-child(8) a, .autismo #mobile-menu li:nth-child(8) a {
+	background: #B6F52F;
+}
+.autismo .menu ul li:nth-child(9) a, .autismo #mobile-menu li:nth-child(9) a {
+	background: #F5A41A;
+}
+.autismo .menu ul li:nth-child(10) a, .autismo #mobile-menu li:nth-child(10) a {
+	background: #F45056;
+}
+
+/*=================================AUTISMO END==================================================*/
 
 @media only screen and (max-width: 800px) {
   :root {

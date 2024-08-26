@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var corpo_doc= document.getElementById('documentos');
 
     var searchButton = document.getElementById('busca');
-    var menuButton = document.getElementById('hamburger')
+    var menuButton = document.getElementById('hamburger');
+    var menuButonIcon = document.getElementById('hamburger-botao');
     var closeSearchButton = document.getElementById('busca-fecha');
     var searchBar = document.getElementById('busca-barra');
     var menuBar = document.getElementById('desktop-menu');
@@ -21,9 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         searchBar.classList.toggle('hidden');
         menuBar.classList.toggle('hidden');
         menuButtons.classList.toggle('hidden');        
-    }
-
-    
+    }      
 
     window.addEventListener('resize', function (){
         windowHeight = window.innerHeight;
@@ -52,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         overlay.classList.toggle('hidden');
+        menuButonIcon.classList.toggle('fa-xmark');
+        menuButonIcon.classList.toggle('fa-bars');
         document.body.classList.toggle('stop-scrolling');
     }
 
@@ -92,4 +93,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+function altoContraste() {
+    console.log("contraste")
+    var body = document.getElementsByTagName("body")[0];
+    if (body.classList.contains('contraste')) {
+     body.classList.remove('contraste'); 
+     localStorage.setItem('xContraste', 0);
+    } else {
+     body.classList.add('contraste'); 
+     localStorage.setItem('xContraste', 1);
+    }
+}
+
+function autismo() {
+    console.log("contraste")
+    var body = document.getElementsByTagName("body")[0];
+    if (body.classList.contains('autismo')) {
+     body.classList.remove('autismo'); 
+     localStorage.setItem('xAutismo', 0);
+    } else {
+     body.classList.add('autismo'); 
+     localStorage.setItem('xAutismo', 1);
+    }
+}
 
