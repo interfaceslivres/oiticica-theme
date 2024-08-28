@@ -34,6 +34,20 @@
     <?php wp_head(); ?>
 </head>
 <body class="">
+    <script>
+        // Verifica se a classe está no localStorage
+        var memoContraste = localStorage.getItem('xContraste');
+        var memoAutismo = localStorage.getItem('xAutismo');
+        var body = document.getElementsByTagName("body")[0];
+        // Se a classe estiver presente, adiciona a classe "constraste"
+        if (memoContraste == 1) {
+        body.classList.add('contraste'); 
+        }
+        // Se a classe estiver presente, adiciona a classe "autismo"
+        if (memoAutismo == 1) {
+        body.classList.add('autismo'); 
+        } 
+    </script>
     <div class="container">
         <div class="topo camada-1">
             <div id="cabecalho-id" class="cabecalho-wrapper">
@@ -50,7 +64,8 @@
                     </div>
                     <a href="http://ufpb.br" class="brasao">
                         <div class="ufpb-nome">UNIVERSIDADE<br>FEDERAL<br>DA PARAÍBA</div>
-                        <img src="<?php echo get_bloginfo("template_directory"); ?>/img/SVG final.svg">
+                        <!--img src="<?php echo get_bloginfo("template_directory"); ?>/img/SVG final.svg"-->
+                        <img src="<?php echo get_bloginfo("template_directory"); ?>/img/brasao_gradiente.png">
                     </a>
                 </div>
             </div>
