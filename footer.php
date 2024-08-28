@@ -2,7 +2,7 @@
   <footer>
   <div id="footer-top">
       <div id="footer-dados">
-        <a href="https://ufpb.br"><img id="footer-logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg"></a>
+        <a href="https://ufpb.br"><img id="footer-logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/ufpb-brasao-pb.png"></a>
         <div>
           <div><?php echo get_bloginfo( 'name' ); ?></div>
                      
