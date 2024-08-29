@@ -101,6 +101,9 @@
                         <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>
                         <a href="javascript:void(0);" onclick="altoContraste();"><i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i></a>
                         <a href="javascript:void(0);" onclick="autismo();"><i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i></a>
+                        
+                        
+
                     </div>
                 </div>      
             </div>            

@@ -387,6 +387,7 @@ button[type="submit"] {
   color: var(--cor-texto-medio);
   background: inherit;
   font-size: 24px;
+  cursor: pointer;
 }
 
 button[type="submit"] i {
@@ -413,6 +414,7 @@ button[type="button"] {
 
 button[type="button"] i {
   font-size: var(--fonte-1up);
+  cursor: pointer;
 }
 
 button[type="button"]:hover {
@@ -565,6 +567,7 @@ input[type="search"]:focus {
   line-height: 1.15;
   color: var(--cor-item-nav);
   min-width: 40px;
+  cursor: pointer;
 }
 
 #mobile-menu {
@@ -774,6 +777,9 @@ input[type="search"]:focus {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
 }
 
 .sidebar h2 {
