@@ -706,7 +706,7 @@ input[type="search"]:focus {
 
   transition-property: transform;
   transition-duration: 150ms;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: ease-out;
   transition-delay: 0s;
   line-height: 1;
 }
@@ -728,7 +728,7 @@ input[type="search"]:focus {
   transform: translateX(5px);
   transition-property: transform;
   transition-duration: 150ms;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: ease-out;
   transition-delay: 0s;
 }
 
@@ -748,7 +748,7 @@ input[type="search"]:focus {
 
   transition-property: transform;
   transition-duration: 150ms;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: ease-out;
   transition-delay: 0s;
   line-height: 1;
 }
@@ -770,7 +770,7 @@ input[type="search"]:focus {
   transform: translateX(-5px);
   transition-property: transform;
   transition-duration: 150ms;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: ease-out;
   transition-delay: 0s;
 }
 
@@ -1255,7 +1255,7 @@ input[type="search"]:focus {
 
   transition-property: transform;
   transition-duration: 150ms;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: ease-out;
   transition-delay: 0s;
   line-height: 1;
 }
@@ -1277,7 +1277,7 @@ input[type="search"]:focus {
   transform: translateX(5px);
   transition-property: transform;
   transition-duration: 150ms;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: ease-out;
   transition-delay: 0s;
 }
 
