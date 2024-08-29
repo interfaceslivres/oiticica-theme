@@ -38,7 +38,7 @@ body {
   --cor-middleground-hover: #F0F0F0;
   --cor-footer-conteudo: white;
   --cor-item-nav: var(--cor-background);
-  --cor-texto-escuro: #000;
+  --cor-texto-escuro: #404040;
   --cor-texto-medio: #555555;
   --cor-texto-claro: white;
 
@@ -68,9 +68,9 @@ p {
 }
 
 
-p a {
-  text-decoration: underline;
+p a {  
   color: var(--cor-tema);
+  font-weight: 700;
 }
 
 p a:visited {
@@ -78,7 +78,8 @@ p a:visited {
 }
 
 p a:hover {
-  color: var(--cor-texto-escuro);
+  
+  text-decoration: underline;
 }
 
 h1 {
@@ -92,8 +93,8 @@ h1 {
 }
 
 h2 {
-  font-size: var(--fonte-2up);
-  font-weight: 500;
+  font-size: var(--fonte-1up);
+  font-weight: 600;
   line-height: 1.15;
   color: var(--cor-texto-escuro);
   margin-bottom: var(--fonte-1down);
@@ -107,6 +108,33 @@ img {
 address {
   font-style: inherit;
 }
+
+/*=========== ESTILOS CONTEÚDO DE PÁGINAS ==========================*/
+
+.wp-block-list {
+  margin-left: calc(2 * var(--fonte-base));
+  margin-bottom: var(--fonte-base);
+  list-style: square;
+}
+
+.wp-block-list li {
+  margin-bottom: 0.5rem;
+}
+
+.wp-block-heading {
+  font-size: var(--fonte-1up);
+  font-weight: 600;
+  margin-bottom: var(--fonte-1down);
+  padding-top: var(--fonte-1down);
+}
+
+strong {
+  font-weight: 700;
+  color: var(--cor-texto-escuro);
+}
+
+/*=========== FIM ESTILOS CONTEÚDO DE PÁGINAS ======================*/
+
 
 #barra-brasil {
   display: none;
@@ -798,7 +826,7 @@ input[type="search"]:focus {
   /*border-top: 1px solid var(--cor-middleground);*/
   display: flex;
   flex-direction: column;
-  gap: .3rem;
+  gap: .5rem;
 }
 
 .menu-lateral li {
@@ -1328,7 +1356,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   line-height: 1.45;
   color: var(--cor-texto-escuro);
 
-  margin-bottom: var(--fonte-2up);
+  margin-bottom: var(--fonte-1up);
   font-size: var(--fonte-1down);
 }
 
@@ -1347,7 +1375,6 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   flex-direction: row;
   gap: 8px;
   font-size: var(--fonte-1down);
-  margin-bottom: var(--fonte-1down);
   font-variation-settings: 'wdth' 85;
 }
 
@@ -1386,11 +1413,11 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
 .noticia-link-relacionado, .wp-block-file a {
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   font-size: var(--fonte-base);
-  line-height: 1.15;
+  line-height: 1.45;
   color: var(--cor-tema);
-  margin-bottom: 8px;
+  margin-bottom: var(--fonte-base);
   word-break: break-word;
   font-variation-settings: 'wdth' 85;
 }
@@ -1654,7 +1681,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 .apresentacao-links {
   display: flex;
   flex-direction: column;
-  gap: .3rem;
+  gap: .5rem;
 }
 
 .apresentacao-links li {
