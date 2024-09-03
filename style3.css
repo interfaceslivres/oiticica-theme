@@ -275,7 +275,7 @@ a.camada-1:hover {
   text-align: end;
   font-variation-settings: 'wdth' 85;
   color: #102d69;
-  font-weight: 600;
+  font-weight: 700;
   font-size: var(--fonte-base);
   line-height: 1.1;
 }
@@ -773,7 +773,7 @@ input[type="search"]:focus {
   flex-direction: column;
   align-items: center;  
 
-  gap: 45px;
+  gap: 40px;
   margin-bottom: var(--fonte-2up);
   margin-top: var(--fonte-2up);
 }
@@ -871,7 +871,6 @@ input[type="search"]:focus {
 .noticias {
   max-width: 1170px;
   /*margin: 0px 30px;*/
-  margin-bottom: -1rem;
 }
 
 .noticias-wrapper {
@@ -1675,16 +1674,15 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;  
-  padding: var(--fonte-1up) var(--fonte-1up);
+  padding: 30px 30px 40px;
   margin: 0 30px;
   column-gap: 30px;
 
-  max-width: 1170px;
+  max-width: 1110px;
   height: auto;
 
   /* BG BLOCO */
   background: var(--cor-middleground);
-  box-sizing: border-box;
 }
 
 .apresentacao-links {
@@ -1965,7 +1963,7 @@ footer a:hover {
 }
 
 .destaque > div {
-  padding: var(--fonte-1up);
+  padding: var(--fonte-base);
 }
 
 .destaque-wrapper {
@@ -1985,7 +1983,7 @@ footer a:hover {
 
 .destaque-solo div:first-child {
   background-color:  var(--cor-middleground);
-  padding: var(--fonte-1up) var(--fonte-1up) var(--fonte-1up);
+  padding: var(--fonte-base) var(--fonte-1up) var(--fonte-base);
   min-height: 350px;
 }
 
@@ -2198,7 +2196,7 @@ footer a:hover {
   }
 
   .menu {
-    margin: 0 16px;
+    margin: 0 20px;
   }
 
   .imagem {
@@ -2221,7 +2219,7 @@ footer a:hover {
     display: block;
     grid-template-columns: 9fr 3fr;
     gap: 30px;
-    padding: var(--fonte-1down) 16px var(--fonte-2up);
+    padding: var(--fonte-1down) 20px var(--fonte-2up);
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -2239,7 +2237,7 @@ footer a:hover {
 
   
   .noticias-wrapper {
-    padding: 0 16px;
+    padding: 0 20px;
   }
 
   .paginas-numeros {
@@ -2286,7 +2284,7 @@ footer a:hover {
   }
 
   .mapa {
-    padding: 0 16px;
+    padding: 0 20px;
   }  
 
   #mapa-coluna1 {
@@ -2314,7 +2312,7 @@ footer a:hover {
   }  
 
   .links-wrapper {  
-    padding: 0 16px;
+    padding: 0 20px;
   }
 
   .links {  
@@ -2353,7 +2351,7 @@ footer a:hover {
     grid-template-columns: 1fr ;
     grid-template-rows: auto auto;    
     padding: 20px 16px 30px;
-    margin: 0 16px;
+    margin: 0 20px;
     column-gap: 30px;
     row-gap: var(--fonte-1up);
     max-width: 1110px;
@@ -2375,7 +2373,7 @@ footer a:hover {
   }
 
   .cabecalho {
-    margin: 20px 16px 16px;
+    margin: 20px 20px 15px;
   }
 
   button[type="nav"] {    
@@ -2388,33 +2386,9 @@ footer a:hover {
   }
 
   .destaque-wrapper {
-    padding: 0 16px;
+    padding: 0 20px;
   }
 
-  .destaque-solo {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 1fr auto;
-    margin: 0;
-  }
-
-  .destaque-solo-img {
-    position: relative;
-    width: calc(100% + 2rem);
-    height: 350px;
-    margin-top: 0;
-    margin-bottom: -6rem;
-    margin-left: -1rem;
-    z-index: -1;
-    /*! order: 1; */
-  }
-
-  .destaque-solo div:first-child {
-    background-color:  var(--cor-middleground);
-    padding: var(--fonte-1up) var(--fonte-1up) var(--fonte-1up);
-    min-height: 0;
-    grid-row: 2;
-  }
 
   .destaque-dupla {
     display: grid;
@@ -2432,8 +2406,8 @@ footer a:hover {
 
 
   footer {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   #footer-top {

@@ -2,6 +2,9 @@
 
 add_theme_support( 'post-thumbnails' );
 
+// Adding excerpt for page
+add_post_type_support( 'page', 'excerpt' );
+
 //Cor personalizada
 function meu_tema_personalizado($wp_customize) {
 

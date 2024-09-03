@@ -363,6 +363,117 @@
 
     </div-->
 
+    <!--div class="destaque-wrapper destaque-trio">
+      <div class="destaque camada-1">
+        <?php
+          echo '<img src="' . get_the_post_thumbnail_url( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/'), 'medium' ) . '" alt="Imagem da página">';
+        ?>
+        <div>
+          <h2>
+            <?php echo get_the_title( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ); ?>
+          </h2>
+          <?php
+            echo '<p>' . get_the_excerpt( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ) . '</p>';        
+          ?>
+          <div class="link-wrapper">
+            <a class="mais-link" href="http://localhost/wordpress/oportunidades/projetos-de-extensao/">Saiba mais</a>           
+          </div>
+        </div>
+      </div>   
+      
+      <div class="destaque camada-1">
+        <?php
+          echo '<img src="' . get_the_post_thumbnail_url( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/'), 'medium' ) . '" alt="Imagem da página">';
+        ?>
+        <div>
+          <h2>
+            <?php echo get_the_title( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ); ?>
+          </h2>
+          <?php
+            echo '<p>' . get_the_excerpt( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ) . '</p>';        
+          ?>
+          <div class="link-wrapper">
+            <a class="mais-link" href="http://localhost/wordpress/oportunidades/projetos-de-extensao/">Saiba mais</a>           
+          </div>
+        </div>
+      </div> 
+
+      <div class="destaque camada-1">
+        <?php
+          echo '<img src="' . get_the_post_thumbnail_url( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/'), 'medium' ) . '" alt="Imagem da página">';
+        ?>
+        <div>
+          <h2>
+            <?php echo get_the_title( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ); ?>
+          </h2>
+          <?php
+            echo '<p>' . get_the_excerpt( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ) . '</p>';        
+          ?>
+          <div class="link-wrapper">
+            <a class="mais-link" href="http://localhost/wordpress/oportunidades/projetos-de-extensao/">Saiba mais</a>           
+          </div>
+        </div>
+      </div> 
+      
+    </div-->
+    
+    <div class="destaque-wrapper destaque-solo">  
+      <div class="camada-1-alt">
+        <h2>
+          <?php echo get_the_title( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ); ?>
+        </h2>
+        <?php
+          echo '<p>' . get_the_excerpt( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ) . '</p>';        
+        ?>
+        <div class="link-wrapper">
+          <a class="mais-link" href="http://localhost/wordpress/oportunidades/projetos-de-extensao/">Saiba mais</a>           
+        </div>
+      </div>
+      <div class="destaque-solo-img">
+        <?php
+          echo '<img src="' . get_the_post_thumbnail_url( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/'), 'medium' ) . '" alt="Imagem da página">';
+        ?>
+      </div>
+         
+    </div> 
+
+    <div class="destaque-wrapper destaque-dupla">  
+      <div class="destaque camada-1">
+        <?php
+          echo '<img src="' . get_the_post_thumbnail_url( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/'), 'medium' ) . '" alt="Imagem da página">';
+        ?>
+        <div>
+          <h2>
+            <?php echo get_the_title( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ); ?>
+          </h2>
+          <?php
+            echo '<p>' . get_the_excerpt( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ) . '</p>';        
+          ?>
+          <div class="link-wrapper">
+            <a class="mais-link" href="http://localhost/wordpress/oportunidades/projetos-de-extensao/">Saiba mais</a>           
+          </div>
+        </div>
+      </div> 
+
+      <div class="destaque camada-1">
+        <?php
+          echo '<img src="' . get_the_post_thumbnail_url( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/'), 'medium' ) . '" alt="Imagem da página">';
+        ?>
+        <div>
+          <h2>
+            <?php echo get_the_title( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ); ?>
+          </h2>
+          <?php
+            echo '<p>' . get_the_excerpt( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ) . '</p>';        
+          ?>
+          <div class="link-wrapper">
+            <a class="mais-link" href="http://localhost/wordpress/oportunidades/projetos-de-extensao/">Saiba mais</a>           
+          </div>
+        </div>
+      </div> 
+      
+    </div>
+
     <?php $widget_values = dynamic_sidebar('widgets-da-home'); ?>
 
     <!--div class="mapa">
@@ -381,6 +492,8 @@
         </div>
       </div>
     </div-->
+    
+
   </div>      
 </div>
 	
