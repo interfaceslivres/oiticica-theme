@@ -34,8 +34,8 @@ body {
   /*--cor-tema: #102d69;*/
   --cor-background: white;
   --cor-footer: var(--cor-tema);
-  --cor-middleground: #F9F9F9;
-  --cor-middleground-hover: #F0F0F0;
+  --cor-middleground: #F0F0F0;
+  --cor-middleground-hover: #E9E9E9;
   --cor-footer-conteudo: white;
   --cor-item-nav: var(--cor-background);
   --cor-texto-escuro: #383838;
@@ -1392,6 +1392,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   flex-direction: column;
   gap: 4px;
   margin-bottom: var(--fonte-3up);
+  color: var(--cor-texto-escuro);
 }
 
 .noticia-redes {
@@ -1980,7 +1981,7 @@ footer a:hover {
   display: grid;
   grid-template-columns: calc(33% - 15px) 1.5fr;
   grid-template-rows: auto;
-  margin: 2rem 0;
+  margin: 3rem 0;
 }
 
 .destaque-solo div:first-child {

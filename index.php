@@ -251,49 +251,7 @@
           endwhile; else : endif; ?>
             </div> <!-- fecha noticias coluna -->
       </div>
-      <!--<div class="conteudo">
-        <div class="noticias-coluna-unica">
-          <div class="noticia-wrapper">
-            <div class="rotulo">
-              <div>15 de Setembro de 2022</div>
-              <div>
-                <a href="ufpb.br">Notícia</a>, <a href="ufpb.br">Calamidade</a>
-              </div>
-            </div>
-            <a class="noticia-sem-img camada-1" href="noticia.html"> 
-              <div class="noticia-sem-img-titulo" id="noticia-principal">Resultado final do concurso de "Áudio Digital"</div>
-            </a>               
-          </div> 
-        </div>        
-        <div class="noticias-coluna">
-          <div class="noticia-wrapper">
-            <div class="rotulo-claro">
-              <div>15 de Setembro de 2022</div>
-              <div><a href="ufpb.br">Notícia</a>, <a href="ufpb.br">Calamidade</a></div>
-            </div>
-            <a href="noticia.html" class="noticia-com-img camada-1" style="
-            background-image:
-            /*linear-gradient(180deg, rgba(0,   0,   0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), 
-            linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 85%),*/
-            url('<?php echo get_bloginfo("template_directory"); ?>/img/noticia.jpeg')">
-              <div class="background-wrapper">                  
-                <div class="noticia-com-img-titulo">Resultado final do concurso de "Marketing Digital e Empreendedorismo"</div>
-              </div>                          
-            </a>
-          </div>
-
-          <div class="noticia-wrapper">
-            <div class="rotulo">
-              <div>15 de Setembro de 2022</div>
-              <div><a href="ufpb.br">Notícia</a>, <a href="ufpb.br">Calamidade</a></div>
-            </div>
-            <a href="noticia.html" class="noticia-sem-img camada-1">              
-              <div class="noticia-sem-img-titulo">Resultado final do concurso de "Áudio Digital"</div>              
-            </a>
-            </div>
-          </div>
-          
-      </div>-->
+      
       <div class="link-wrapper justify-end">
         <a class="mais-link" href="<?php echo get_home_url(); ?>/noticias/">Mais Notícias</a>           
       </div>
@@ -302,66 +260,7 @@
 
     <?php $widget_values = dynamic_sidebar('widget-links-rapidos'); ?>
 
-    <!--div class="links-wrapper camada-1">
-      <div class="links">
-        <a href="#" class="link-full"> 
-          <div class="link-image-wrapper">              
-              <i class="fa-solid fa-calendar"></i>              
-          </div>          
-          <div class="link-text" href="#">Calendário Acadêmico</div>
-        </a>
-        <a href="#" class="link-full"> 
-          <div class="link-image-wrapper">
-            <i class="fa-solid fa-pen-fancy"></i>
-          </div>          
-          <div class="link-text" href="#">Concursos</div>
-        </a>
-        <a href="#" class="link-full"> 
-          <div class="link-image-wrapper">
-            <i class="fa-solid fa-users"></i>
-          </div>          
-          <div class="link-text" href="#">Equipe</div>
-        </a>
-        <a href="#" class="link-full"> 
-          <div class="link-image-wrapper">
-            <i class="fa-solid fa-microscope"></i>
-          </div>          
-          <div class="link-text" href="#">Pesquisa e Extensão</div>
-        </a>
-        <a href="#" class="link-full"> 
-          <div class="link-image-wrapper">
-            <i class="fa-solid fa-file"></i>
-          </div>          
-          <div class="link-text" href="#">Documentos</div>
-        </a>
-        <a href="#" class="link-full"> 
-          <div class="link-image-wrapper">
-            <i class="fa-solid fa-newspaper"></i>
-          </div>          
-          <div class="link-text" href="#">Newsletter</div>
-        </a>
-      </div>
-    </div-->
     
-    <!--div class="apresentacao camada-1"> 
-      <div>
-        <h1>Mídias Digitais na UFPB</h1>
-        <p>
-          O Departamento de Mídias Digitais (DEMID) pertence ao Centro de Ciências Humanas, Letras e Artes (CCHLA) da Universidade Federal da Paraíba (UFPB). O Curso de Bacharelado em Comunicação em Mídias Digitais (CCMD) está vinculado ao Departamento e foi criado pela Resolução nº 38/2009 do Conselho de Ensino, Pesquisa e Extensão (CONSEPE/UFPB). Seria muito interessante se este texto de apresentação fosse maior.
-        </p>
-        <div class="link-wrapper">
-          <a class="mais-link" href="#">Apresentação</a>
-        </div>
-        <div class="link-wrapper">
-          <a class="mais-link" href="#">Projeto Político-Pedagógico</a>
-        </div>
-      </div>         
-      
-      <div class="youtube">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/XUCxGYSJEDY?autoplay=0&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; web-share" allowfullscreen></iframe>
-      </div>
-
-    </div-->
 
     <!--div class="destaque-wrapper destaque-trio">
       <div class="destaque camada-1">
@@ -415,64 +314,7 @@
         </div>
       </div> 
       
-    </div-->
-    
-    <div class="destaque-wrapper destaque-solo">  
-      <div class="camada-1-alt">
-        <h2>
-          <?php echo get_the_title( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ); ?>
-        </h2>
-        <?php
-          echo '<p>' . get_the_excerpt( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ) . '</p>';        
-        ?>
-        <div class="link-wrapper">
-          <a class="mais-link" href="http://localhost/wordpress/oportunidades/projetos-de-extensao/">Saiba mais</a>           
-        </div>
-      </div>
-      <div class="destaque-solo-img">
-        <?php
-          echo '<img src="' . get_the_post_thumbnail_url( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/'), 'medium' ) . '" alt="Imagem da página">';
-        ?>
-      </div>
-         
-    </div> 
-
-    <div class="destaque-wrapper destaque-dupla">  
-      <div class="destaque camada-1">
-        <?php
-          echo '<img src="' . get_the_post_thumbnail_url( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/'), 'medium' ) . '" alt="Imagem da página">';
-        ?>
-        <div>
-          <h2>
-            <?php echo get_the_title( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ); ?>
-          </h2>
-          <?php
-            echo '<p>' . get_the_excerpt( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ) . '</p>';        
-          ?>
-          <div class="link-wrapper">
-            <a class="mais-link" href="http://localhost/wordpress/oportunidades/projetos-de-extensao/">Saiba mais</a>           
-          </div>
-        </div>
-      </div> 
-
-      <div class="destaque camada-1">
-        <?php
-          echo '<img src="' . get_the_post_thumbnail_url( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/'), 'medium' ) . '" alt="Imagem da página">';
-        ?>
-        <div>
-          <h2>
-            <?php echo get_the_title( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ); ?>
-          </h2>
-          <?php
-            echo '<p>' . get_the_excerpt( url_to_postid('http://localhost/wordpress/oportunidades/projetos-de-extensao/') ) . '</p>';        
-          ?>
-          <div class="link-wrapper">
-            <a class="mais-link" href="http://localhost/wordpress/oportunidades/projetos-de-extensao/">Saiba mais</a>           
-          </div>
-        </div>
-      </div> 
-      
-    </div>
+    </div-->         
 
     <?php $widget_values = dynamic_sidebar('widgets-da-home'); ?>
 
