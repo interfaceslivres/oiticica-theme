@@ -27,7 +27,7 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 
 body {
   margin-top: 0px;
-  font-family: 'Open Sans', 'Rawline', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background-color: var(--cor-background);
   margin: 0px;
 
@@ -623,7 +623,7 @@ input[type="search"]:focus {
 
   color: white;
   font-size: var(--fonte-base);
-  font-weight: 600;
+  font-weight: 550;
   list-style-type: none;
   line-height: 1.15;  
   /*! border-bottom: 1px solid blue; */
@@ -703,7 +703,7 @@ input[type="search"]:focus {
 .menu ul li ul li a:hover {
   background-color: var(--cor-middleground-hover);
   text-decoration: none;
-  border-bottom: 3px solid var(--cor-tema);
+  border-bottom: 3px solid var(--cor-middleground-hover);
   /*! color: var(--cor-tema); */
 }
 
@@ -1674,18 +1674,27 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 .apresentacao {
   /* Auto layout */
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;  
-  padding: var(--fonte-1up) var(--fonte-1up);
-  margin: 0 30px;
+  grid-template-columns: calc(33% - 15px) auto;
+  grid-template-rows: auto;  
+  margin: 1rem 30px;
   column-gap: 30px;
 
   max-width: 1170px;
   height: auto;
 
   /* BG BLOCO */
-  background: var(--cor-middleground);
   box-sizing: border-box;
+  align-items: center;
+}
+
+.apresentacao > div:nth-child(1) {
+  padding: var(--fonte-1up) var(--fonte-1up);
+  background: var(--cor-middleground);
+  width: calc(100% + 30px + 4rem);
+  box-sizing: border-box;
+  padding-right: calc(30px + 4rem);
+  height: fit-content;
+  /*! align-self: center; */
 }
 
 .apresentacao-links {
@@ -2353,13 +2362,25 @@ footer a:hover {
     display: grid;
     grid-template-columns: 1fr ;
     grid-template-rows: auto auto;    
-    padding: 20px 16px 30px;
+    padding: 0;
     margin: 0 16px;
     column-gap: 30px;
-    row-gap: var(--fonte-1up);
+    row-gap: 0;
     max-width: 1110px;
     height: auto;
     /* BG BLOCO */
+  }
+  
+  .youtube {
+    width: calc(100% + 32px);
+    margin: 0;
+    margin-left: -1rem;
+  }
+
+  .apresentacao > div:nth-child(1) {
+    width: auto;
+    padding-right: var(--fonte-1up);
+    grid-row: 2;
   }
 
   .mapa .mapa-grid {

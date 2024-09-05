@@ -527,8 +527,8 @@ class Widget_Apresentacao extends WP_Widget {
         echo $args['before_widget'];
 
         echo '
-        <div class="apresentacao camada-1">
-            <div>                 
+        <div class="apresentacao">
+            <div class="camada-1">                 
                 <h2>' . nl2br(esc_html($instance['titulo'])) . '</h2>
                 <p>' . nl2br(esc_html($instance['texto-apresentacao'])) . '</p>
                 <div class="apresentacao-links">';
@@ -549,7 +549,7 @@ class Widget_Apresentacao extends WP_Widget {
                 $url = esc_url($instance['video-institucional']);
                 // Substitua "watch" por "embed" na URL
                 $embed_url = str_replace("watch?v=", "embed/", $url);
-                echo '<div class="youtube"><iframe width="100%" height="100%" src="' . $embed_url . '" title="Youtube Video Player" frameborder="0" allow="web-share" allowfullscreen></iframe></div>';
+                echo '<div class="youtube camada-1"><iframe width="100%" height="100%" src="' . $embed_url . '" title="Youtube Video Player" frameborder="0" allow="web-share" allowfullscreen></iframe></div>';
             }
 
         echo '</div>';   
