@@ -39,13 +39,18 @@ document.addEventListener('DOMContentLoaded', function () {
     var corpoHeight = corpo.offsetHeight;
     //var sidebarHeight = sidebar.offsetHeight;
 
-    overlay.style.top = offsetValue + menuHeight - window.scrollY + 'px';
+    
 
     function toggleMenuOverlay() {
+
+        
+
         if (window.scrollY < offsetValue) {
+            overlay.style.top = offsetValue + menuHeight - window.scrollY + 'px';
             var altura = windowHeight - offsetValue - menuHeight + window.scrollY + 'px';
             overlay.style.height = altura;
         } else {
+            overlay.style.top = menuHeight + 'px';
             var altura = windowHeight - menuHeight + 'px';
             overlay.style.height = altura;
         }
@@ -61,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('corpo height:' + corpoHeight);
     console.log('sidebar height:' + sidebarHeight);*/
     
+    /*
     window.addEventListener('scroll', function () {
         // Use console.log to determine when you want the nav bar to stick.
         //console.log(window.pageYOffset);       
@@ -92,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
             //console.log('nada');
         }
     });
+    */
 });
 
 function altoContraste() {

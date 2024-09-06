@@ -294,6 +294,9 @@ function customizer_centro($wp_customize) {
 
 add_action('customize_register', 'customizer_centro');
 
+
+
+
 // Registrar Widget de Destaque solo
 function registrar_widget_destaque_solo() {
     register_widget('WidgetDestaqueSolo');
@@ -412,9 +415,10 @@ class WidgetDestaqueDuplo extends WP_Widget {
 
         echo '
         <div class="destaque-wrapper destaque-dupla">  
-            <div class="destaque camada-1">
-                <img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link)) . '" alt="Imagem da página">
-                <div>
+
+            <div class="destaque">
+                <div><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link)) . '" alt="Imagem da página"></div>
+                <div class="camada-1">
                     <h2>' . $titulo . '</h2>
                     <p>' . $resumo . '</p>
                     <div class="link-wrapper">
@@ -422,16 +426,18 @@ class WidgetDestaqueDuplo extends WP_Widget {
                     </div>
                 </div>
             </div>
-            <div class="destaque camada-1">
-                <img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link_2)) . '" alt="Imagem da página">
-                <div>
+
+            <div class="destaque">
+                <div><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link_2)) . '" alt="Imagem da página"></div>
+                <div class="camada-1">
                     <h2>' . $titulo_2 . '</h2>
                     <p>' . $resumo_2 . '</p>
                     <div class="link-wrapper">
                         <a class="mais-link" href=' . $pagina_link_2 . '>' . $link_texto_2 . '</a>           
                     </div>
                 </div>
-            </div>            
+            </div>   
+
         </div>';
         
         echo $args['after_widget']; 

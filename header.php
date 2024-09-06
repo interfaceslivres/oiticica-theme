@@ -8,17 +8,8 @@
     </style>
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Font Rawline-->
-    <link
-        rel="stylesheet"
-        href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"
-    />
-    <!-- Font Raleway-->
-    <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap"
-    />    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+        
     <link 
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap"
         rel="stylesheet"
@@ -33,7 +24,7 @@
     <title><?php echo get_bloginfo( 'name' ); ?> - UFPB</title>
     <?php wp_head(); ?>
 </head>
-<body class="">
+<body lang="pt" class="">
     <script>
         // Verifica se a classe está no localStorage
         var memoContraste = localStorage.getItem('xContraste');
@@ -69,45 +60,46 @@
                     </a>
                 </div>
             </div>
-            <div id="menu-nav" class="menu-wrapper">
-                <div class="menu">
-                    <button type="nav" id="hamburger">
-                        <i id="hamburger-botao" class="fa-solid fa-bars"></i>
-                        <div>Menu</div>
-                    </button>                         
-                    <ul id="desktop-menu">
-						<?php 
-							wp_nav_menu(   
-								array ( 
-									'theme_location' => 'main-menu',
-									'items_wrap' => '%3$s',
-									'container' => false,
-								) 
-							); 
-						?>
-					</ul>            
-                    <div class="busca-teste hidden" id="busca-barra">                    
-                        <div>
-                            <?php get_search_form(); ?>
-                            <!--form action="">
-                                <input type="search" placeholder="O que você procura?">                            
-                                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <button type="button" id="busca-fecha"><i class="fa-solid fa-xmark"></i></button>
-                            </form-->
-                            <button type="button" id="busca-fecha"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
-                    </div>
-                    <div id="menu-buttons">
-                        <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <a href="javascript:void(0);" onclick="altoContraste();"><i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i></a>
-                        <a href="javascript:void(0);" onclick="autismo();"><i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i></a>
                         
-                        
-
-                    </div>
-                </div>      
-            </div>            
         </div> 
+        <div id="menu-nav" class="menu-wrapper">
+            <div class="menu">
+                <button type="nav" id="hamburger">
+                    <i id="hamburger-botao" class="fa-solid fa-bars"></i>
+                    <div>Menu</div>
+                </button>                         
+                <ul id="desktop-menu">
+                    <?php 
+                        wp_nav_menu(   
+                            array ( 
+                                'theme_location' => 'main-menu',
+                                'items_wrap' => '%3$s',
+                                'container' => false,
+                            ) 
+                        ); 
+                    ?>
+                </ul>            
+                <div class="busca-teste hidden" id="busca-barra">                    
+                    <div>
+                        <?php get_search_form(); ?>
+                        <!--form action="">
+                            <input type="search" placeholder="O que você procura?">                            
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="button" id="busca-fecha"><i class="fa-solid fa-xmark"></i></button>
+                        </form-->
+                        <button type="button" id="busca-fecha"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+                <div id="menu-buttons">
+                    <button id="busca"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <a href="javascript:void(0);" onclick="altoContraste();"><i title="Alto Constraste" class="fa-solid fa-circle-half-stroke"></i></a>
+                    <a href="javascript:void(0);" onclick="autismo();"><i title="Cores Acessíveis" class="fa-solid fa-ribbon"></i></a>
+                    
+                    
+
+                </div>
+            </div>      
+        </div>
         <div id="menu-overlay" class="top-fixed-overlay hidden">
             <ul id="mobile-menu">            
                 <?php 
