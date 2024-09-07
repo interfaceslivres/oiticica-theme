@@ -294,7 +294,94 @@ function customizer_centro($wp_customize) {
 
 add_action('customize_register', 'customizer_centro');
 
+// Registrar Widget de Destaque solo
+function registrar_widget_noticias() {
+    register_widget('WidgetNoticias');
+}
+add_action('widgets_init', 'registrar_widget_noticias');
 
+class WidgetNoticias extends WP_Widget {
+
+    public function __construct() {
+        parent::__construct(
+            'Widget_Noticias',
+            'Widget de Notícias',
+            array(
+                'description' => 'Exibe as 3 últimas notícias'
+            )
+        );
+    }
+
+    public function widget($args, $instance) {
+        echo $args['before_widget'];
+        echo '
+        <div class="noticias-wrapper">
+            <div class="noticias">
+                <h2>Notícias</h2>
+                <div class="conteudo">';
+                    $posts_per_page = 3;
+                    $the_query = new WP_Query( array(
+                        'posts_per_page' => $posts_per_page
+                    ));
+                    if ( $the_query->have_posts() ) {
+                        $postCount = 0;
+                        while ( $the_query->have_posts() && $postCount < $posts_per_page ){
+                            $postCount++;
+                            $the_query->the_post();
+
+                            if ($postCount == 1) {
+                                echo '<div class="noticia-wrapper noticia-primeira">';
+                            } else {
+                                echo '<div class="noticia-wrapper">';                                 
+                            }
+                                if (has_post_thumbnail()) {
+                                    echo '<div class="rotulo-claro">';
+                                } else {
+                                    echo '<div class="rotulo-escuro">';
+                                }                                
+                                    echo '
+                                    <div>' . get_the_date( 'd \d\e F Y' ) . '</div>
+                                    <div class="categorias">';
+                                        $categories = get_the_category();
+                                        
+                                        if ($categories) {
+                                            $categories = array_slice($categories, 0, 2);
+                                            foreach ($categories as $category) {                                                    
+                                                echo '<a href="' , esc_url(get_category_link($category->term_id)) , '">' , esc_html($category->name) , '</a>';
+                                                if (next($categories)) {
+                                                    echo ', ';
+                                                }
+                                            }
+                                        }
+                                echo '    
+                                    </div><!-- fecha div categorias -->
+                                </div><!-- fecha div rotulo -->';
+                            
+                                if ( has_post_thumbnail()) {                                    
+                                    echo '<img class="noticia-img" src="', esc_url(the_post_thumbnail_url()), '">';
+                                    echo '<a class="noticia-com-img camada-1" href="' , esc_url(the_permalink()) , '">';
+                                } else {
+                                    echo '<a class="noticia-sem-img camada-1" href="' , esc_url(the_permalink()) , '">'; 
+                                }                                    
+
+                                    echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';
+                                    
+                                
+                                echo '</a>'; //noticia-com/sem-img
+                            echo '</div>'; //noticia-wrapper
+                        }
+                    } 
+        //wrapper do que é dinâmico
+        echo
+        '       </div>
+                <div class="link-wrapper justify-end">
+                <a class="mais-link" href="', get_home_url(), '/noticias/">Mais Notícias</a>           
+                </div>
+            </div>
+        </div>';
+        echo $args['after_widget']; 
+    }
+}
 
 
 // Registrar Widget de Destaque solo
