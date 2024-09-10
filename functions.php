@@ -147,7 +147,7 @@ function cats_related_post() {
         <?php while($related_cats_post->have_posts()): $related_cats_post->the_post(); ?>
             <?php if ( has_post_thumbnail() ) { ?>
                     <div class="noticia-wrapper">
-                          <div class="rotulo-claro">
+                          <div class="rotulo-claro">                              
                             <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
                             <div class="categorias">
                               <?php
@@ -171,48 +171,46 @@ function cats_related_post() {
                                 }
                             }
                             ?>
-                            </div> <!-- fecha categorias -->
-                          </div> <!-- fecha div rotulo-claro -->
-                          <a href="<?php the_permalink();?>" class="noticia-com-img camada-1" style="
-                          background-image:
-                          url(<?php the_post_thumbnail_url(); ?>)">
-                            <div class="background-wrapper">                  
-                              <div class="noticia-com-img-titulo"><?php the_title(); ?></div>
-                            </div>                          
-                          </a>
+                            </div> <!-- fecha categorias -->                            
+                        </div> <!-- fecha div rotulo-claro -->
+
+                        <img class="noticia-img" src="<?php the_post_thumbnail_url(); ?>">
+                        <a href="<?php the_permalink();?>" class="noticia-com-img camada-1">
+                            <div class="noticia-titulo"><?php the_title(); ?></div>         
+                        </a>  
                     </div>
             <?php } else { ?> 
 
                     <div class="noticia-wrapper">
-                            <div class="rotulo">
-                              <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
-                              <div class="categorias">
-                                <?php
-                              // Obtém as categorias do post
-                              $categories = get_the_category();
+                          <div class="rotulo-escuro">                              
+                            <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
+                            <div class="categorias">
+                              <?php
+                            // Obtém as categorias do post
+                            $categories = get_the_category();
 
-                              // Verifica se existem categorias
-                              if ($categories) {
-                                  // Limita a exibição a duas categorias
-                                  $categories = array_slice($categories, 0, 2);
+                            // Verifica se existem categorias
+                            if ($categories) {
+                                // Limita a exibição a duas categorias
+                                $categories = array_slice($categories, 0, 2);
 
-                                  // Loop pelas categorias
-                                  foreach ($categories as $category) {
-                                      // Exibe o nome da categoria como um link
-                                      echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+                                // Loop pelas categorias
+                                foreach ($categories as $category) {
+                                    // Exibe o nome da categoria como um link
+                                    echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
 
-                                      // Adiciona uma vírgula após a categoria, exceto pela última
-                                      if (next($categories)) {
-                                          echo ', ';
-                                      }
-                                  }
-                              }
-                              ?>
-                              </div> <!-- fecha a div categorias -->
-                            </div> <!-- fecha a div rotulo -->
-                            <a href="<?php the_permalink();?>" class="noticia-sem-img camada-1">              
-                            <div class="noticia-sem-img-titulo"><?php the_title(); ?></div>    
-                            </a>
+                                    // Adiciona uma vírgula após a categoria, exceto pela última
+                                    if (next($categories)) {
+                                        echo ', ';
+                                    }
+                                }
+                            }
+                            ?>
+                            </div> <!-- fecha categorias -->                            
+                        </div> <!-- fecha div rotulo-claro -->
+                        <a href="<?php the_permalink();?>" class="noticia-sem-img camada-1">
+                            <div class="noticia-titulo"><?php the_title(); ?></div>         
+                        </a>  
                     </div>
 
 
@@ -571,7 +569,7 @@ class WidgetDestaqueDuplo extends WP_Widget {
             <input class="widefat" id="<?php echo $this->get_field_id('titulo_2'); ?>" name="<?php echo $this->get_field_name('titulo_2'); ?>" type="text" value="<?php echo $titulo_2; ?>">
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('pagina_link_2'); ?>">Texto do segundo bloco de destaque (opcional):</label>
+            <label for="<?php echo $this->get_field_id('resumo_2'); ?>">Texto do segundo bloco de destaque (opcional):</label>
             <input class="widefat" id="<?php echo $this->get_field_id('resumo_2'); ?>" name="<?php echo $this->get_field_name('resumo_2'); ?>" type="text" value="<?php echo $resumo_2; ?>">
         </p>
         <p>
@@ -593,6 +591,176 @@ class WidgetDestaqueDuplo extends WP_Widget {
         $instance['titulo_2'] = !empty($new_instance['titulo_2']) ? esc_html($new_instance['titulo_2']) : ''; 
         $instance['resumo_2'] = !empty($new_instance['resumo_2']) ? esc_html($new_instance['resumo_2']) : ''; 
         $instance['link_texto_2'] = !empty($new_instance['link_texto_2']) ? esc_html($new_instance['link_texto_2']) : ''; 
+        return $instance;
+    }
+}
+
+// Registrar Widget de Destaque Triplo
+function registrar_widget_destaque_triplo() {
+    register_widget('WidgetDestaqueTriplo');
+}
+add_action('widgets_init', 'registrar_widget_destaque_triplo');
+
+class WidgetDestaqueTriplo extends WP_Widget {
+
+    public function __construct() {
+        parent::__construct(
+            'Widget_Destaque_Triplo',
+            'Widget de destaque de três páginas',
+            array(
+                'description' => 'Destaca três páginas do site de forma belíssima.'
+            )
+        );
+    }
+
+    public function widget($args, $instance) {
+        $pagina_link = $instance['pagina_link'];
+        $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
+        $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link));    
+        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';
+
+        $pagina_link_2 = $instance['pagina_link_2'];
+        $titulo_2 = !empty($instance['titulo_2']) ? $instance['titulo_2'] : get_the_title(url_to_postid($pagina_link_2));
+        $resumo_2 = !empty($instance['resumo_2']) ? $instance['resumo_2'] : get_the_excerpt(url_to_postid($pagina_link_2));    
+        $link_texto_2 = !empty($instance['link_texto_2']) ? $instance['link_texto_2'] : 'Saiba mais';
+
+        $pagina_link_3 = $instance['pagina_link_3'];
+        $titulo_3 = !empty($instance['titulo_3']) ? $instance['titulo_3'] : get_the_title(url_to_postid($pagina_link_3));
+        $resumo_3 = !empty($instance['resumo_3']) ? $instance['resumo_3'] : get_the_excerpt(url_to_postid($pagina_link_3));    
+        $link_texto_3 = !empty($instance['link_texto_3']) ? $instance['link_texto_3'] : 'Saiba mais';
+
+        echo $args['before_widget'];
+
+        echo '
+        <div class="destaque-wrapper destaque-trio">  
+
+            <div class="destaque">
+                <div><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link)) . '" alt="Imagem da página"></div>
+                <div class="camada-1">
+                    <h2>' . $titulo . '</h2>
+                    <p>' . $resumo . '</p>
+                    <div class="link-wrapper">
+                        <a class="mais-link" href=' . $pagina_link . '>' . $link_texto . '</a>           
+                    </div>
+                </div>
+            </div>
+
+            <div class="destaque">
+                <div><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link_2)) . '" alt="Imagem da página"></div>
+                <div class="camada-1">
+                    <h2>' . $titulo_2 . '</h2>
+                    <p>' . $resumo_2 . '</p>
+                    <div class="link-wrapper">
+                        <a class="mais-link" href=' . $pagina_link_2 . '>' . $link_texto_2 . '</a>           
+                    </div>
+                </div>
+            </div>   
+
+            <div class="destaque">
+                <div><img src="' . get_the_post_thumbnail_url(url_to_postid($pagina_link_3)) . '" alt="Imagem da página"></div>
+                <div class="camada-1">
+                    <h2>' . $titulo_3 . '</h2>
+                    <p>' . $resumo_3 . '</p>
+                    <div class="link-wrapper">
+                        <a class="mais-link" href=' . $pagina_link_3 . '>' . $link_texto_3 . '</a>           
+                    </div>
+                </div>
+            </div>
+
+        </div>';
+        
+        echo $args['after_widget']; 
+    }
+
+    public function form($instance) {
+        // Exibir o formulário de configuração do widget
+        $pagina_link = $instance['pagina_link'];
+        $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
+        $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link) );    
+        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';  
+        
+        $pagina_link_2 = $instance['pagina_link_2'];
+        $titulo_2 = !empty($instance['titulo_2']) ? $instance['titulo_2'] : get_the_title(url_to_postid($pagina_link_2));
+        $resumo_2 = !empty($instance['resumo_2']) ? $instance['resumo_2'] : get_the_excerpt(url_to_postid($pagina_link_2));    
+        $link_texto_2 = !empty($instance['link_texto_2']) ? $instance['link_texto_2'] : 'Saiba mais';
+
+        $pagina_link_3 = $instance['pagina_link_3'];
+        $titulo_3 = !empty($instance['titulo_3']) ? $instance['titulo_3'] : get_the_title(url_to_postid($pagina_link_3));
+        $resumo_3 = !empty($instance['resumo_3']) ? $instance['resumo_3'] : get_the_excerpt(url_to_postid($pagina_link_3));    
+        $link_texto_3 = !empty($instance['link_texto_3']) ? $instance['link_texto_3'] : 'Saiba mais';
+
+        // Formulário de configuração do widget
+        ?>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('pagina_link'); ?>">Link da primeira página a ser destacada:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('pagina_link'); ?>" name="<?php echo $this->get_field_name('pagina_link'); ?>" type="text" value="<?php echo $pagina_link; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('titulo'); ?>">Título do bloco de destaque (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('resumo'); ?>">Texto do primeiro bloco de destaque (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('resumo'); ?>" name="<?php echo $this->get_field_name('resumo'); ?>" type="text" value="<?php echo $resumo; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('link_texto'); ?>">Texto do primeiro link (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('link_texto'); ?>" name="<?php echo $this->get_field_name('link_texto'); ?>" type="text" value="<?php echo $link_texto; ?>">
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('pagina_link_2'); ?>">Link da segunda página a ser destacada:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('pagina_link_2'); ?>" name="<?php echo $this->get_field_name('pagina_link_2'); ?>" type="text" value="<?php echo $pagina_link_2; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('titulo_2'); ?>">Título do segundo bloco de destaque (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('titulo_2'); ?>" name="<?php echo $this->get_field_name('titulo_2'); ?>" type="text" value="<?php echo $titulo_2; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('resumo_2'); ?>">Texto do segundo bloco de destaque (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('resumo_2'); ?>" name="<?php echo $this->get_field_name('resumo_2'); ?>" type="text" value="<?php echo $resumo_2; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('link_texto_2'); ?>">Texto do link (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('link_texto_2'); ?>" name="<?php echo $this->get_field_name('link_texto_2'); ?>" type="text" value="<?php echo $link_texto_2; ?>">
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('pagina_link_3'); ?>">Link da segunda página a ser destacada:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('pagina_link_3'); ?>" name="<?php echo $this->get_field_name('pagina_link_3'); ?>" type="text" value="<?php echo $pagina_link_3; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('titulo_3'); ?>">Título do segundo bloco de destaque (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('titulo_3'); ?>" name="<?php echo $this->get_field_name('titulo_3'); ?>" type="text" value="<?php echo $titulo_3; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('resumo_3'); ?>">Texto do segundo bloco de destaque (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('resumo_3'); ?>" name="<?php echo $this->get_field_name('resumo_3'); ?>" type="text" value="<?php echo $resumo_3; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('link_texto_3'); ?>">Texto do link (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('link_texto_3'); ?>" name="<?php echo $this->get_field_name('link_texto_3'); ?>" type="text" value="<?php echo $link_texto_3; ?>">
+        </p>
+        
+        <?php
+    }
+
+    public function update($new_instance, $old_instance) {
+        // Atualizar os valores do widget
+        $instance = $old_instance;
+        $instance['pagina_link'] = !empty($new_instance['pagina_link']) ? esc_html($new_instance['pagina_link']) : ''; 
+        $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : ''; 
+        $instance['resumo'] = !empty($new_instance['resumo']) ? esc_html($new_instance['resumo']) : ''; 
+        $instance['link_texto'] = !empty($new_instance['link_texto']) ? esc_html($new_instance['link_texto']) : ''; 
+        $instance['pagina_link_2'] = !empty($new_instance['pagina_link_2']) ? esc_html($new_instance['pagina_link_2']) : ''; 
+        $instance['titulo_2'] = !empty($new_instance['titulo_2']) ? esc_html($new_instance['titulo_2']) : ''; 
+        $instance['resumo_2'] = !empty($new_instance['resumo_2']) ? esc_html($new_instance['resumo_2']) : ''; 
+        $instance['link_texto_2'] = !empty($new_instance['link_texto_2']) ? esc_html($new_instance['link_texto_2']) : ''; 
+        $instance['pagina_link_3'] = !empty($new_instance['pagina_link_3']) ? esc_html($new_instance['pagina_link_3']) : ''; 
+        $instance['titulo_3'] = !empty($new_instance['titulo_3']) ? esc_html($new_instance['titulo_3']) : ''; 
+        $instance['resumo_3'] = !empty($new_instance['resumo_3']) ? esc_html($new_instance['resumo_3']) : ''; 
+        $instance['link_texto_3'] = !empty($new_instance['link_texto_3']) ? esc_html($new_instance['link_texto_3']) : ''; 
         return $instance;
     }
 }

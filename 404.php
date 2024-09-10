@@ -23,7 +23,7 @@
         </div>
         
         <div class="content-grid">            
-          <h1 class="noticia-titulo">Página não encontrada</h1>   
+          <h1>Página não encontrada</h1>   
           <p>A página solicitada não existe. Realize uma busca pelo termo desejado ou entre em contato.</p>      
                       
           

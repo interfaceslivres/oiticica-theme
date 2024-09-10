@@ -66,7 +66,7 @@ p {
   margin-bottom: var(--fonte-base);
   font-size: var(--fonte-base);
   hyphens: auto;
-  font-family: 'Charis SIL', Georgia;
+  /*font-family: 'Charis SIL', Georgia;*/
 }
 
 
@@ -107,7 +107,7 @@ h2 {
   font-weight: 600;
   line-height: 1.15;
   color: var(--cor-texto-escuro);
-  margin-bottom: var(--fonte-1down);
+  margin-bottom: var(--fonte-base);
   font-variation-settings: 'wdth' 100;
 }
 
@@ -165,7 +165,7 @@ strong {
 }
 
 
-a.camada-1:hover, div.camada-1:hover, div.camada-1-alt:hover {
+a.camada-1:hover, div.camada-1:hover, div.camada-1-alt:hover, .destaque:hover div:nth-child(2), .destaque-solo:hover div:first-child {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2),0 6px 6px -6px rgba(0,0,0,0.2);
 }
 
@@ -892,7 +892,7 @@ input[type="search"]:focus {
 .noticias {
   max-width: 1170px;
   /*margin: 0px 30px;*/
-  margin-bottom: -2rem;
+  margin-bottom: -1rem;
 }
 
 .noticias-wrapper {
@@ -1129,6 +1129,11 @@ input[type="search"]:focus {
   width: 100%;
   height: 100%;
   background: var(--cor-middleground);
+  overflow: hidden;
+}
+
+.noticia-wrapper:hover {
+  background: var(--cor-middleground-hover);
 }
 
 .noticia-primeira {
@@ -1140,10 +1145,11 @@ input[type="search"]:focus {
   height: 100%;
   position: absolute;
   object-fit: cover;
+  transition: 0.6s;
 }
 
-.noticia-wrapper:hover {
-  background: var(--cor-middleground-hover);
+.noticia-wrapper:hover .noticia-img {
+  transform: scale(1.025);
 }
 
 .noticia-sem-img {
@@ -2056,7 +2062,7 @@ footer a:hover {
   background-color: black;
 }
 
-.contraste a, .contraste #menu-buttons i, .contraste .menu ul li ul li a, .contraste .noticia-com-img-titulo, .contraste .noticia-sem-img-titulo, .contraste .link-full div, .contraste .link-full:hover .link-text, .contraste .ufpb-nome, .contraste #footer-dados .mais-link, .contraste button[type="nav"] i, .contraste button[type="nav"] div, .contraste .menu-lateral .page_item a, .contraste #menu-overlay li a, .contraste #menu-overlay li .sub-menu li a{
+.contraste a, .contraste #menu-buttons i, .contraste .menu ul li ul li a, .contraste .noticia-titulo, .contraste .noticia-titulo, .contraste .link-full div, .contraste .link-full:hover .link-text, .contraste .ufpb-nome, .contraste #footer-dados .mais-link, .contraste button[type="nav"] i, .contraste button[type="nav"] div, .contraste .menu-lateral .page_item a, .contraste #menu-overlay li a, .contraste #menu-overlay li .sub-menu li a{
   color: #ff0;
 }
 
@@ -2064,7 +2070,7 @@ footer a:hover {
   color: white;
 }
 
-.contraste .menu-wrapper, .contraste #footer-wrapper, .contraste .menu ul li ul, .contraste .apresentacao, .contraste .noticia-sem-img, .contraste .link-full, .contraste .noticia-wrapper:hover .noticia-sem-img, .contraste .noticia-com-img-titulo, .contraste .noticia-sem-img-titulo, .contraste .rotulo-claro, .contraste #menu-overlay {
+.contraste .menu-wrapper, .contraste #footer-wrapper, .contraste .menu ul li ul, .contraste .noticia-sem-img, .contraste .link-full, .contraste .noticia-wrapper:hover .noticia-sem-img, .contraste .noticia-titulo, .contraste .noticia-titulo, .contraste .rotulo-claro, .contraste #menu-overlay, .contraste .destaque-solo div:first-child,  .contraste .destaque > div:nth-child(2), .contraste .apresentacao > div:nth-child(1){
   background-color: #333;
 }
 
@@ -2388,7 +2394,7 @@ footer a:hover {
   }
   
   .youtube {
-    width: calc(100% + 32px);
+    /*width: calc(100% + 32px);*/
     margin: 0;
     margin-left: -1rem;
   }
