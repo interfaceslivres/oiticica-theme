@@ -29,7 +29,7 @@
                     <?php if ( has_post_thumbnail()) : ?>
                         <div class="noticia-wrapper">
                             <div class="rotulo-claro">
-                                <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
+                                <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>                                
                                 <div class="categorias">
                                     <?php                                        
                                     $categories = get_the_category();   // Obtém as categorias do post                                        
@@ -45,15 +45,16 @@
                                     ?>
                                 </div><!-- fecha div categorias -->
                             </div><!-- fecha div rotulo -->
-                            <a href="<?php the_permalink();?>" class="noticia-com-img camada-1" style="background-image: url(<?php the_post_thumbnail_url(); ?>);">
-                                <div class="background-wrapper">                  
-                                    <div class="noticia-com-img-titulo"><?php the_title(); ?></div>
+                            <img class="noticia-img" src="<?php the_post_thumbnail_url(); ?>">
+                            <a href="<?php the_permalink();?>" class="noticia-com-img camada-1">
+                                <div class="noticia-titulo">                  
+                                    <?php the_title(); ?>
                                 </div>                          
                             </a>
                         </div>
                     <?php else : ?> 
                         <div class="noticia-wrapper">
-                            <div class="rotulo">
+                            <div class="rotulo-escuro">
                                 <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
                                 <div class="categorias">
                                     <?php                                        
@@ -71,7 +72,7 @@
                                 </div><!-- fecha div categorias -->
                             </div><!-- fecha div rotulo -->
                             <a class="noticia-sem-img camada-1" href="<?php the_permalink();?>"> 
-                                <div class="noticia-sem-img-titulo" ><?php the_title(); ?></div>
+                                <div class="noticia-titulo" ><?php the_title(); ?></div>
                             </a>
                         </div>                                                        
                     <?php endif; ?> 

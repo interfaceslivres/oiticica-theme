@@ -26,7 +26,10 @@
         while ( have_posts() ) :
         the_post(); ?>
         <div class="content-grid">            
-            <h1 class="noticia-titulo"><?php the_title(); ?></h1>
+            <h1 class="noticia-pagina-titulo"><?php the_title(); ?></h1>
+            <?php if ( has_excerpt() ) : ?>
+                <h2 class="bigode"><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></h2>
+            <?php endif; ?>             
             <div class="noticia-h2">
                 <div>
                     <div><?php echo get_the_date( 'l, d \d\e F \d\e Y' ); ?></div>                    
