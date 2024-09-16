@@ -46,10 +46,10 @@ body {
 
   --fonte-1down: 0.84rem;
   --fonte-base: 1rem;
-  --fonte-1up: 1.5rem;
-  --fonte-2up: 1.75rem;
-  --fonte-3up: 2rem;
-  --fonte-4up: 2.25rem;
+  --fonte-1up: 1.25rem;
+  --fonte-2up: 1.5rem;
+  --fonte-3up: 1.75rem;
+  --fonte-4up: 2rem;
   font-variation-settings: 'wdth' 100;
 }
 
@@ -95,7 +95,7 @@ h1 {
 }
 
 .bigode {
-  font-family: 'Charis SIL', Georgia;
+  /*font-family: 'Charis SIL', Georgia;*/
   color: var(--cor-texto-medio);
   font-size: var(--fonte-1up);
   margin-bottom: var(--fonte-1up);
@@ -104,7 +104,7 @@ h1 {
 
 h2 {
   font-size: var(--fonte-1up);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.15;
   color: var(--cor-texto-escuro);
   margin-bottom: var(--fonte-base);
@@ -126,7 +126,7 @@ address {
   margin-bottom: var(--fonte-base);
   list-style: square;
   hyphens: auto;
-  font-family: 'Charis SIL', Georgia;
+  /*font-family: 'Charis SIL', Georgia;*/
 }
 
 .wp-block-list li {
@@ -135,9 +135,8 @@ address {
 
 .wp-block-heading {
   font-size: var(--fonte-1up);
-  font-weight: 600;
-  margin-bottom: var(--fonte-1down);
-  padding-top: var(--fonte-1down);
+  font-weight: 700;
+  margin: 1.5em 0 .5em;
 }
 
 strong {
@@ -229,13 +228,6 @@ a.camada-1:hover, div.camada-1:hover, div.camada-1-alt:hover, .destaque:hover di
   gap: var(--fonte-1up);
 }
 
-.site-titulos {
-  display: flex;
-  flex-direction: column;
-  gap: .0rem;
-  max-width: 650px;
-}
-
 .logo img, .custom-logo {
   background-color: white;
   height: 80px;
@@ -246,7 +238,7 @@ a.camada-1:hover, div.camada-1:hover, div.camada-1-alt:hover, .destaque:hover di
 
 .centro-titulo {
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: var(--fonte-base);
   line-height: 1.15;
   text-transform: uppercase;
@@ -265,7 +257,7 @@ a.camada-1:hover, div.camada-1:hover, div.camada-1-alt:hover, .destaque:hover di
 
 .departamento-titulo {
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   font-size: var(--fonte-1up);
   line-height: 1.15;
 
@@ -639,7 +631,7 @@ input[type="search"]:focus {
 
   color: white;
   font-size: var(--fonte-base);
-  font-weight: 550;
+  font-weight: 500;
   list-style-type: none;
   line-height: 1.15;  
   /*! border-bottom: 1px solid blue; */
@@ -1113,7 +1105,7 @@ input[type="search"]:focus {
 
 .conteudo {
   min-height: 300px;
-  margin-bottom: 32px;
+  margin-bottom: var(--fonte-base);
 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1149,7 +1141,7 @@ input[type="search"]:focus {
 }
 
 .noticia-wrapper:hover .noticia-img {
-  transform: scale(1.025);
+  transform: scale(1.015);
 }
 
 .noticia-sem-img {
@@ -1336,7 +1328,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
   position: absolute;
   margin: var(--fonte-base);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--cor-texto-medio);
 } 
 
@@ -1354,7 +1346,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
   position: absolute;
   margin: var(--fonte-base);
-  font-weight: 550;
+  font-weight: 450;
   color: var(--cor-texto-claro);
   text-shadow: hsla(0, 0%, 00%, .9) 0 0 12px;
 } 
@@ -1429,11 +1421,11 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   color: var(--cor-tema);
   margin-bottom: var(--fonte-base);
   word-break: break-word;
-  font-variation-settings: 'wdth' 85;
+  /*font-variation-settings: 'wdth' 85;*/
 }
 
 .wp-block-file {
-  margin-bottom: .45rem;
+  margin-bottom: .5rem;
 }
 
 .content-grid .wp-block-file:not(.wp-element-button) {
@@ -1530,7 +1522,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   flex-shrink: 1; 
     
   font-style: normal;
-  font-weight: 650;
+  font-weight: 700;
   font-size: var(--fonte-base);
   line-height: 1.15;
 
@@ -1539,7 +1531,32 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   color: var(--cor-tema);
 }
 
-.mais-link::after, .menu-lateral .page_item a::after {
+.content-grid .wp-block-button__link {
+  color: var(--cor-tema);
+  background-color: var(--cor-background);
+  border-radius: 0px;
+  box-shadow: none;
+  text-decoration: none;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.content-grid .wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content {
+  flex-direction: column;
+  align-items: start;
+  gap: .5rem;
+}
+
+.content-grid .wp-block-navigation__responsive-container {
+  display: contents;
+}
+
+.wp-block-navigation__responsive-container-open, .wp-block-navigation__responsive-container-close, .content-grid .wp-block-navigation__responsive-container-open {
+  display: none;
+}
+
+.mais-link::after, .menu-lateral .page_item a::after, .wp-block-button__link::after {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   content: "\f061";
@@ -1560,7 +1577,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   line-height: 1;
 }
 
-.mais-link:hover::after, .menu-lateral .page_item a:hover::after {
+.mais-link:hover::after, .menu-lateral .page_item a:hover::after, .wp-block-button__link:hover::after {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   content: "\f061";
@@ -1647,7 +1664,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 }
 
 .link-full:hover .link-text{
-  color: var(--cor-texto-escuro);
+  text-decoration: underline;
 }
 
 .link-image {
@@ -1660,7 +1677,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   /*! width: 100%; */
 
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--fonte-base);
   line-height: 1.15;
 
@@ -2011,7 +2028,7 @@ footer a:hover {
 }
 
 .destaque-solo:hover img, .destaque:hover img {
-  transform: scale(1.025);
+  transform: scale(1.015);
 }
 
 .destaque-solo div:first-child {
@@ -2329,7 +2346,6 @@ footer a:hover {
   }
 
   .conteudo {
-    margin-bottom: 30px;
   
     display: grid;
     grid-template-columns: 1fr;
@@ -2400,7 +2416,8 @@ footer a:hover {
   }
 
   .apresentacao > div:nth-child(1) {
-    width: auto;
+    width: calc(100% - 2 * 16px);
+    margin: 0 auto;
     padding-right: var(--fonte-1up);
     grid-row: 2;
     

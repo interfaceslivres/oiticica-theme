@@ -27,7 +27,7 @@
                     <!-- begin loop -->
                     <?php while (have_posts() ) : the_post(); ?>  
                     <?php if ( has_post_thumbnail()) : ?>
-                        <div class="noticia-wrapper">
+                        <div class="noticia-wrapper camada-1">
                             <div class="rotulo-claro">
                                 <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>                                
                                 <div class="categorias">
@@ -46,14 +46,14 @@
                                 </div><!-- fecha div categorias -->
                             </div><!-- fecha div rotulo -->
                             <img class="noticia-img" src="<?php the_post_thumbnail_url(); ?>">
-                            <a href="<?php the_permalink();?>" class="noticia-com-img camada-1">
+                            <a href="<?php the_permalink();?>" class="noticia-com-img">
                                 <div class="noticia-titulo">                  
                                     <?php the_title(); ?>
                                 </div>                          
                             </a>
                         </div>
                     <?php else : ?> 
-                        <div class="noticia-wrapper">
+                        <div class="noticia-wrapper camada-1">
                             <div class="rotulo-escuro">
                                 <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
                                 <div class="categorias">
@@ -71,7 +71,7 @@
                                     ?>
                                 </div><!-- fecha div categorias -->
                             </div><!-- fecha div rotulo -->
-                            <a class="noticia-sem-img camada-1" href="<?php the_permalink();?>"> 
+                            <a class="noticia-sem-img" href="<?php the_permalink();?>"> 
                                 <div class="noticia-titulo" ><?php the_title(); ?></div>
                             </a>
                         </div>                                                        

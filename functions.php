@@ -146,7 +146,7 @@ function cats_related_post() {
 
         <?php while($related_cats_post->have_posts()): $related_cats_post->the_post(); ?>
             <?php if ( has_post_thumbnail() ) { ?>
-                    <div class="noticia-wrapper">
+                    <div class="noticia-wrapper camada-1">
                           <div class="rotulo-claro">                              
                             <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
                             <div class="categorias">
@@ -175,13 +175,13 @@ function cats_related_post() {
                         </div> <!-- fecha div rotulo-claro -->
 
                         <img class="noticia-img" src="<?php the_post_thumbnail_url(); ?>">
-                        <a href="<?php the_permalink();?>" class="noticia-com-img camada-1">
+                        <a href="<?php the_permalink();?>" class="noticia-com-img">
                             <div class="noticia-titulo"><?php the_title(); ?></div>         
                         </a>  
                     </div>
             <?php } else { ?> 
 
-                    <div class="noticia-wrapper">
+                    <div class="noticia-wrapper camada-1">
                           <div class="rotulo-escuro">                              
                             <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
                             <div class="categorias">
@@ -208,7 +208,7 @@ function cats_related_post() {
                             ?>
                             </div> <!-- fecha categorias -->                            
                         </div> <!-- fecha div rotulo-claro -->
-                        <a href="<?php the_permalink();?>" class="noticia-sem-img camada-1">
+                        <a href="<?php the_permalink();?>" class="noticia-sem-img">
                             <div class="noticia-titulo"><?php the_title(); ?></div>         
                         </a>  
                     </div>
@@ -328,9 +328,9 @@ class WidgetNoticias extends WP_Widget {
                             $the_query->the_post();
 
                             if ($postCount == 1) {
-                                echo '<div class="noticia-wrapper noticia-primeira">';
+                                echo '<div class="noticia-wrapper camada-1 noticia-primeira">';
                             } else {
-                                echo '<div class="noticia-wrapper">';                                 
+                                echo '<div class="noticia-wrapper camada-1">';                                 
                             }
                                 if (has_post_thumbnail()) {
                                     echo '<div class="rotulo-claro">';
@@ -357,9 +357,9 @@ class WidgetNoticias extends WP_Widget {
                             
                                 if ( has_post_thumbnail()) {                                    
                                     echo '<img class="noticia-img" src="', esc_url(the_post_thumbnail_url()), '">';
-                                    echo '<a class="noticia-com-img camada-1" href="' , esc_url(the_permalink()) , '">';
+                                    echo '<a class="noticia-com-img" href="' , esc_url(the_permalink()) , '">';
                                 } else {
-                                    echo '<a class="noticia-sem-img camada-1" href="' , esc_url(the_permalink()) , '">'; 
+                                    echo '<a class="noticia-sem-img" href="' , esc_url(the_permalink()) , '">'; 
                                 }                                    
 
                                     echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';
@@ -411,7 +411,7 @@ class WidgetDestaqueSolo extends WP_Widget {
 
         echo '
         <div class="destaque-wrapper destaque-solo">  
-            <div class="camada-1-alt">
+            <div class="camada-1">
                 <h2>' . $titulo . '</h2>
                 <p>' . $resumo . '</p>
                 <div class="link-wrapper">
@@ -810,7 +810,7 @@ class Widget_Apresentacao extends WP_Widget {
                 $url = esc_url($instance['video-institucional']);
                 // Substitua "watch" por "embed" na URL
                 $embed_url = str_replace("watch?v=", "embed/", $url);
-                echo '<div class="youtube camada-1"><iframe width="100%" height="100%" src="' . $embed_url . '" title="Youtube Video Player" frameborder="0" allow="web-share" allowfullscreen></iframe></div>';
+                echo '<div class="youtube"><iframe width="100%" height="100%" src="' . $embed_url . '" title="Youtube Video Player" frameborder="0" allow="web-share" allowfullscreen></iframe></div>';
             }
 
         echo '</div>';   
