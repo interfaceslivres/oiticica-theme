@@ -25,57 +25,29 @@
             <div class="cards-lista">
                 <?php if (have_posts() ) : ?>
                     <!-- begin loop -->
-                    <?php while (have_posts() ) : the_post(); ?>  
-                    <?php if ( has_post_thumbnail()) : ?>
-                        <div class="noticia-wrapper camada-1">
-                            <div class="rotulo-claro">
-                                <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>                                
-                                <div class="categorias">
-                                    <?php                                        
-                                    $categories = get_the_category();   // Obtém as categorias do post                                        
-                                    if ($categories) {  // Verifica se existem categorias                                            
-                                        $categories = array_slice($categories, 0, 2); // Limita a exibição a duas categorias                                            
-                                        foreach ($categories as $category) {    // Loop pelas categorias
-                                            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';                                                
-                                            if (next($categories)) {    // Adiciona uma vírgula após a categoria, exceto pela última
-                                                echo ', ';
-                                            }
+                    <?php while (have_posts() ) : the_post(); ?>                      
+                    <div class="noticia-wrapper camada-1">
+                        <div class="rotulo-escuro">
+                            <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
+                            <div class="categorias">
+                                <?php                                        
+                                $categories = get_the_category();   // Obtém as categorias do post                                        
+                                if ($categories) {  // Verifica se existem categorias                                            
+                                    $categories = array_slice($categories, 0, 2); // Limita a exibição a duas categorias                                            
+                                    foreach ($categories as $category) {    // Loop pelas categorias
+                                        echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';                                                
+                                        if (next($categories)) {    // Adiciona uma vírgula após a categoria, exceto pela última
+                                            echo ', ';
                                         }
                                     }
-                                    ?>
-                                </div><!-- fecha div categorias -->
-                            </div><!-- fecha div rotulo -->
-                            <img class="noticia-img" src="<?php the_post_thumbnail_url(); ?>">
-                            <a href="<?php the_permalink();?>" class="noticia-com-img">
-                                <div class="noticia-titulo">                  
-                                    <?php the_title(); ?>
-                                </div>                          
-                            </a>
-                        </div>
-                    <?php else : ?> 
-                        <div class="noticia-wrapper camada-1">
-                            <div class="rotulo-escuro">
-                                <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
-                                <div class="categorias">
-                                    <?php                                        
-                                    $categories = get_the_category();   // Obtém as categorias do post                                        
-                                    if ($categories) {  // Verifica se existem categorias                                            
-                                        $categories = array_slice($categories, 0, 2); // Limita a exibição a duas categorias                                            
-                                        foreach ($categories as $category) {    // Loop pelas categorias
-                                            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';                                                
-                                            if (next($categories)) {    // Adiciona uma vírgula após a categoria, exceto pela última
-                                                echo ', ';
-                                            }
-                                        }
-                                    }
-                                    ?>
-                                </div><!-- fecha div categorias -->
-                            </div><!-- fecha div rotulo -->
-                            <a class="noticia-sem-img" href="<?php the_permalink();?>"> 
-                                <div class="noticia-titulo" ><?php the_title(); ?></div>
-                            </a>
-                        </div>                                                        
-                    <?php endif; ?> 
+                                }
+                                ?>
+                            </div><!-- fecha div categorias -->
+                        </div><!-- fecha div rotulo -->
+                        <a class="noticia-sem-img" href="<?php the_permalink();?>"> 
+                            <div class="noticia-titulo" ><?php the_title(); ?></div>
+                        </a>
+                    </div>    
                     <?php endwhile; ?> 
 
                     <div class="paginas-nav">

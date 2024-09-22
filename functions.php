@@ -17,7 +17,7 @@ function meu_tema_personalizado($wp_customize) {
   
     // Adicionando a opção de cor padrão do tema
     $wp_customize->add_setting('cor_padrao', array(
-      'default' => '#102d69',
+      'default' => '#0b52b5',
       'transport' => 'refresh'
     ));
   
@@ -81,7 +81,7 @@ function adicionar_controle_imagens_mapa($wp_customize) {
         'section' => 'secao_imagens_mapa',
         'settings' => 'imagem1_mapa',        
     )));   
-    
+
     $wp_customize->add_setting('imagem2_mapa', array(
         'default' => '',
         'transport' => 'refresh',
@@ -230,9 +230,9 @@ function cats_related_post() {
 // Registrar widgets
 function registrar_widgets_personalizados() {   
     register_sidebar(array(
-        'name'          => 'Área de Widgets da Home',
+        'name'          => 'Widgets da Home',
         'id'            => 'widgets-da-home',
-        'description'   => 'Insira os itens correspondentes para ter a visualização na página inicial, o site nunca poderá estar sem a presença da localização, use o link da URL do Google Maps e não o link gerado pelo botão compartilhar, pois esse link não tem os dados de latitude e longitude como o sistema espera.',
+        'description'   => 'Insira os widgets que aparecerão na página inicial.',
         'before_widget' => '',
         'after_widget'  => '',
         'before_title'  => '',
@@ -247,7 +247,7 @@ function registrar_widgets_personalizados() {
         'before_title'  => '',
         'after_title'   => '',
     ));
-    register_sidebar(array(
+    /*register_sidebar(array(
         'name'          => 'Área do Widget de Links Rápidos',
         'id'            => 'widget-links-rapidos',
         'description'   => 'Defina os Links rápidos e seus respectivos ícones.',
@@ -255,7 +255,7 @@ function registrar_widgets_personalizados() {
         'after_widget'  => '',
         'before_title'  => '',
         'after_title'   => '',
-    ));
+    ));*/
 }
 // Hook para registrar os widgets
 add_action('widgets_init', 'registrar_widgets_personalizados');
@@ -374,6 +374,113 @@ class WidgetNoticias extends WP_Widget {
         '       </div>
                 <div class="link-wrapper justify-end">
                 <a class="mais-link" href="', get_home_url(), '/noticias/">Mais Notícias</a>           
+                </div>
+            </div>
+        </div>';
+        echo $args['after_widget']; 
+    }
+}
+
+// Registrar Widget de Noticias solo
+function registrar_widget_noticias2() {
+    register_widget('WidgetNoticias2');
+}
+add_action('widgets_init', 'registrar_widget_noticias2');
+
+class WidgetNoticias2 extends WP_Widget {
+
+    public function __construct() {
+        parent::__construct(
+            'Widget_Noticias_2',
+            'Widget de Notícias Alternativo',
+            array(
+                'description' => 'Exibe as 4 últimas notícias, com apenas a última possuindo a possibilidade de thumbnail'
+            )
+        );
+    }
+
+    public function widget($args, $instance) {
+        echo $args['before_widget'];
+        echo '
+        <div class="noticias-wrapper">
+            <div class="noticias">
+                <h2>Notícias</h2>
+                <div class="conteudo2">';
+                    $posts_per_page = 5;
+                    $the_query = new WP_Query( array(
+                        'posts_per_page' => $posts_per_page
+                    ));
+                    if ( $the_query->have_posts() ) {
+                        $postCount = 0;
+                        while ( $the_query->have_posts() && $postCount < $posts_per_page ){
+                            $postCount++;
+                            $the_query->the_post();
+
+                            if ($postCount < 3) {
+                                if ($postCount == 1){
+                                    echo '<div class="noticia-wrapper camada-1 noticia-primeira">';
+                                } else {
+                                    echo '<div class="noticia-wrapper camada-1 noticia-segunda">';
+                                }
+                                if (has_post_thumbnail()) {
+                                    echo '<div class="noticia-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
+                                }
+                            } else {
+                                echo '<div class="noticia-wrapper camada-1">';                                 
+                            }
+                                if (has_post_thumbnail() && $postCount == 1) {
+                                    echo '<div class="rotulo-escuro">';
+                                } else {
+                                    echo '<div class="rotulo-escuro">';
+                                }                                
+                                    echo '
+                                    <div>' . get_the_date( 'd \d\e F Y' ) . '</div>
+                                    <div class="categorias">';
+                                        $categories = get_the_category();
+                                        
+                                        if ($categories) {
+                                            $categories = array_slice($categories, 0, 2);
+                                            foreach ($categories as $category) {                                                    
+                                                echo '<a href="' , esc_url(get_category_link($category->term_id)) , '">' , esc_html($category->name) , '</a>';
+                                                if (next($categories)) {
+                                                    echo ', ';
+                                                }
+                                            }
+                                        }
+                                echo '    
+                                    </div><!-- fecha div categorias -->
+                                </div><!-- fecha div rotulo -->';
+                            
+                                if ($postCount < 3) { 
+                                    
+                                    if (has_post_thumbnail()) {
+                                        echo '<div class="noticia-grande-wrapper">';
+                                        //echo '<img class="noticia-img" src="', esc_url(the_post_thumbnail_url()), '">';
+                                        echo '<a class="noticia-sem-img" href="' , esc_url(the_permalink()) , '">';
+                                    } else {
+                                        echo '<a class="noticia-sem-img" href="' , esc_url(the_permalink()) , '">';
+                                    }                                    
+                                            echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';
+                                    
+                                } else {                                    
+                                    echo '<a class="noticia-sem-img noticia-pequena" href="' , esc_url(the_permalink()) , '">'; 
+                                        echo '<div class="noticia-titulo-pequeno">' , esc_html(the_title()) , '</div>';                                    
+                                } 
+
+                                if ($postCount < 3 && has_post_thumbnail()) {
+                                    echo '</div>';
+                                }
+                                echo '</a>'; //noticia-com/sem-img
+                            echo '</div>'; //noticia-wrapper
+                        }
+                    }
+
+        
+        echo
+        '       
+                <div class="link-wrapper justify-end">
+                <a class="mais-link" href="', get_home_url(), '/noticias/">Mais Notícias</a>           
+                </div>
                 </div>
             </div>
         </div>';
@@ -776,7 +883,7 @@ class Widget_Apresentacao extends WP_Widget {
     public function __construct() {
         parent::__construct(
             'widget_apresentacao',
-            'Widget de Apresentação',
+            'Widget de Apresentação com Vídeo',
             array(
                 'description' => 'Um widget personalizado para apresentar a instituição, com título, vídeo, links, fotos e localização.'
             )
@@ -855,6 +962,118 @@ class Widget_Apresentacao extends WP_Widget {
         return $instance;
     }
 }
+
+//######################### APRESENTAÇÃO IMAGE PICKER #################################
+// Registrar o widget personalizado p/ home
+function registrar_widget_apresentacao_img() {
+    register_widget('Widget_Apresentacao_Img');
+}
+add_action('widgets_init', 'registrar_widget_apresentacao_img');
+
+// Criar a classe do widget personalizado
+class Widget_Apresentacao_Img extends WP_Widget {
+    public function __construct() {
+        parent::__construct(
+            'widget_apresentacao_img',
+            'Widget de Apresentação com Imagem',
+            array(
+                'description' => 'Um widget personalizado para apresentar a instituição, com título, Imagem, links, fotos e localização.'
+            )
+        );
+    }
+
+    // Função para exibir o widget no frontend
+    public function widget($args, $instance) {
+        echo $args['before_widget'];
+
+        echo '
+        <div class="apresentacao">
+            <div class="camada-1">                 
+                <h2>' . nl2br(esc_html($instance['titulo'])) . '</h2>
+                <p>' . nl2br(esc_html($instance['texto-apresentacao'])) . '</p>
+                <div class="apresentacao-links">';
+
+                wp_nav_menu(   
+                    array ( 
+                        'theme_location' => 'localizacao-menu',
+                        'items_wrap' => '%3$s',
+                        'container' => false,
+                        'link_class'   => 'mais-link'
+                    ) 
+                );
+
+                echo '</div>
+            </div>';
+
+            if (!empty($instance['video-institucional'])) {
+                $url = esc_url($instance['video-institucional']);
+                // Substitua "watch" por "embed" na URL
+                $embed_url = str_replace("watch?v=", "embed/", $url);
+                echo '<div class="youtube"><iframe width="100%" height="100%" src="' . $embed_url . '" title="Youtube Video Player" frameborder="0" allow="web-share" allowfullscreen></iframe></div>';
+            }
+
+        echo '</div>';   
+        echo $args['after_widget'];
+    }
+
+    // Função para exibir o formulário de configuração do widget no painel de controle
+    public function form($instance) {
+        $instance = wp_parse_args((array) $instance, array('link1' => ''));
+        $link1 = $instance['link1'];
+        $images = new WP_Query( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'post_mime_type' => 'image' , 'posts_per_page' => -1 ) );
+        if( $images->have_posts() ){ 
+            $options = array();            
+            $options[0] = '';
+            while( $images->have_posts() ) {
+                $images->the_post();
+                $img_src = wp_get_attachment_image_src(get_the_ID());
+                $the_link = $link1;
+                $options[0] .= '<option value="' . $img_src[0] . '" ' . selected( $the_link, $img_src[0], false ) . '>' . get_the_title() . '</option>';
+            }             
+        ?>
+        <select name="<?php echo $this->get_field_name( 'link1' ); ?>"><?php echo $options[0]; ?></select>
+        <?php
+        } else {
+                echo 'There are no images in the media library. Click <a href="' . admin_url('/media-new.php') . '" title="Add Images">here</a> to add some images';
+        }
+
+        // Campos do widget
+        $campos = array(
+            'titulo' => 'Título da Apresentação',
+            'video-institucional' => 'Vídeo Institucional',            
+            'localizacao' => 'Localização (cole apenas a URL do Google Maps)',
+            'texto-apresentacao' => 'Texto sobre a instituição (670 caracteres)'
+        );
+
+		// Exibir campos do formulário
+		$index = 0;
+		foreach ($campos as $campo => $label) {
+		    $valor = !empty($instance[$campo]) ? esc_attr($instance[$campo]) : '';
+		    echo '<p>';
+		    echo '<label for="' . $this->get_field_id($campo) . '">' . esc_html($label) . ':</label>';
+
+		    // Verificar se o índice é par
+		    if ($index < 3 || $index == 4 || $index == 6 || $index == 8) {
+		        echo '<input class="widefat" id="' . $this->get_field_id($campo) . '" name="' . $this->get_field_name($campo) . '" type="text" value="' . $valor . '">';
+		    } else {
+		        echo '<textarea class="widefat"  maxlength="677" id="' . $this->get_field_id($campo) . '" name="' . $this->get_field_name($campo) . '" rows="5">' . $valor . '</textarea>';
+		    }
+
+		    echo '</p>';
+		    $index++;
+		}
+    }
+
+    // Função para atualizar os valores do widget no painel de controle
+    public function update($new_instance, $old_instance) {
+        $instance = array();
+        foreach ($new_instance as $campo => $valor) {
+            $instance[$campo] = (!empty($valor)) ? strip_tags($valor) : '';
+        }
+        return $instance;
+    }
+}
+//###################### FIM APRESENTAÇÃO IMAGE PICKER #################################
 
 class WidgetRedesSociais extends WP_Widget {
 
@@ -996,6 +1215,8 @@ class WidgetLinksRapidos extends WP_Widget {
 
     public function widget($args, $instance) {
         // Extrair os valores dos campos do widget
+        $titulo = $instance['titulo'];
+        
         $text_primeiro = $instance['text_primeiro'];
         $text_segundo = $instance['text_segundo'];
         $text_terceiro = $instance['text_terceiro'];
@@ -1009,7 +1230,6 @@ class WidgetLinksRapidos extends WP_Widget {
         $icon_quarto = $instance['icon_quarto'];
         $icon_quinto = $instance['icon_quinto'];
         $icon_sexto = $instance['icon_sexto'];
-
         
         $primeiro = $instance['primeiro'];
         $segundo = $instance['segundo'];
@@ -1021,6 +1241,7 @@ class WidgetLinksRapidos extends WP_Widget {
         echo $args['before_widget'];
         echo '
         <div class="links-wrapper">
+            <h2> ' , esc_html($titulo) , ' </h2>
             <div class="links">
 
             <a href="' . esc_url($primeiro) . '" class="link-full camada-1">
@@ -1068,6 +1289,8 @@ class WidgetLinksRapidos extends WP_Widget {
 
     public function form($instance) {
         // Exibir o formulário de configuração do widget
+        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : 'Título da seção de links rápidos';
+
         // nomes dos links, para exibição
         $text_primeiro = !empty($instance['text_primeiro']) ? esc_html($instance['text_primeiro']) : 'Pri';
         $text_segundo = !empty($instance['text_segundo']) ? esc_html($instance['text_segundo']) : 'Seg';
@@ -1094,6 +1317,10 @@ class WidgetLinksRapidos extends WP_Widget {
 
         // Formulário de configuração do widget
         ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('titulo'); ?>">Título da seção:</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
+        </p>
         <p>
             <label for="<?php echo $this->get_field_id('text_primeiro'); ?>">Título do primeiro link:</label>
             <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('text_primero'); ?>" name="<?php echo $this->get_field_name('text_primeiro'); ?>" type="text" value="<?php echo $text_primeiro; ?>">
@@ -1177,6 +1404,8 @@ class WidgetLinksRapidos extends WP_Widget {
     public function update($new_instance, $old_instance) {
         // Atualizar os valores do widget
         $instance = $old_instance;
+        $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : 'erro';
+
         $instance['text_primeiro'] = !empty($new_instance['text_primeiro']) ? esc_html($new_instance['text_primeiro']) : 'erro';
         $instance['icon_primeiro'] = !empty($new_instance['icon_primeiro']) ? esc_attr($new_instance['icon_primeiro']) : 'fa-solid fa-pen-fancy';
         $instance['primeiro'] = !empty($new_instance['primeiro']) ? esc_url($new_instance['primeiro']) : '#';

@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var searchBar = document.getElementById('busca-barra');
     var menuBar = document.getElementById('desktop-menu');
     var menuButtons = document.getElementById('menu-buttons');
+    var searchForm = document.getElementById('s');
 
 
     searchButton.addEventListener('click', buscaClick);
@@ -21,7 +22,13 @@ document.addEventListener('DOMContentLoaded', function () {
     function buscaClick() {
         searchBar.classList.toggle('hidden');
         menuBar.classList.toggle('hidden');
-        menuButtons.classList.toggle('hidden');        
+        menuButtons.classList.toggle('hidden');
+        menuButton.classList.toggle('hidden');   
+        overlay.classList.add('hidden');
+        document.body.classList.remove('stop-scrolling');
+        menuButonIcon.classList.remove('fa-xmark');
+        menuButonIcon.classList.add('fa-bars');
+        searchForm.focus();
     }      
 
     window.addEventListener('resize', function (){
@@ -41,10 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
 
-    function toggleMenuOverlay() {
-
-        
-
+    function toggleMenuOverlay() {  
         if (window.scrollY < offsetValue) {
             overlay.style.top = offsetValue + menuHeight - window.scrollY + 'px';
             var altura = windowHeight - offsetValue - menuHeight + window.scrollY + 'px';
@@ -54,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var altura = windowHeight - menuHeight + 'px';
             overlay.style.height = altura;
         }
-
         overlay.classList.toggle('hidden');
         menuButonIcon.classList.toggle('fa-xmark');
         menuButonIcon.classList.toggle('fa-bars');

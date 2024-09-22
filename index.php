@@ -12,9 +12,7 @@
     ?>
     <div class="imagem-sombra"></div>
   </div> 
-  <div class="corpo-wrapper">             
-
-    <?php $widget_values = dynamic_sidebar('widget-links-rapidos'); ?>            
+  <div class="corpo-wrapper">
 
     <?php $widget_values = dynamic_sidebar('widgets-da-home'); ?>      
 
