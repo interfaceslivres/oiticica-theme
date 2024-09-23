@@ -289,8 +289,168 @@ function customizer_centro($wp_customize) {
         'type' => 'url',
     ));
 }
-
 add_action('customize_register', 'customizer_centro');
+
+// Redes Sociais
+// Adiciona seção ao Customizer
+function customizer_contato($wp_customize) {
+    // Seção para configurações personalizadas
+    $wp_customize->add_section('customizer_contato', array(
+        'title' => 'Contato, endereço e redes sociais',
+        'priority' => 31,
+    ));
+
+    // Campos de texto personalizado
+
+    // ======= ENDEREÇO ========
+
+    $wp_customize->add_setting('custom_logradouro', array(
+        'default' => 'Rua dos Bobos',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('custom_logradouro', array(
+        'label' => 'Logradouro',
+        'section' => 'customizer_contato',
+        'type' => 'textarea',
+    ));
+
+    $wp_customize->add_setting('custom_numero', array(
+        'default' => '150',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('custom_numero', array(
+        'label' => 'Número',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('custom_complemento', array(
+        'default' => 'sala 68',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('custom_complemento', array(
+        'label' => 'Complemento',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('custom_bairro', array(        
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('custom_bairro', array(
+        'input_attrs' => array(
+            'placeholder' => __('Castelo Branco'),
+        ),
+        'label' => 'Bairro',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('custom_CEP', array(
+        'default' => '58050-000',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('custom_CEP', array(
+        'label' => 'CEP',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('custom_cidade', array(
+        'default' => 'João Pessoa',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('custom_cidade', array(
+        'label' => 'Cidade/local',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('custom_estado', array(
+        'default' => 'Paraíba',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('custom_cidade', array(
+        'label' => 'Estado',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+   
+    // ======= CONTATO ========
+
+    $wp_customize->add_setting('custom_telefone', array(
+        'default' => '(83) 999 910 105',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('custom_telefone', array(
+        'label' => 'Telefone (com DDD)',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('custom_url_contato', array(
+        'default' => 'https://ufpb.br',
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('custom_url_contato', array(
+        'label' => 'URL de contato',
+        'section' => 'customizer_contato',
+        'type' => 'url',
+    ));
+
+    $wp_customize->add_setting('custom_horario', array(
+        'default' => 'De Segunda à Sexta, das 14h às 18h',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
+    ));
+    $wp_customize->add_control('custom_horario', array(
+        'label' => 'Horário de Atendimento',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
+    // ======= REDES SOCIAIS ========
+
+    $wp_customize->add_setting('custom_instagram', array(
+        'default' => 'ufpb.oficial',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('custom_instagram', array(
+        'label' => 'Nome de usuário da página do Instagram',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('custom_x', array(
+        'default' => 'ufpboficial',
+        'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('custom_x', array(
+        'label' => 'Nome de usuário da página do X',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('custom_facebook', array(
+        'default' => 'https://www.facebook.com/UFPBoficial',
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('custom_facebook', array(
+        'label' => 'URL da página do Facebook',
+        'section' => 'customizer_contato',
+        'type' => 'url',
+    ));
+
+    $wp_customize->add_setting('custom_youtube', array(
+        'default' => 'https://www.youtube.com/user/TVUFPB',
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('custom_youtube', array(
+        'label' => 'URL do canald o YouTube',
+        'section' => 'customizer_contato',
+        'type' => 'url',
+    ));
+}
+add_action('customize_register', 'customizer_contato');
 
 // Registrar Widget de Destaque solo
 function registrar_widget_noticias() {
