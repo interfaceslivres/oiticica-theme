@@ -381,7 +381,7 @@ class WidgetNoticias extends WP_Widget {
     }
 }
 
-// Registrar Widget de Noticias solo
+// Registrar Widget de Noticias novo
 function registrar_widget_noticias2() {
     register_widget('WidgetNoticias2');
 }
@@ -418,60 +418,40 @@ class WidgetNoticias2 extends WP_Widget {
 
                             if ($postCount < 3) {
                                 if ($postCount == 1){
-                                    echo '<div class="noticia-wrapper camada-1 noticia-primeira">';
+                                    echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1 noticia-primeira">';
                                 } else {
-                                    echo '<div class="noticia-wrapper camada-1 noticia-segunda">';
+                                    echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1 noticia-segunda">';
                                 }
                                 if (has_post_thumbnail()) {
                                     echo '<div class="noticia-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
                                 }
                             } else {
-                                echo '<div class="noticia-wrapper camada-1">';                                 
-                            }
-                                if (has_post_thumbnail() && $postCount == 1) {
-                                    echo '<div class="rotulo-escuro">';
-                                } else {
-                                    echo '<div class="rotulo-escuro">';
-                                }                                
-                                    echo '
-                                    <div>' . get_the_date( 'd \d\e F Y' ) . '</div>
-                                    <div class="categorias">';
-                                        $categories = get_the_category();
-                                        
-                                        if ($categories) {
-                                            $categories = array_slice($categories, 0, 2);
-                                            foreach ($categories as $category) {                                                    
-                                                echo '<a href="' , esc_url(get_category_link($category->term_id)) , '">' , esc_html($category->name) , '</a>';
-                                                if (next($categories)) {
-                                                    echo ', ';
+                                echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';                                 
+                            } 
+                                                                    
+                                    echo '<div class="noticia-sem-img">'; 
+                                        echo '<div class="rotulo-escuro">';                                                               
+                                        echo '
+                                        <div>' . get_the_date( 'd \d\e F \d\e Y' ) . '</div>
+                                        <div class="categorias">';
+                                            $categories = get_the_category();
+                                            
+                                            if ($categories) {
+                                                $categories = array_slice($categories, 0, 2);
+                                                foreach ($categories as $category) {                                                    
+                                                    echo '<div>' , esc_html($category->name) , '</div>';
+                                                    if (next($categories)) {
+                                                        echo ', ';
+                                                    }
                                                 }
                                             }
-                                        }
-                                echo '    
-                                    </div><!-- fecha div categorias -->
-                                </div><!-- fecha div rotulo -->';
-                            
-                                if ($postCount < 3) { 
-                                    
-                                    if (has_post_thumbnail()) {
-                                        echo '<div class="noticia-grande-wrapper">';
-                                        //echo '<img class="noticia-img" src="', esc_url(the_post_thumbnail_url()), '">';
-                                        echo '<a class="noticia-sem-img" href="' , esc_url(the_permalink()) , '">';
-                                    } else {
-                                        echo '<a class="noticia-sem-img" href="' , esc_url(the_permalink()) , '">';
-                                    }                                    
-                                            echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';
-                                    
-                                } else {                                    
-                                    echo '<a class="noticia-sem-img noticia-pequena" href="' , esc_url(the_permalink()) , '">'; 
-                                        echo '<div class="noticia-titulo-pequeno">' , esc_html(the_title()) , '</div>';                                    
-                                } 
-
-                                if ($postCount < 3 && has_post_thumbnail()) {
-                                    echo '</div>';
-                                }
-                                echo '</a>'; //noticia-com/sem-img
-                            echo '</div>'; //noticia-wrapper
+                                        echo '    
+                                            </div><!-- fecha div categorias -->
+                                        </div><!-- fecha div rotulo -->';
+                                        echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
+                                
+                                echo '</div>'; //noticia-com/sem-img
+                            echo '</a>'; //noticia-wrapper
                         }
                     }
 
@@ -1538,5 +1518,86 @@ function has_children() {
     $pages = get_pages('child_of=' . $post->ID);
     return count($pages);
 }
+
+//######################################################################################
+//################################# META BOX STUFF #####################################
+//######################################################################################
+
+abstract class DatePicker_Meta_Box {
+
+	public static function add() {
+        add_meta_box(
+            'datepicker_box_id',       // Unique ID
+            'Data do evento',         // Box title
+            [ self::class, 'html' ],   // Content callback, must be of type callable
+            'evento',                    // Post type
+            'side'                     // local onde fica
+        );
+	}
+
+	public static function save( int $post_id ) {
+		if ( array_key_exists( 'custom_date', $_POST ) ) {
+            $custom_date_formatted = strtotime($_POST['custom_date']);
+			update_post_meta(
+				$post_id,
+				'__custom_date_meta_key',
+				$custom_date_formatted
+			);
+            update_post_meta(
+				$post_id,
+				'__custom_date_meta_key_original',
+				$_POST['custom_date'],
+			);
+		}        
+	}
+
+	public static function html( $post ) {
+        $custom_date = get_post_meta( $post->ID, '__custom_date_meta_key_original', true );        
+
+        ?>
+		<label for="custom_date">Selecione a data do evento:</label>
+		<input name="custom_date" type="date" value="<?php echo esc_attr($custom_date); ?>">
+		<?php        
+	}
+}
+
+add_action( 'add_meta_boxes', [ 'DatePicker_Meta_Box', 'add' ] );
+add_action( 'save_post', [ 'DatePicker_Meta_Box', 'save' ] );
+
+add_action( 'init', 'create_eventos');
+
+function create_eventos() {
+	register_post_type('evento',
+		array(
+			'labels'      => array(
+				'name'              => __('Eventos', 'textdomain'),
+				'singular_name'     => __('Evento', 'textdomain'),
+                'add_new'           => _x('Adicionar novo', 'Evento'),
+                'add_new_item'      => __('Adicionar novo evento'),
+                'edit_item'         => __('Editar evento'),
+                'new_item'          => __('Novo evento'),
+                'view_item'         => __('Ver evento'),
+                'search_items'      => __('Buscar eventos'),
+                'not_found'         => __('Nenhum evento encontrado'),
+                'not_found_in_trash'=> __('Nenhum evento encontrado na lixeira'),
+                'parent_item_colon' => ''
+			),
+			'public'      => true,
+			'has_archive' => false,
+            'rewrite'     => array( 'slug' => 'eventos' ), // my custom slug
+            'menu_icon'   => 'dashicons-calendar-alt',
+            'supports'    => array(
+                'title',
+                'editor',
+                'custom-fields',
+                'revisions',
+                'excerpt'
+            ),
+            'show_in_rest' => true, //permite editor gutenberg
+            
+		)
+	);
+}
+
 
 ?>

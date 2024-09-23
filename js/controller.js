@@ -64,6 +64,28 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.toggle('stop-scrolling');
     }
 
+    let scrollTimeout
+    var prevScrollpos = window.scrollY;
+
+    window.addEventListener('scroll', function () {
+        var currentScrollPos = window.scrollY;
+        if (prevScrollpos > currentScrollPos) {
+            menuNav.style.top = "0";
+        } else {
+            menuNav.style.top = "-48px";
+        }
+
+        
+
+        // Event buffering here
+        clearTimeout(scrollTimeout)
+        scrollTimeout = setTimeout(function () {
+            prevScrollpos = currentScrollPos;
+        }, 0) // This delay may need adjustment...
+
+        //console.log(currentScrollPos);
+    });
+
     /*console.log('cabecalho height:' + offsetValue);
     console.log('menu height:' + menuHeight);
     console.log('corpo height:' + corpoHeight);
