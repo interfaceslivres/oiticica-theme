@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var windowHeight = window.innerHeight;
 
     var overlay = document.getElementById('menu-overlay');
-    var corpo_doc= document.getElementById('documentos');
 
     var searchButton = document.getElementById('busca');
     var menuButton = document.getElementById('hamburger');
@@ -37,16 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
     var menuNav = document.getElementById('menu-nav');    
-    //var sideBar = document.getElementById('sidebar-menu');
     var cabecalho = document.getElementById('cabecalho-id');
-    var corpo = document.getElementById('conteudo_pagina');
-    var sidebar = document.getElementById('sidebar-menu');
     var offsetValue = cabecalho.offsetHeight;
-    var menuHeight = menuNav.offsetHeight;
-    var corpoHeight = corpo.offsetHeight;
-    //var sidebarHeight = sidebar.offsetHeight;
-
-    
+    var menuHeight = menuNav.offsetHeight;    
 
     function toggleMenuOverlay() {  
         if (window.scrollY < offsetValue) {
@@ -66,64 +58,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let scrollTimeout
     var prevScrollpos = window.scrollY;
+    var sideBar = document.getElementsByClassName("sidebar")[0];
 
     window.addEventListener('scroll', function () {
         var currentScrollPos = window.scrollY;
-        if (prevScrollpos > currentScrollPos) {
-            menuNav.style.top = "0";
+        var sideBarPresente;
+        if (typeof sideBar !== 'undefined'){
+            sideBarPresente = true;
         } else {
-            menuNav.style.top = "-48px";
+            sideBarPresente = false;
         }
 
-        
+        if (prevScrollpos > currentScrollPos) {
+            menuNav.style.top = "0";
+            if (sideBarPresente) {
+                sideBar.style.top = "75px"
+            }            
+        } else {
+            menuNav.style.top = "-48px";
+            if (sideBarPresente) {
+                sideBar.style.top = "27px"
+            }             
+        }        
 
-        // Event buffering here
         clearTimeout(scrollTimeout)
         scrollTimeout = setTimeout(function () {
             prevScrollpos = currentScrollPos;
-        }, 0) // This delay may need adjustment...
-
-        //console.log(currentScrollPos);
+        }, 0);
     });
-
-    /*console.log('cabecalho height:' + offsetValue);
-    console.log('menu height:' + menuHeight);
-    console.log('corpo height:' + corpoHeight);
-    console.log('sidebar height:' + sidebarHeight);*/
     
-    /*
-    window.addEventListener('scroll', function () {
-        // Use console.log to determine when you want the nav bar to stick.
-        //console.log(window.pageYOffset);       
-
-        if (window.pageYOffset >= offsetValue) {
-            menuNav.classList.add('top-fixed');
-            cabecalho.style.height = offsetValue + menuHeight + 'px';
-            overlay.style.top = menuHeight + 'px';
-        } else {
-            menuNav.classList.remove('top-fixed');
-            cabecalho.style.height = offsetValue + 'px';
-            overlay.style.top = offsetValue + menuHeight - window.pageYOffset + 'px';
-        }
-
-        if (window.pageYOffset >= (offsetValue) && (window.pageYOffset < (offsetValue + corpoHeight - sidebarHeight))) {
-            sideBar.classList.add('sidebar-fixed');
-            sideBar.classList.remove('sidebar-wrapper');
-            sideBar.classList.remove('sidebar-end');
-            //console.log('fixed');
-        } else if (window.pageYOffset >= (offsetValue + corpoHeight - sidebarHeight)){
-            sideBar.classList.remove('sidebar-fixed');
-            sideBar.classList.remove('sidebar-wrapper');
-            sideBar.classList.add('sidebar-end');
-            //console.log('end');
-        } else {
-            sideBar.classList.remove('sidebar-fixed');
-            sideBar.classList.remove('sidebar-end');
-            sideBar.classList.add('sidebar-wrapper');
-            //console.log('nada');
-        }
-    });
-    */
 });
 
 function altoContraste() {
@@ -149,4 +112,3 @@ function autismo() {
      localStorage.setItem('xAutismo', 1);
     }
 }
-

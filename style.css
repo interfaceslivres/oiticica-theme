@@ -46,7 +46,7 @@ body {
 
   --fonte-1down: 0.84rem;
   --fonte-base: 1rem;
-  --fonte-1up: 1.25rem;
+  --fonte-1up: 1.2rem;
   --fonte-2up: 1.5rem;
   --fonte-3up: 1.75rem;
   --fonte-4up: 2rem;
@@ -97,14 +97,15 @@ h1 {
 .bigode {
   /*font-family: 'Charis SIL', Georgia;*/
   color: var(--cor-texto-medio);
-  font-size: var(--fonte-1up);
-  margin-bottom: var(--fonte-1up);
+  font-size: var(--fonte-2up);
+  margin-bottom: var(--fonte-2up);
   font-weight: 700;
+  font-style: italic;
 }
 
 h2 {
   font-size: var(--fonte-1up);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.15;
   color: var(--cor-texto-escuro);
   margin-bottom: var(--fonte-base);
@@ -149,13 +150,17 @@ ul.wp-block-list li::marker {
 
 .wp-block-heading {
   font-size: var(--fonte-1up);
-  font-weight: 700;
+  font-weight: 600;
   margin: 1.5em 0 .5em;
 }
 
 strong {
   font-weight: 700;
   color: var(--cor-texto-escuro);
+}
+
+.the-content-container {
+  overflow: auto;
 }
 
 /*=========== FIM ESTILOS CONTEÚDO DE PÁGINAS ======================*/
@@ -570,17 +575,6 @@ input[type="search"]:focus {
   position: fixed;
 }
 
-.sidebar-fixed {
-  /*top: 71.436px;*/
-  top: 71.436px;
-  z-index: 90;
-  position: fixed;
-}
-
-.sidebar-end {
-  align-self: end;
-}
-
 .sidebar-wrapper {
   align-self: flex-start;
   width: 100%;
@@ -845,6 +839,7 @@ input[type="search"]:focus {
   position: sticky;
   top: 75px;
   grid-area: sb;
+  transition: .15s;
 }
 
 .sidebar h2 {
@@ -1271,7 +1266,7 @@ input[type="search"]:focus {
 }
 
 .noticia-pagina-titulo {
-  font-size: var(--fonte-3up);
+  font-size: var(--fonte-4up);
 }
 
 .noticia-titulo {  
@@ -1402,7 +1397,12 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   color: var(--cor-texto-escuro);
 
   margin-bottom: var(--fonte-1up);
-  font-size: var(--fonte-1down);
+  font-size: var(--fonte-base);  
+  font-variation-settings: 'wdth' 85;
+}
+
+.noticia-h2 .noticia-categorias {
+  font-size: var(--fonte-base);
 }
 
 
@@ -1591,6 +1591,10 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   display: none;
 }
 
+.mais-link:hover, .menu-lateral .page_item a:hover, .wp-block-button__link:hover {
+  text-decoration: underline;
+}
+
 .mais-link::after, .menu-lateral .page_item a::after, .wp-block-button__link::after {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
@@ -1764,17 +1768,16 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
     height: 0;
 }
 
-.youtube iframe {
+.youtube iframe, .youtube img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
-.mapa {
-  
-  
+.mapa {  
   display: grid;
   grid-template-rows: min-content min-content;  
   max-width: 1230px;
@@ -1849,9 +1852,9 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 footer {
   width: 100%;
   max-width: 1170px;
-  margin: var(--fonte-1up) 30px var(--fonte-1down) 30px;
   display: flex;
-  gap: 1rem; 
+  margin: 2rem 30px 2rem;
+  gap: 1.5rem;
   flex-direction: column;
   align-items: flex-start; 
 
@@ -1878,11 +1881,7 @@ footer a:hover {
 #footer-dados > div {
   display: flex;
   flex-direction: column;
-  gap: .2rem;
-}
-
-#footer-dados > div > div {
-  margin-bottom: 0;
+  gap: .75rem;
 }
 
 #footer-dados .mais-link {
@@ -1893,8 +1892,7 @@ footer a:hover {
   text-decoration: none;
 }
 
-#footer-dados > div > div > a::after {
-  
+#footer-dados > div > div > a::after {  
   line-height: 1;
 }
 
@@ -2057,6 +2055,10 @@ footer a:hover {
   
 }
 
+.destaque-solo.invertido {
+  grid-template-columns: 1.5fr calc(33% - 15px);
+}
+
 .destaque-solo:hover img, .destaque:hover img {
   transform: scale(1.015);
 }
@@ -2068,6 +2070,10 @@ footer a:hover {
   transition: 0.15s;  
 }
 
+.destaque-solo.invertido div:first-child {
+  order: 2;
+}
+
 .destaque-solo-img {
   position: relative;
   width: calc(100% + 4rem);
@@ -2076,6 +2082,11 @@ footer a:hover {
   margin-left: -4rem;
   z-index: -1;
   overflow: hidden;
+}
+
+.destaque-solo-img.invertido {
+  margin-right: -4rem;
+  margin-left: 0;
 }
 
 .destaque-solo img {
@@ -2257,6 +2268,14 @@ footer a:hover {
     font-size: var(--fonte-2up);
   }
 
+  .wp-block-list li{
+    padding-left: .5em;
+  }
+
+  .wp-block-list {
+    margin-left: calc(1 * var(--fonte-base));
+  }
+
   .cabecalho{
     flex-direction: row;
     justify-content: space-between;
@@ -2362,10 +2381,6 @@ footer a:hover {
   .noticias-relacionadas {
     grid-template-columns: 1fr;
     gap: 20px;
-  }
-
-  .noticia-h2 {
-    flex-direction: column;
   }
 
   .noticia-compartilhe {
@@ -2534,6 +2549,10 @@ footer a:hover {
     margin: 0;
   }
 
+  .destaque-solo.invertido {
+    grid-template-columns: auto;
+  }
+
   .destaque-solo-img {
     position: relative;
     width: calc(100% + 2rem);
@@ -2544,6 +2563,11 @@ footer a:hover {
     z-index: -1;
     /*! order: 1; */
   }
+
+    .destaque-solo-img.invertido {
+      margin-left: -1rem;
+      margin-right: 0;
+    }
 
   .destaque-solo div:first-child {
     background-color:  var(--cor-middleground);
@@ -2579,11 +2603,7 @@ footer a:hover {
   #footer-dados {
     flex-direction: row-reverse;
     justify-content: space-between;
-  }
-
-  #footer-dados > div > div:first-child {
-    font-size: var(--fonte-1up);
-  }
+  }  
 
   .footer-direita {
     display: block;

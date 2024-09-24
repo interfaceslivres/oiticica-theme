@@ -7,17 +7,22 @@
           <div><?php echo get_bloginfo( 'name' ); ?></div>
           <?php
           $logradouro   = get_theme_mod('custom_logradouro');
-          $numero       = get_theme_mod('custom_numero', '566');
-          $complemento  = get_theme_mod('custom_complemento', 'AP 201');
-          $bairro       = get_theme_mod('custom_bairro', 'Castelo branco');
-          $instagram = !empty($instance['instagram']) ? esc_url($instance['instagram']) : '';
-          $facebook = !empty($instance['facebook']) ? esc_url($instance['facebook']) : '';
-          $youtube = !empty($instance['youtube']) ? esc_url($instance['youtube']) : '';
-          $endereco = !empty($instance['endereco']) ? esc_textarea($instance['endereco']) : '';
-          $telefone = !empty($instance['telefone']) ? esc_html($instance['telefone']) : '';
-          $contato = !empty($instance['contato']) ? esc_url($instance['contato']) : '';
-          $horario_funcionamento = !empty($instance['horario_funcionamento']) ? esc_html($instance['horario_funcionamento']) : '';
-                   
+          $numero       = get_theme_mod('custom_numero');
+          $complemento  = get_theme_mod('custom_complemento');
+          $bairro       = get_theme_mod('custom_bairro', 'Cidade Universitária');
+          $cep          = get_theme_mod('custom_CEP', '58.051-900');
+          $cidade       = get_theme_mod('custom_cidade', 'João Pessoa');
+          $estado       = get_theme_mod('custom_estado', 'Paraíba');
+
+          $telefone     = get_theme_mod('custom_telefone', '+55 (83) 3216-7200');
+          $contato      = get_theme_mod('custom_url_contato');
+          $horario      = get_theme_mod('custom_url_horário','De Segunda à Sexta, das 8h às 18h');
+
+          $instagram    = get_theme_mod('custom_instagram');
+          $x            = get_theme_mod('custom_x');
+          $facebook     = get_theme_mod('custom_facebook');
+          $youtube      = get_theme_mod('custom_youtube');
+                             
           if (!empty($logradouro)) {
               echo '<address>' . wp_kses_post($logradouro);
           }
@@ -28,37 +33,48 @@
             echo ', ' . wp_kses_post($complemento);
           }
           if (!empty($bairro)) {
-            echo ', ' . wp_kses_post($bairro);
+            echo '<br>' . wp_kses_post($bairro);
+          }          
+          if (!empty($cidade)) {
+            echo ', ' . wp_kses_post($cidade);
           }
-          echo '</address>'
-          
-          /*
+          if (!empty($estado)) {
+            echo ' - ' . wp_kses_post($estado);
+          }
+          if (!empty($cep)) {
+            echo '<br>CEP: ' . wp_kses_post($cep);
+          }
+          echo '</address>';
+
+          echo '<div>';
           if (!empty($telefone)) {
-              echo '<div class="f-link tel"><a href="tel: ' . esc_html($telefone) . '">Telefone: ' . esc_html($telefone) . '</a></div>';
+            echo '<div class="f-link tel"><a href="tel: ' . esc_html($telefone) . '">Telefone: ' . esc_html($telefone) . '</a></div>';
+          }
+          if (!empty($horario)) {
+            echo '<div>' , wp_kses_post($horario) , '</div>';
           }
           if (!empty($contato)) {
-              echo '<div class="f-link"><a class="mais-link" href="' . esc_url($contato) . '">Contato</a></div>';
-          }
-          if (!empty($horario_funcionamento)) {
-              echo '<div>Horário de funcionamento: ' . esc_html($horario_funcionamento) . '</div>';
-          }
+            echo '<div class="f-link"><a class="mais-link" href="' . esc_url($contato) . '">Contato</a></div>';
+          }          
+          echo '</div>';
+          
           echo '<div class="redes-sociais">';
-                  echo '<a href="';
-                  echo bloginfo('atom_url');
-                  echo '"><i class="fa-solid fa-square-rss"></i></a>';
-              if (!empty($instagram)) {
-                  echo '<a href="' . esc_url($instagram) . '"><i class="fa-brands fa-square-instagram"></i></a>';
-              }
-              if (!empty($twitter)) {
-                  echo '<a href="' . esc_url($twitter) . '"><i class="fa-brands fa-square-twitter"></i></a>';
-              }
-              if (!empty($facebook)) {
-                  echo '<a href="' . esc_url($facebook) . '"><i class="fa-brands fa-square-facebook"></i></a>';
-              }
-              if (!empty($youtube)) {
-                  echo '<a href="' . esc_url($youtube) . '"><i class="fa-brands fa-square-youtube"></i></a>';
-              }            
-          echo '</div></div>';*/
+                  
+          echo '<a href="' , bloginfo('atom_url') , '"><i class="fa-solid fa-rss"></i></a>';
+          if (!empty($instagram)) {
+            echo '<a href="https://instagram.com/' . esc_html($instagram) . '"><i class="fa-brands fa-instagram"></i></a>';
+          }
+          if (!empty($x)) {
+            echo '<a href="https://x.com/' . esc_html($x) . '"><i class="fa-brands fa-x-twitter"></i></a>';
+          }
+          if (!empty($facebook)) {
+            echo '<a href="' . esc_url($facebook) . '"><i class="fa-brands fa-facebook"></i></a>';
+          }
+          if (!empty($youtube)) {
+            echo '<a href="' . esc_url($youtube) . '"><i class="fa-brands fa-youtube"></i></a>';
+          } 
+
+          echo '</div>' //div fim redes sociais          
           ?>
         </div>     
       </div>
@@ -101,16 +117,3 @@
 
 </body>
 </html>
-
-
-<!--div class="redes-sociais">
-                        <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-square-youtube"></i></a>
-                        <a href="#"><i class="fa-solid fa-square-rss"></i></a>
-                    </div>
-                    <address>R. Ver. João Freire - Conj. Pres. Castelo Branco III, João Pessoa - PB, 58050-420</address>
-                    <a href="tel:+55 (83) 3216-7847">+55 (83) 3216-7847</a>
-                    <a class="mais-link" href="#">Contato</a>
-                    <div>Segunda à Sexta, 12h00 às 19h00</div-->

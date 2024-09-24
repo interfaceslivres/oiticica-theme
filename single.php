@@ -59,7 +59,9 @@
             </div>                                      
             </div>
 
-            <?php the_content(); ?>
+            <div class="the-content-container">
+                <?php the_content(); ?>
+            </div>
                                 
         <?php endwhile; ?>
 
@@ -70,11 +72,11 @@
             </div-->
             
             <div class="noticia-compartilhe">
-                <div>Compartilhe:</div>
+                <!--div>Compartilhe:</div-->
                 <div class="redes-sociais noticia-redes">
-                    <a href="https://api.whatsapp.com/send?text=Acesse%20esta%20p%C3%A1gina:%20<?php echo get_permalink();?>" target="_blank"><i class="fa-brands fa-square-whatsapp"></i></a>
-                    <a href="https://twitter.com/intent/tweet?url=<?php echo get_permalink();?>"  target="_blank"><i class="fa-brands fa-square-twitter"></i></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink();?>" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
+                    <a href="https://api.whatsapp.com/send?text=Acesse%20esta%20p%C3%A1gina:%20<?php echo get_permalink();?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://twitter.com/intent/tweet?url=<?php echo get_permalink();?>"  target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink();?>" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                 </div>
             </div>
 

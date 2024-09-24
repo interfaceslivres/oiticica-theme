@@ -57,7 +57,7 @@ function adicionar_controle_imagem_banner($wp_customize) {
     ));
 
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'imagem_banner', array(
-        'label' => 'Escolha a imagem do footer: 1900 x 300. (Use https://tinypng.com/ para otimizar o carregamento.)',
+        'label' => 'Escolha a imagem de decoração: 1920 x 300. (Use https://tinypng.com/ para otimizar o carregamento.)',
         'section' => 'secao_imagem_banner',
         'settings' => 'imagem_banner',
     )));
@@ -100,7 +100,6 @@ function register_menus() {
     register_nav_menus(
         array(
             'main-menu' => 'Menu Principal',
-            'localizacao-menu' => 'Links em Localização',
             'side-menu' => 'Menu lateral presente em todas as subpágias',            
         )
     ); 
@@ -237,25 +236,7 @@ function registrar_widgets_personalizados() {
         'after_widget'  => '',
         'before_title'  => '',
         'after_title'   => '',
-    ));
-    register_sidebar(array(
-        'name'          => 'Área de Widgets do Footer',
-        'id'            => 'widgets-do-footer',
-        'description'   => 'Defina o conteúdo que estará no Footer do site. A imagem é alterada na área de personalização.',
-        'before_widget' => '',
-        'after_widget'  => '',
-        'before_title'  => '',
-        'after_title'   => '',
-    ));
-    /*register_sidebar(array(
-        'name'          => 'Área do Widget de Links Rápidos',
-        'id'            => 'widget-links-rapidos',
-        'description'   => 'Defina os Links rápidos e seus respectivos ícones.',
-        'before_widget' => '',
-        'after_widget'  => '',
-        'before_title'  => '',
-        'after_title'   => '',
-    ));*/
+    ));    
 }
 // Hook para registrar os widgets
 add_action('widgets_init', 'registrar_widgets_personalizados');
@@ -305,49 +286,53 @@ function customizer_contato($wp_customize) {
     // ======= ENDEREÇO ========
 
     $wp_customize->add_setting('custom_logradouro', array(
-        'default' => 'Rua dos Bobos',
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
     ));
     $wp_customize->add_control('custom_logradouro', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: Rua dos Bobos'),
+        ),
         'label' => 'Logradouro',
         'section' => 'customizer_contato',
         'type' => 'textarea',
     ));
 
-    $wp_customize->add_setting('custom_numero', array(
-        'default' => '150',
+    $wp_customize->add_setting('custom_numero', array(        
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
     ));
     $wp_customize->add_control('custom_numero', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: 157'),
+        ),
         'label' => 'Número',
         'section' => 'customizer_contato',
         'type' => 'text',
     ));
 
     $wp_customize->add_setting('custom_complemento', array(
-        'default' => 'sala 68',
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
     ));
     $wp_customize->add_control('custom_complemento', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: Sala 68'),
+        ),
         'label' => 'Complemento',
         'section' => 'customizer_contato',
         'type' => 'text',
     ));
 
-    $wp_customize->add_setting('custom_bairro', array(        
+    $wp_customize->add_setting('custom_bairro', array( 
+        'default' => 'Cidade Universitária',       
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
     ));
-    $wp_customize->add_control('custom_bairro', array(
-        'input_attrs' => array(
-            'placeholder' => __('Castelo Branco'),
-        ),
+    $wp_customize->add_control('custom_bairro', array(        
         'label' => 'Bairro',
         'section' => 'customizer_contato',
         'type' => 'text',
     ));
 
     $wp_customize->add_setting('custom_CEP', array(
-        'default' => '58050-000',
+        'default' => '58.051-900',
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
     ));
     $wp_customize->add_control('custom_CEP', array(
@@ -370,7 +355,7 @@ function customizer_contato($wp_customize) {
         'default' => 'Paraíba',
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
     ));
-    $wp_customize->add_control('custom_cidade', array(
+    $wp_customize->add_control('custom_estado', array(
         'label' => 'Estado',
         'section' => 'customizer_contato',
         'type' => 'text',
@@ -379,7 +364,7 @@ function customizer_contato($wp_customize) {
     // ======= CONTATO ========
 
     $wp_customize->add_setting('custom_telefone', array(
-        'default' => '(83) 999 910 105',
+        'default' => '+55 (83) 3216-7200',
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
     ));
     $wp_customize->add_control('custom_telefone', array(
@@ -389,17 +374,19 @@ function customizer_contato($wp_customize) {
     ));
 
     $wp_customize->add_setting('custom_url_contato', array(
-        'default' => 'https://ufpb.br',
         'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
     ));
     $wp_customize->add_control('custom_url_contato', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: http://ufpb.br/contato'),
+        ),
         'label' => 'URL de contato',
         'section' => 'customizer_contato',
         'type' => 'url',
     ));
 
     $wp_customize->add_setting('custom_horario', array(
-        'default' => 'De Segunda à Sexta, das 14h às 18h',
+        'default' => 'De Segunda à Sexta, das 8h às 18h',
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
     ));
     $wp_customize->add_control('custom_horario', array(
@@ -411,40 +398,48 @@ function customizer_contato($wp_customize) {
     // ======= REDES SOCIAIS ========
 
     $wp_customize->add_setting('custom_instagram', array(
-        'default' => 'ufpb.oficial',
         'sanitize_callback' => 'sanitize_text_field',
     ));
     $wp_customize->add_control('custom_instagram', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: ufpb.oficial'),
+        ),
         'label' => 'Nome de usuário da página do Instagram',
         'section' => 'customizer_contato',
         'type' => 'text',
     ));
 
-    $wp_customize->add_setting('custom_x', array(
-        'default' => 'ufpboficial',
+    $wp_customize->add_setting('custom_x', array(   
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário como uma URL
     ));
     $wp_customize->add_control('custom_x', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: ufpboficial'),
+        ),
         'label' => 'Nome de usuário da página do X',
         'section' => 'customizer_contato',
         'type' => 'text',
     ));
 
     $wp_customize->add_setting('custom_facebook', array(
-        'default' => 'https://www.facebook.com/UFPBoficial',
         'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
     ));
     $wp_customize->add_control('custom_facebook', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: https://www.facebook.com/UFPBoficial'),
+        ),
         'label' => 'URL da página do Facebook',
         'section' => 'customizer_contato',
         'type' => 'url',
     ));
 
     $wp_customize->add_setting('custom_youtube', array(
-        'default' => 'https://www.youtube.com/user/TVUFPB',
         'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
     ));
     $wp_customize->add_control('custom_youtube', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: https://www.youtube.com/user/TVUFPB'),
+        ),
         'label' => 'URL do canald o YouTube',
         'section' => 'customizer_contato',
         'type' => 'url',
@@ -630,6 +625,97 @@ class WidgetNoticias2 extends WP_Widget {
 
 
 // Registrar Widget de Destaque solo
+function registrar_widget_destaque_solo_invertido() {
+    register_widget('WidgetDestaqueSoloInvertido');
+}
+add_action('widgets_init', 'registrar_widget_destaque_solo_invertido');
+
+class WidgetDestaqueSoloInvertido extends WP_Widget {
+
+    public function __construct() {
+        parent::__construct(
+            'Widget_Destaque_Solo_Invertido',
+            'Widget de Destaque Único Invertido',
+            array(
+                'description' => 'Destaca uma página do site de forma belíssima, só que a imagem vem primeiro.'
+            )
+        );
+    }
+
+    public function widget($args, $instance) {
+        // Extrair os valores dos campos do widget
+        $pagina_link = $instance['pagina_link'];
+        $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
+        $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link));    
+        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';
+        $img_link = !empty($instance['img_link']) ? $instance['img_link'] : get_the_post_thumbnail_url(url_to_postid($pagina_link));
+
+        echo $args['before_widget'];
+        echo '
+        <div class="destaque-wrapper destaque-solo invertido">  
+            <div class="camada-1">
+                <h2>' . $titulo . '</h2>
+                <p>' . $resumo . '</p>
+                <div class="link-wrapper">
+                    <a class="mais-link" href=' . $pagina_link . '>' . $link_texto . '</a>           
+                </div>
+            </div>
+            <div class="destaque-solo-img invertido">
+                <img src="' . $img_link . '" alt="Imagem da página">
+            </div>                
+        </div>';
+        
+        echo $args['after_widget']; 
+    }
+
+    public function form($instance) {
+        // Exibir o formulário de configuração do widget
+        $pagina_link = $instance['pagina_link'];
+        $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
+        $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link) );    
+        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';   
+        $img_link = !empty($instance['img_link']) ? $instance['img_link'] : get_the_post_thumbnail_url(url_to_postid($pagina_link));     
+
+        // Formulário de configuração do widget
+        ?>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('pagina_link'); ?>">Link da página a ser destacada:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('pagina_link'); ?>" name="<?php echo $this->get_field_name('pagina_link'); ?>" type="text" value="<?php echo $pagina_link; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('titulo'); ?>">Título do bloco de destaque (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('pagina_link'); ?>">Texto do bloco de destaque (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('resumo'); ?>" name="<?php echo $this->get_field_name('resumo'); ?>" type="text" value="<?php echo $resumo; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('link_texto'); ?>">Texto do link (opcional):</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('link_texto'); ?>" name="<?php echo $this->get_field_name('link_texto'); ?>" type="text" value="<?php echo $link_texto; ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('img_link'); ?>">Link da imagem personalizada do destaque:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('img_link'); ?>" name="<?php echo $this->get_field_name('img_link'); ?>" type="text" value="<?php echo $img_link; ?>">
+        </p>
+        
+        <?php
+    }
+
+    public function update($new_instance, $old_instance) {
+        // Atualizar os valores do widget
+        $instance = $old_instance;
+        $instance['pagina_link'] = !empty($new_instance['pagina_link']) ? esc_html($new_instance['pagina_link']) : ''; 
+        $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : ''; 
+        $instance['resumo'] = !empty($new_instance['resumo']) ? esc_html($new_instance['resumo']) : ''; 
+        $instance['link_texto'] = !empty($new_instance['link_texto']) ? esc_html($new_instance['link_texto']) : ''; 
+        $instance['img_link'] = !empty($new_instance['img_link']) ? esc_html($new_instance['img_link']) : '';
+        return $instance;
+    }
+}
+
+// Registrar Widget de Destaque solo
 function registrar_widget_destaque_solo() {
     register_widget('WidgetDestaqueSolo');
 }
@@ -653,6 +739,7 @@ class WidgetDestaqueSolo extends WP_Widget {
         $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
         $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link));    
         $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';
+        $img_link = !empty($instance['img_link']) ? $instance['img_link'] : get_the_post_thumbnail_url(url_to_postid($pagina_link));
 
         echo $args['before_widget'];
 
@@ -666,7 +753,7 @@ class WidgetDestaqueSolo extends WP_Widget {
                 </div>
             </div>
             <div class="destaque-solo-img">
-                <img src="' . get_the_post_thumbnail_url( url_to_postid($pagina_link)) . '" alt="Imagem da página">
+                <img src="' . $img_link . '" alt="Imagem da página">
             </div>                
         </div>';
         
@@ -678,7 +765,8 @@ class WidgetDestaqueSolo extends WP_Widget {
         $pagina_link = $instance['pagina_link'];
         $titulo = !empty($instance['titulo']) ? $instance['titulo'] : get_the_title(url_to_postid($pagina_link));
         $resumo = !empty($instance['resumo']) ? $instance['resumo'] : get_the_excerpt(url_to_postid($pagina_link) );    
-        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';        
+        $link_texto = !empty($instance['link_texto']) ? $instance['link_texto'] : 'Saiba mais';   
+        $img_link = !empty($instance['img_link']) ? $instance['img_link'] : '';     
 
         // Formulário de configuração do widget
         ?>
@@ -699,6 +787,10 @@ class WidgetDestaqueSolo extends WP_Widget {
             <label for="<?php echo $this->get_field_id('link_texto'); ?>">Texto do link (opcional):</label>
             <input class="widefat" id="<?php echo $this->get_field_id('link_texto'); ?>" name="<?php echo $this->get_field_name('link_texto'); ?>" type="text" value="<?php echo $link_texto; ?>">
         </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('img_link'); ?>">Link da imagem personalizada do destaque:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('img_link'); ?>" name="<?php echo $this->get_field_name('img_link'); ?>" type="text" value="<?php echo $img_link; ?>">
+        </p>
         
         <?php
     }
@@ -710,6 +802,7 @@ class WidgetDestaqueSolo extends WP_Widget {
         $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : ''; 
         $instance['resumo'] = !empty($new_instance['resumo']) ? esc_html($new_instance['resumo']) : ''; 
         $instance['link_texto'] = !empty($new_instance['link_texto']) ? esc_html($new_instance['link_texto']) : ''; 
+        $instance['img_link'] = !empty($new_instance['img_link']) ? esc_html($new_instance['img_link']) : '';
         return $instance;
     }
 }
@@ -1041,26 +1134,39 @@ class Widget_Apresentacao extends WP_Widget {
                 <p>' . nl2br(esc_html($instance['texto-apresentacao'])) . '</p>
                 <div class="apresentacao-links">';
 
-                wp_nav_menu(   
-                    array ( 
-                        'theme_location' => 'localizacao-menu',
-                        'items_wrap' => '%3$s',
-                        'container' => false,
-                        'link_class'   => 'mais-link'
-                    ) 
-                );
+                if (!empty($instance['link1']) && !empty($instance['link1_nome'])) {
+                    echo
+                    '<div class="link-wrapper">
+                        <a class="mais-link" href="', $instance['link1'] ,'">', $instance['link1_nome'] ,'</a>           
+                    </div>';
+                }
+                 if (!empty($instance['link2']) && !empty($instance['link2_nome'])) {
+                    echo
+                    '<div class="link-wrapper">
+                        <a class="mais-link" href="', $instance['link2'] ,'">', $instance['link2_nome'] ,'</a>           
+                    </div>';
+                }
+                 if (!empty($instance['link3']) && !empty($instance['link3_nome'])) {
+                    echo
+                    '<div class="link-wrapper">
+                        <a class="mais-link" href="', $instance['link3'] ,'">', $instance['link3_nome'] ,'</a>           
+                    </div>';
+                }                
 
                 echo '</div>
             </div>';
 
             if (!empty($instance['video-institucional'])) {
                 $url = esc_url($instance['video-institucional']);
-                // Substitua "watch" por "embed" na URL
                 $embed_url = str_replace("watch?v=", "embed/", $url);
                 echo '<div class="youtube"><iframe width="100%" height="100%" src="' . $embed_url . '" title="Youtube Video Player" frameborder="0" allow="web-share" allowfullscreen></iframe></div>';
+            } else if (!empty($instance['localizacao'])) {
+                echo '<div class="youtube">' , $instance['localizacao'] , '</div>';
+            } else if (!empty($instance['img_url'])) {
+                echo '<div class="youtube"><img src="' , $instance['img_url'] , '"></div>';
             }
-
         echo '</div>';   
+
         echo $args['after_widget'];
     }
 
@@ -1069,27 +1175,31 @@ class Widget_Apresentacao extends WP_Widget {
         // Campos do widget
         $campos = array(
             'titulo' => 'Título da Apresentação',
+            'texto-apresentacao' => 'Texto sobre a instituição',
+            'link1' => 'Link 1 de apresentação',
+            'link1_nome' => 'Nome de exibição do Link 1',
+            'link2' => 'Link 2 de apresentação',
+            'link2_nome' => 'Nome de exibição do Link 2',
+            'link3' => 'Link 3 de apresentação',
+            'link3_nome' => 'Nome de exibição do Link 3',
             'video-institucional' => 'Vídeo Institucional',            
-            'localizacao' => 'Localização (cole apenas a URL do Google Maps)',
-            'texto-apresentacao' => 'Texto sobre a instituição (670 caracteres)'
+            'localizacao' => 'Localização (cole apenas a URL de Incorporação do Google Maps)',
+            'img_url' => 'Imagem a ser exibida'
         );
+
+        echo '<p> Apenas a opção não-vazia mais acima entre <strong>Vídeo, Localização e Imagem</strong> será considerada na configuração do Widget.
+            <br><br>Por exemplo, se este Widget conter um vídeo e localização ao mesmo tempo, apenas a localização será considerada.</p>
+            <br><br>Os links são <strong>opcionais</strong>, mas recomendados. Preencha-os com sabedoria.</p>';
 
 		// Exibir campos do formulário
 		$index = 0;
 		foreach ($campos as $campo => $label) {
 		    $valor = !empty($instance[$campo]) ? esc_attr($instance[$campo]) : '';
 		    echo '<p>';
-		    echo '<label for="' . $this->get_field_id($campo) . '">' . esc_html($label) . ':</label>';
-
-		    // Verificar se o índice é par
-		    if ($index < 3 || $index == 4 || $index == 6 || $index == 8) {
-		        echo '<input class="widefat" id="' . $this->get_field_id($campo) . '" name="' . $this->get_field_name($campo) . '" type="text" value="' . $valor . '">';
-		    } else {
-		        echo '<textarea class="widefat"  maxlength="677" id="' . $this->get_field_id($campo) . '" name="' . $this->get_field_name($campo) . '" rows="5">' . $valor . '</textarea>';
-		    }
-
+		    echo '<label for="' . $this->get_field_id($campo) . '">' . esc_html($label) . ':</label>';		    
+		    echo '<input class="widefat" id="' . $this->get_field_id($campo) . '" name="' . $this->get_field_name($campo) . '" type="text" value="' . $valor . '">';
 		    echo '</p>';
-		    $index++;
+		    $index = $index + 2;
 		}
     }
 
@@ -1097,250 +1207,11 @@ class Widget_Apresentacao extends WP_Widget {
     public function update($new_instance, $old_instance) {
         $instance = array();
         foreach ($new_instance as $campo => $valor) {
-            $instance[$campo] = (!empty($valor)) ? strip_tags($valor) : '';
+            $instance[$campo] = (!empty($valor)) ? $valor : '';
         }
         return $instance;
     }
 }
-
-//######################### APRESENTAÇÃO IMAGE PICKER #################################
-// Registrar o widget personalizado p/ home
-function registrar_widget_apresentacao_img() {
-    register_widget('Widget_Apresentacao_Img');
-}
-add_action('widgets_init', 'registrar_widget_apresentacao_img');
-
-// Criar a classe do widget personalizado
-class Widget_Apresentacao_Img extends WP_Widget {
-    public function __construct() {
-        parent::__construct(
-            'widget_apresentacao_img',
-            'Widget de Apresentação com Imagem',
-            array(
-                'description' => 'Um widget personalizado para apresentar a instituição, com título, Imagem, links, fotos e localização.'
-            )
-        );
-    }
-
-    // Função para exibir o widget no frontend
-    public function widget($args, $instance) {
-        echo $args['before_widget'];
-
-        echo '
-        <div class="apresentacao">
-            <div class="camada-1">                 
-                <h2>' . nl2br(esc_html($instance['titulo'])) . '</h2>
-                <p>' . nl2br(esc_html($instance['texto-apresentacao'])) . '</p>
-                <div class="apresentacao-links">';
-
-                wp_nav_menu(   
-                    array ( 
-                        'theme_location' => 'localizacao-menu',
-                        'items_wrap' => '%3$s',
-                        'container' => false,
-                        'link_class'   => 'mais-link'
-                    ) 
-                );
-
-                echo '</div>
-            </div>';
-
-            if (!empty($instance['video-institucional'])) {
-                $url = esc_url($instance['video-institucional']);
-                // Substitua "watch" por "embed" na URL
-                $embed_url = str_replace("watch?v=", "embed/", $url);
-                echo '<div class="youtube"><iframe width="100%" height="100%" src="' . $embed_url . '" title="Youtube Video Player" frameborder="0" allow="web-share" allowfullscreen></iframe></div>';
-            }
-
-        echo '</div>';   
-        echo $args['after_widget'];
-    }
-
-    // Função para exibir o formulário de configuração do widget no painel de controle
-    public function form($instance) {
-        $instance = wp_parse_args((array) $instance, array('link1' => ''));
-        $link1 = $instance['link1'];
-        $images = new WP_Query( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'post_mime_type' => 'image' , 'posts_per_page' => -1 ) );
-        if( $images->have_posts() ){ 
-            $options = array();            
-            $options[0] = '';
-            while( $images->have_posts() ) {
-                $images->the_post();
-                $img_src = wp_get_attachment_image_src(get_the_ID());
-                $the_link = $link1;
-                $options[0] .= '<option value="' . $img_src[0] . '" ' . selected( $the_link, $img_src[0], false ) . '>' . get_the_title() . '</option>';
-            }             
-        ?>
-        <select name="<?php echo $this->get_field_name( 'link1' ); ?>"><?php echo $options[0]; ?></select>
-        <?php
-        } else {
-                echo 'There are no images in the media library. Click <a href="' . admin_url('/media-new.php') . '" title="Add Images">here</a> to add some images';
-        }
-
-        // Campos do widget
-        $campos = array(
-            'titulo' => 'Título da Apresentação',
-            'video-institucional' => 'Vídeo Institucional',            
-            'localizacao' => 'Localização (cole apenas a URL do Google Maps)',
-            'texto-apresentacao' => 'Texto sobre a instituição (670 caracteres)'
-        );
-
-		// Exibir campos do formulário
-		$index = 0;
-		foreach ($campos as $campo => $label) {
-		    $valor = !empty($instance[$campo]) ? esc_attr($instance[$campo]) : '';
-		    echo '<p>';
-		    echo '<label for="' . $this->get_field_id($campo) . '">' . esc_html($label) . ':</label>';
-
-		    // Verificar se o índice é par
-		    if ($index < 3 || $index == 4 || $index == 6 || $index == 8) {
-		        echo '<input class="widefat" id="' . $this->get_field_id($campo) . '" name="' . $this->get_field_name($campo) . '" type="text" value="' . $valor . '">';
-		    } else {
-		        echo '<textarea class="widefat"  maxlength="677" id="' . $this->get_field_id($campo) . '" name="' . $this->get_field_name($campo) . '" rows="5">' . $valor . '</textarea>';
-		    }
-
-		    echo '</p>';
-		    $index++;
-		}
-    }
-
-    // Função para atualizar os valores do widget no painel de controle
-    public function update($new_instance, $old_instance) {
-        $instance = array();
-        foreach ($new_instance as $campo => $valor) {
-            $instance[$campo] = (!empty($valor)) ? strip_tags($valor) : '';
-        }
-        return $instance;
-    }
-}
-//###################### FIM APRESENTAÇÃO IMAGE PICKER #################################
-
-class WidgetRedesSociais extends WP_Widget {
-
-    public function __construct() {
-        parent::__construct(
-            'widget_footer_top',
-            'Widget Footer',
-            array(
-                'description' => 'Widget com os itens padronizados do footer.'
-            )
-        );
-    }
-
-    public function widget($args, $instance) {
-        // Extrair os valores dos campos do widget
-        $twitter = !empty($instance['twitter']) ? esc_url($instance['twitter']) : '';
-        $instagram = !empty($instance['instagram']) ? esc_url($instance['instagram']) : '';
-        $facebook = !empty($instance['facebook']) ? esc_url($instance['facebook']) : '';
-        $youtube = !empty($instance['youtube']) ? esc_url($instance['youtube']) : '';
-        $endereco = !empty($instance['endereco']) ? esc_textarea($instance['endereco']) : '';
-        $telefone = !empty($instance['telefone']) ? esc_html($instance['telefone']) : '';
-        $contato = !empty($instance['contato']) ? esc_url($instance['contato']) : '';
-        $horario_funcionamento = !empty($instance['horario_funcionamento']) ? esc_html($instance['horario_funcionamento']) : '';
-
-        // Exibir o conteúdo do widget
-        echo $args['before_widget'];
-        
-        if (!empty($endereco)) {
-            echo '<address>' . wp_kses_post($endereco) . '</address>';
-        }
-        if (!empty($telefone)) {
-            echo '<div class="f-link tel"><a href="tel: ' . esc_html($telefone) . '">Telefone: ' . esc_html($telefone) . '</a></div>';
-        }
-        if (!empty($contato)) {
-            echo '<div class="f-link"><a class="mais-link" href="' . esc_url($contato) . '">Contato</a></div>';
-        }
-        if (!empty($horario_funcionamento)) {
-            echo '<div>Horário de funcionamento: ' . esc_html($horario_funcionamento) . '</div>';
-        }
-        echo '<div class="redes-sociais">';
-                echo '<a href="';
-                echo bloginfo('atom_url');
-                echo '"><i class="fa-solid fa-square-rss"></i></a>';
-            if (!empty($instagram)) {
-                echo '<a href="' . esc_url($instagram) . '"><i class="fa-brands fa-square-instagram"></i></a>';
-            }
-            if (!empty($twitter)) {
-                echo '<a href="' . esc_url($twitter) . '"><i class="fa-brands fa-square-twitter"></i></a>';
-            }
-            if (!empty($facebook)) {
-                echo '<a href="' . esc_url($facebook) . '"><i class="fa-brands fa-square-facebook"></i></a>';
-            }
-            if (!empty($youtube)) {
-                echo '<a href="' . esc_url($youtube) . '"><i class="fa-brands fa-square-youtube"></i></a>';
-            }            
-        echo '</div></div>';
-        echo $args['after_widget'];
-    }
-
-    public function form($instance) {
-        // Exibir o formulário de configuração do widget
-        $twitter = !empty($instance['twitter']) ? esc_attr($instance['twitter']) : '';
-        $instagram = !empty($instance['instagram']) ? esc_attr($instance['instagram']) : '';
-        $facebook = !empty($instance['facebook']) ? esc_attr($instance['facebook']) : '';
-        $youtube = !empty($instance['youtube']) ? esc_attr($instance['youtube']) : '';
-        $endereco = !empty($instance['endereco']) ? esc_textarea($instance['endereco']) : '';
-        $telefone = !empty($instance['telefone']) ? esc_attr($instance['telefone']) : '';
-        $contato = !empty($instance['contato']) ? esc_attr($instance['contato']) : '';
-        $horario_funcionamento = !empty($instance['horario_funcionamento']) ? esc_attr($instance['horario_funcionamento']) : '';
-
-        // Formulário de configuração do widget
-        ?>
-        <p>
-            <label for="<?php echo $this->get_field_id('twitter'); ?>">Link do Twitter:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('twitter'); ?>" name="<?php echo $this->get_field_name('twitter'); ?>" type="url" value="<?php echo $twitter; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('instagram'); ?>">Link do Instagram:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('instagram'); ?>" name="<?php echo $this->get_field_name('instagram'); ?>" type="url" value="<?php echo $instagram; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('facebook'); ?>">Link do Facebook:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('facebook'); ?>" name="<?php echo $this->get_field_name('facebook'); ?>" type="url" value="<?php echo $facebook; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('youtube'); ?>">Link do YouTube:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('youtube'); ?>" name="<?php echo $this->get_field_name('youtube'); ?>" type="url" value="<?php echo $youtube; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('endereco'); ?>">Endereço:</label>
-            <textarea class="widefat" id="<?php echo $this->get_field_id('endereco'); ?>" name="<?php echo $this->get_field_name('endereco'); ?>" rows="5"><?php echo $endereco; ?></textarea>
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('telefone'); ?>">Telefone:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('telefone'); ?>" name="<?php echo $this->get_field_name('telefone'); ?>" type="text" value="<?php echo $telefone; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('contato'); ?>">Link de Contato:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('contato'); ?>" name="<?php echo $this->get_field_name('contato'); ?>" type="url" value="<?php echo $contato; ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('horario_funcionamento'); ?>">Horário de Funcionamento:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('horario_funcionamento'); ?>" name="<?php echo $this->get_field_name('horario_funcionamento'); ?>" type="text" value="<?php echo $horario_funcionamento; ?>">
-        </p>
-        <?php
-    }
-
-    public function update($new_instance, $old_instance) {
-        // Atualizar os valores do widget
-        $instance = $old_instance;
-        $instance['twitter'] = !empty($new_instance['twitter']) ? esc_url($new_instance['twitter']) : '';
-        $instance['instagram'] = !empty($new_instance['instagram']) ? esc_url($new_instance['instagram']) : '';
-        $instance['facebook'] = !empty($new_instance['facebook']) ? esc_url($new_instance['facebook']) : '';
-        $instance['youtube'] = !empty($new_instance['youtube']) ? esc_url($new_instance['youtube']) : '';
-        $instance['endereco'] = !empty($new_instance['endereco']) ? esc_textarea($new_instance['endereco']) : '';
-        $instance['telefone'] = !empty($new_instance['telefone']) ? esc_html($new_instance['telefone']) : '';
-        $instance['contato'] = !empty($new_instance['contato']) ? esc_url($new_instance['contato']) : '';
-        $instance['horario_funcionamento'] = !empty($new_instance['horario_funcionamento']) ? esc_html($new_instance['horario_funcionamento']) : '';
-
-        return $instance;
-    }
-}
-
-function registrar_widget_footer_top() {
-    register_widget('WidgetRedesSociais');
-}
-add_action('widgets_init', 'registrar_widget_footer_top');
 
 class WidgetLinksRapidos extends WP_Widget {
     public function __construct() {
