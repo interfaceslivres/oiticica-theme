@@ -15,6 +15,7 @@
     <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/fontawesome.css" rel="stylesheet">
     <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/brands.css" rel="stylesheet">
     <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/solid.css" rel="stylesheet">
+    <link href="<?php echo get_bloginfo("template_directory"); ?>/assets/fontawesome6/css/regular.css" rel="stylesheet">
     <script type="text/javascript" src="<?php echo get_bloginfo("template_directory"); ?>/js/controller.js"></script>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

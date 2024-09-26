@@ -27,7 +27,7 @@
                 $args = array(
                     'post_type' => 'evento',
                     'paged' => $paged,
-                    'meta_key' => '__custom_date_meta_key',
+                    'meta_key' => '__data_inicio',
                     'orderby' => 'meta_value',
                     'order' => 'DESC',
                 );
@@ -39,7 +39,7 @@
                         <?php if ( has_post_thumbnail()) : ?>
                         <div class="noticia-wrapper camada-1">
                             <div class="rotulo-claro">
-                                <div><?php $my_meta = get_post_meta( get_the_ID(), '__custom_date_meta_key', true ); echo date('d', $my_meta)?></div>                                
+                                <div><?php $my_meta = get_post_meta( get_the_ID(), '__data_inicio', true ); echo wp_date('d', $my_meta)?></div>                                
                                 <div class="categorias">
                                     <?php                                        
                                     $categories = get_the_category();   // Obtém as categorias do post                                        
@@ -65,7 +65,7 @@
                     <?php else : ?> 
                         <div class="noticia-wrapper camada-1">
                             <div class="rotulo-escuro">
-                                <div><?php $my_meta = get_post_meta( get_the_ID(), '__custom_date_meta_key', true ); echo date('d-m-Y', $my_meta)?></div>     
+                                <div><?php $my_meta = get_post_meta( get_the_ID(), '__data_inicio', true ); echo wp_date('d-m-Y', $my_meta)?></div>     
                                 <div class="categorias">
                                     <?php                                        
                                     $categories = get_the_category();   // Obtém as categorias do post                                        

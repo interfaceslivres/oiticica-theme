@@ -103,6 +103,20 @@ h1 {
   font-style: italic;
 }
 
+.evento-ficha i {
+  width: 22px;
+  margin-right: .5rem;
+}
+
+.evento-ficha p {
+  margin-left: 1rem;
+  margin-bottom: .5rem;
+}
+
+.evento-ficha {
+  margin-bottom: 2rem;
+}
+
 h2 {
   font-size: var(--fonte-1up);
   font-weight: 600;
@@ -1280,11 +1294,6 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
   text-decoration: underline;
 }
 
-/* PRÉ-PARTO
-.noticia-wrapper:hover .background-wrapper {
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 25%, var(--cor-middleground) 100%);
-}*/
-
 .noticia-wrapper .background-wrapper, .noticia-wrapper .background-wrapper2, .noticia-wrapper .background-wrapper4 {
 	background-image: linear-gradient(180deg, rgba(0,0,0,.3) 0px, transparent 50px), linear-gradient(0deg, rgba(0,0,0,.85), transparent 100px);
 }
@@ -1432,11 +1441,11 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 }
 
 .noticia-redes {
-  color: var(--cor-tema);
+  color: var(--cor-texto-medio);
 }
 
 .noticia-redes a:hover {
-  filter: brightness(70%);
+  color: var(--cor-tema);
 }
 
 .noticia-links-relacionados {

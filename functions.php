@@ -535,6 +535,115 @@ class WidgetNoticias extends WP_Widget {
         echo $args['after_widget']; 
     }
 }
+// Widget de eventos
+function registrar_widget_eventos() {
+    register_widget('WidgetEventos');
+}
+add_action('widgets_init', 'registrar_widget_eventos');
+
+class WidgetEventos extends WP_Widget {
+
+    public function __construct() {
+        parent::__construct(
+            'Widget_Eventos',
+            'Widget de Eventos',
+            array(
+                'description' => 'Exibe até 3 dos próximos eventos mais próximos que acontecerão. Widget fica invisível se não existe nenhum evento vindo aí'
+            )
+        );
+    }
+
+    public function widget($args, $instance) {
+
+        $posts_per_page = 3;
+        $the_query = new WP_Query( array(
+            'posts_per_page' => $posts_per_page,
+            'post_type' => 'evento',
+            'meta_key' => '__data_inicio',  // Pega a metakey de data
+            'orderby' => 'meta_value',      // e organiza a query
+            'order' => 'ASC',               // em ordem do mais velho pro mais novo
+            'meta_query' => array(
+                array(
+                    'key' => '__data_fim',  // usa a data de fim do evento
+                    'value' => current_time('timestamp') - 86400 - 3 * 3600,
+                    'compare' => '>='       // pra comprar com a data atual. 
+                )                           // (eventos que já acabaram não são exibidos)
+            )
+        ));
+
+        echo $args['before_widget'];
+        
+        if ($the_query->have_posts()){  
+            echo '
+            <div class="noticias-wrapper">
+                <div class="noticias">
+                    <h2>Eventos</h2>';
+                    if ($the_query->post_count == 3) {
+                        // classe com 3 colunas
+                    } else if ($the_query->post_count == 2) {
+                        // classe com 2 colunas
+                    } else {
+                        // classe com 1 coluna especial
+                        // data, nome, excerpt
+                    }
+                    
+                    echo '<div class="conteudo2">';                    
+
+                        if ( $the_query->have_posts() ) {
+                            $postCount = 0;
+                            while ( $the_query->have_posts() && $postCount < $posts_per_page ){
+                                $postCount++;
+                                $the_query->the_post();
+
+                                if ($postCount < 3) {
+                                    if ($postCount == 1){
+                                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1 noticia-primeira">';
+                                    } else {
+                                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1 noticia-segunda">';
+                                    }
+                                    if (has_post_thumbnail()) {
+                                        echo '<div class="noticia-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
+                                    }
+                                } else {
+                                    echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';                                 
+                                } 
+                                        $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
+                                        $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );     
+
+                                        echo '<div class="noticia-sem-img">'; 
+                                            echo '<div class="rotulo-escuro">';                                                               
+                                            echo '<div>';
+                                            
+                                            if (empty($data_fim) || $data_inicio == $data_fim) {
+                                                echo wp_date('l, j \d\e F \d\e Y', $data_inicio), '</p>';
+                                            } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
+                                                echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
+                                            } else {
+                                                echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
+                                            }
+                                            
+                                            echo '</div>
+                                            
+                                            </div><!-- fecha div rotulo -->';
+                                            echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
+                                    
+                                    echo '</div>'; //noticia-com/sem-img
+                                echo '</a>'; //noticia-wrapper
+                            }
+                        }            
+            echo
+            '       
+                    <div class="link-wrapper justify-end">
+                    <a class="mais-link" href="', get_home_url(), '/eventos/">Todos os Eventos</a>           
+                    </div>
+                    </div>
+                </div>
+            </div>';
+        }
+
+        echo $args['after_widget']; 
+    }
+}
 
 // Registrar Widget de Noticias novo
 function registrar_widget_noticias2() {
@@ -1558,42 +1667,155 @@ abstract class DatePicker_Meta_Box {
 
 	public static function add() {
         add_meta_box(
-            'datepicker_box_id',       // Unique ID
-            'Data do evento',         // Box title
+            'datepicker_inicio',       // Unique ID
+            'Data do início do evento',         // Box title
             [ self::class, 'html' ],   // Content callback, must be of type callable
             'evento',                    // Post type
             'side'                     // local onde fica
-        );
+        );        
 	}
 
 	public static function save( int $post_id ) {
-		if ( array_key_exists( 'custom_date', $_POST ) ) {
-            $custom_date_formatted = strtotime($_POST['custom_date']);
+		if ( array_key_exists( 'data_inicio', $_POST ) ) {
+            $data_inicio_formatted = strtotime($_POST['data_inicio']);
 			update_post_meta(
 				$post_id,
-				'__custom_date_meta_key',
-				$custom_date_formatted
+				'__data_inicio',
+				$data_inicio_formatted
 			);
             update_post_meta(
 				$post_id,
-				'__custom_date_meta_key_original',
-				$_POST['custom_date'],
+				'__data_inicio_original',
+				$_POST['data_inicio'],
 			);
-		}        
+            update_post_meta(
+				$post_id,
+				'__data_fim',
+				$data_inicio_formatted,
+			);
+		}
+        if ( array_key_exists( 'data_fim', $_POST) && !empty($_POST['data_fim'])) {
+            $data_fim_formatted = strtotime($_POST['data_fim']);
+			update_post_meta(
+				$post_id,
+				'__data_fim',
+				$data_fim_formatted
+			);
+            update_post_meta(
+				$post_id,
+				'__data_fim_original',
+				$_POST['data_fim'],
+			);
+		}
+        if ( array_key_exists( 'local', $_POST ) ) {
+			update_post_meta(
+				$post_id,
+				'__local',
+				$_POST['local']
+			);            
+		}    
+        if ( array_key_exists( 'local_end', $_POST ) ) {
+			update_post_meta(
+				$post_id,
+				'__local_end',
+				$_POST['local_end']
+			);            
+		}    
+        if ( array_key_exists( 'horario', $_POST ) ) {
+			update_post_meta(
+				$post_id,
+				'__horario',
+				$_POST['horario']
+			);            
+		}
+        if ( array_key_exists( 'custo', $_POST ) ) {
+			update_post_meta(
+				$post_id,
+				'__custo',
+				$_POST['custo']
+			);            
+		} 
+        if ( array_key_exists( 'inscricoes', $_POST ) ) {
+			update_post_meta(
+				$post_id,
+				'__inscricoes',
+				$_POST['inscricoes']
+			);            
+		}
+        if ( array_key_exists( 'inscricoes_link', $_POST ) ) {
+			update_post_meta(
+				$post_id,
+				'__inscricoes_link',
+				$_POST['inscricoes_link']
+			);            
+		}   
+        if ( array_key_exists( 'informacoes', $_POST ) ) {
+			update_post_meta(
+				$post_id,
+				'__informacoes',
+				$_POST['informacoes']
+			);            
+		}
+        if ( array_key_exists( 'informacoes_link', $_POST ) ) {
+			update_post_meta(
+				$post_id,
+				'__informacoes_link',
+				$_POST['informacoes_link']
+			);            
+		}  
 	}
 
 	public static function html( $post ) {
-        $custom_date = get_post_meta( $post->ID, '__custom_date_meta_key_original', true );        
+        $data_inicio        = get_post_meta( $post->ID, '__data_inicio_original', true );       
+        $data_fim           = get_post_meta( $post->ID, '__data_fim_original', true ); 
+        $local              = get_post_meta( $post->ID, '__local', true );  
+        $local_end          = get_post_meta( $post->ID, '__local_end', true );  
+        $horario            = get_post_meta( $post->ID, '__horario', true );  
+        $custo              = get_post_meta( $post->ID, '__custo', true ); 
+        $informacoes        = get_post_meta( $post->ID, '__informacoes', true ); 
+        $informacoes_link   = get_post_meta( $post->ID, '__informacoes_link', true ); 
+        $inscricoes         = get_post_meta( $post->ID, '__inscricoes', true ); 
+        $inscricoes_link    = get_post_meta( $post->ID, '__inscricoes_link', true ); 
 
         ?>
-		<label for="custom_date">Selecione a data do evento:</label>
-		<input name="custom_date" type="date" value="<?php echo esc_attr($custom_date); ?>">
-		<?php        
+        <div style="display: flex; flex-direction: column; gap: .5rem">
+            <label for="data_inicio">Data de início do evento:</label>
+            <input name="data_inicio" type="date" value="<?php echo esc_attr($data_inicio); ?>">
+
+            <p>Se o evento acontecer <strong>em apenas um dia</strong>, deixar a data de fim vazia ou com o mesma data do início do evento.</p>
+            
+            <label for="data_fim">Data de término do evento:</label>
+            <input name="data_fim" type="date" value="<?php echo esc_attr($data_fim); ?>">
+
+            <label for="local">Local do evento:</label>
+            <input name="local" type="text" value="<?php echo esc_attr($local); ?>">
+
+            <label for="local_end">Endereço:</label>
+            <input name="local_end" type="text" value="<?php echo esc_attr($local_end); ?>">
+
+            <label for="horario">Horário do evento:</label>
+            <input name="horario" type="text" value="<?php echo esc_attr($horario); ?>">
+
+            <label for="custo">Custo:</label>
+            <input name="custo" type="text" value="<?php echo esc_attr($custo); ?>">
+
+            <label for="inscricoes">Inscrições:</label>
+            <input name="inscricoes" type="text" value="<?php echo esc_attr($inscricoes); ?>">
+
+            <label for="inscricoes_link">Link para inscrições:</label>
+            <input name="inscricoes_link" type="text" value="<?php echo esc_attr($inscricoes_link); ?>">
+
+            <label for="informacoes">Mais informações:</label>
+            <input name="informacoes" type="text" value="<?php echo esc_attr($informacoes); ?>">
+
+            <label for="informacoes_link">Link para mais informações:</label>
+            <input name="informacoes_link" type="text" value="<?php echo esc_attr($informacoes_link); ?>">
+		<?php  
 	}
 }
-
 add_action( 'add_meta_boxes', [ 'DatePicker_Meta_Box', 'add' ] );
 add_action( 'save_post', [ 'DatePicker_Meta_Box', 'save' ] );
+
 
 add_action( 'init', 'create_eventos');
 
@@ -1622,7 +1844,8 @@ function create_eventos() {
                 'editor',
                 'custom-fields',
                 'revisions',
-                'excerpt'
+                'excerpt',
+                'thumbnail'
             ),
             'show_in_rest' => true, //permite editor gutenberg
             
