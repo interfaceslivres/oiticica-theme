@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         menuBar.classList.toggle('hidden');
         menuButtons.classList.toggle('hidden');
         menuButton.classList.toggle('hidden');   
-        overlay.classList.add('hidden');
+        overlay.classList.add('menu-hidden');
         document.body.classList.remove('stop-scrolling');
         menuButonIcon.classList.remove('fa-xmark');
         menuButonIcon.classList.add('fa-bars');
@@ -39,8 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var cabecalho = document.getElementById('cabecalho-id');
     var offsetValue = cabecalho.offsetHeight;
     var menuHeight = menuNav.offsetHeight;    
+    
 
     function toggleMenuOverlay() {  
+        offsetValue = cabecalho.offsetHeight;     
         if (window.scrollY < offsetValue) {
             overlay.style.top = offsetValue + menuHeight - window.scrollY + 'px';
             var altura = windowHeight - offsetValue - menuHeight + window.scrollY + 'px';
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var altura = windowHeight - menuHeight + 'px';
             overlay.style.height = altura;
         }
-        overlay.classList.toggle('hidden');
+        overlay.classList.toggle('menu-hidden');
         menuButonIcon.classList.toggle('fa-xmark');
         menuButonIcon.classList.toggle('fa-bars');
         document.body.classList.toggle('stop-scrolling');

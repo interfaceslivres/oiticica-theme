@@ -45,8 +45,8 @@
                         
                         <?php the_custom_logo(); ?>
                         <div class="site-titulos">
-                            <a href="<?php $custom_urlcentro = esc_url(get_theme_mod('custom_urlcentro', 'https://www.ufpb.br/ufpb/menu/institucional/centros-de-ensino')); echo esc_url($custom_urlcentro) ?>" class="centro-titulo">
-                                <?php $custom_centro = get_theme_mod('custom_centro', 'Centro de Alguma Coisa'); echo esc_html($custom_centro);?>
+                            <a href="<?php $custom_urlcentro = esc_url(get_theme_mod('custom_urlcentro', 'https://www.ufpb.br')); echo esc_url($custom_urlcentro) ?>" class="centro-titulo">
+                                <?php $custom_centro = get_theme_mod('custom_centro', 'Universidade Federal da Paraíba'); echo esc_html($custom_centro);?>
                             </a>
                             <a href="<?php echo get_home_url(); ?>" class="departamento-titulo"><?php echo get_bloginfo( 'name' ); ?></a>
                         </div>
@@ -98,7 +98,7 @@
                 </div>
             </div>      
         </div>
-        <div id="menu-overlay" class="top-fixed-overlay hidden">
+        <div id="menu-overlay" class="top-fixed-overlay menu-hidden">
             <ul id="mobile-menu">            
                 <?php 
                     wp_nav_menu(   

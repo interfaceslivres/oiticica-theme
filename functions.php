@@ -251,7 +251,7 @@ function customizer_centro($wp_customize) {
     ));
     // Campo de texto personalizado
     $wp_customize->add_setting('custom_centro', array(
-        'default' => 'Centro de Alguma Coisa',
+        'default' => 'Universidade Federal da Paraíba',
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
     ));
     $wp_customize->add_control('custom_centro', array(
@@ -576,71 +576,102 @@ class WidgetEventos extends WP_Widget {
         if ($the_query->have_posts()){  
             echo '
             <div class="noticias-wrapper">
-                <div class="noticias">
+                <div class="eventos">
                     <h2>Eventos</h2>';
-                    if ($the_query->post_count == 3) {
-                        // classe com 3 colunas
-                    } else if ($the_query->post_count == 2) {
-                        // classe com 2 colunas
-                    } else {
+                    if ($the_query->post_count == 1) {
                         // classe com 1 coluna especial
                         // data, nome, excerpt
-                    }
-                    
-                    echo '<div class="conteudo2">';                    
+                        echo '<div class="conteudo2-eventos-solo">';
+                        $postCount = 0;
+                        while ( $the_query->have_posts() && $postCount < $posts_per_page ){
+                            $postCount++;
+                            $the_query->the_post();
+                                   
+                                echo '<a href="' , esc_url(the_permalink()) , '" class="evento-wrapper-solo camada-1">';
+                                if (has_post_thumbnail()) {
+                                    echo '<div class="evento-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
+                                }
+                                                            
+                            $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
+                            $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );     
 
-                        if ( $the_query->have_posts() ) {
-                            $postCount = 0;
-                            while ( $the_query->have_posts() && $postCount < $posts_per_page ){
-                                $postCount++;
-                                $the_query->the_post();
-
-                                if ($postCount < 3) {
-                                    if ($postCount == 1){
-                                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1 noticia-primeira">';
-                                    } else {
-                                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1 noticia-segunda">';
-                                    }
-                                    if (has_post_thumbnail()) {
-                                        echo '<div class="noticia-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
-                                    }
+                            echo '<div class="evento-sem-img">'; 
+                                echo '<div class="rotulo-evento">';                                                               
+                                echo '<div>';
+                                
+                                if (empty($data_fim) || $data_inicio == $data_fim) {
+                                    echo wp_date('j \d\e F \d\e Y', $data_inicio), '</div>';
+                                } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
+                                    echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
                                 } else {
-                                    echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';                                 
-                                } 
-                                        $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
-                                        $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );     
+                                    echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
+                                }
+                                
+                                echo '
+                                
+                                </div><!-- fecha div rotulo -->';
+                                echo '<h2>' , esc_html(the_title()) , '</h2>';
+                                echo  esc_html(the_excerpt());                                     
+                                
+                                echo '</div>'; //noticia-com/sem-img
+                            echo '</a>'; //noticia-wrapper                            
+                        }
+                    } else {
+                    if ($the_query->post_count == 2) {
+                        // classe com 3 colunas
+                        echo '<div class="conteudo2-eventos-dupla">';
+                    } else if ($the_query->post_count == 3) {
+                        // classe com 2 colunas
+                        echo '<div class="conteudo2-eventos-trio">';
+                    } 
+                        
+                        $postCount = 0;
+                        while ( $the_query->have_posts() && $postCount < $posts_per_page ){
+                            $postCount++;
+                            $the_query->the_post();
 
-                                        echo '<div class="noticia-sem-img">'; 
-                                            echo '<div class="rotulo-escuro">';                                                               
-                                            echo '<div>';
-                                            
-                                            if (empty($data_fim) || $data_inicio == $data_fim) {
-                                                echo wp_date('l, j \d\e F \d\e Y', $data_inicio), '</p>';
-                                            } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                                                echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
-                                            } else {
-                                                echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
-                                            }
-                                            
-                                            echo '</div>
-                                            
-                                            </div><!-- fecha div rotulo -->';
-                                            echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
-                                    
-                                    echo '</div>'; //noticia-com/sem-img
-                                echo '</a>'; //noticia-wrapper
+                            if ($postCount < 4) {                                    
+                                echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';
+                                if (has_post_thumbnail()) {
+                                    echo '<div class="evento-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
+                                }
+                                                            
+                            $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
+                            $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );     
+
+                            echo '<div class="evento-sem-img">'; 
+                                echo '<div class="rotulo-evento">';                                                               
+                                echo '<div>';
+                                
+                                if (empty($data_fim) || $data_inicio == $data_fim) {
+                                    echo wp_date('j \d\e F \d\e Y', $data_inicio), '</div>';
+                                } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
+                                    echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
+                                } else {
+                                    echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</div>';
+                                }
+                                
+                                echo '
+                                
+                                </div><!-- fecha div rotulo -->';
+                                echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
+                                
+                                echo '</div>'; //noticia-com/sem-img
+                            echo '</a>'; //noticia-wrapper
                             }
-                        }            
+                        }  
+                    }          
             echo
             '       
-                    <div class="link-wrapper justify-end">
-                    <a class="mais-link" href="', get_home_url(), '/eventos/">Todos os Eventos</a>           
-                    </div>
-                    </div>
-                </div>
+                    
+            </div>
+            <div class="link-wrapper justify-end">
+            <a class="mais-link" href="', get_home_url(), '/eventos/">Todos os Eventos</a>           
+            </div>
+            </div>
             </div>';
+        
         }
-
         echo $args['after_widget']; 
     }
 }
@@ -696,8 +727,8 @@ class WidgetNoticias2 extends WP_Widget {
                                     echo '<div class="noticia-sem-img">'; 
                                         echo '<div class="rotulo-escuro">';                                                               
                                         echo '
-                                        <div>' . get_the_date( 'd \d\e F \d\e Y' ) . '</div>
-                                        <div class="categorias">';
+                                        <div>' . get_the_date( 'd \d\e F \d\e Y' ) . '</div>';
+                                        /*echo '<div class="categorias">';
                                             $categories = get_the_category();
                                             
                                             if ($categories) {
@@ -710,8 +741,8 @@ class WidgetNoticias2 extends WP_Widget {
                                                 }
                                             }
                                         echo '    
-                                            </div><!-- fecha div categorias -->
-                                        </div><!-- fecha div rotulo -->';
+                                            </div>';<!-- fecha div categorias -->*/
+                                        echo '</div><!-- fecha div rotulo -->';
                                         echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
                                 
                                 echo '</div>'; //noticia-com/sem-img
@@ -1576,8 +1607,7 @@ class WidgetMapaEFotos extends WP_Widget {
     public function widget($args, $instance) {
         // Extrair os valores dos campos do widget
         $titulo = !empty($instance['titulo']) ? $instance['titulo'] : 'Encontre-nos!';
-        $mapa_iframe = !empty($instance['mapa_iframe']) ? $instance['mapa_iframe'] : '';        
-        $image_1 = ! empty(get_theme_mod('imagem2_mapa')) ? get_theme_mod('imagem2_mapa') : '';  
+        $mapa_iframe = !empty($instance['mapa_iframe']) ? $instance['mapa_iframe'] : '';
         $image_2 = ! empty(get_theme_mod('imagem1_mapa')) ? get_theme_mod('imagem1_mapa') : '';         
 
         echo $args['before_widget'];
@@ -1588,12 +1618,7 @@ class WidgetMapaEFotos extends WP_Widget {
             <div class="mapa-grid">                
                 <div id="mapa-inlay">
                     ' . $mapa_iframe . '         
-                </div>
-
-                <div id="foto1" class="foto">
-                    <img src="' . esc_url($image_1) . '" alt="Imagem decorativa do site">
-                    <!--img src="<?php echo get_bloginfo("template_directory"); ?>/img/foto1.jpg" alt=""-->
-                </div>
+                </div>                
                 
                 <div id="foto2" class="foto">
                     <img src="' . esc_url($image_2) . '" alt="Imagem decorativa do site">
@@ -1692,21 +1717,35 @@ abstract class DatePicker_Meta_Box {
 				$post_id,
 				'__data_fim',
 				$data_inicio_formatted,
-			);
-		}
+			);            
+        }		
         if ( array_key_exists( 'data_fim', $_POST) && !empty($_POST['data_fim'])) {
             $data_fim_formatted = strtotime($_POST['data_fim']);
-			update_post_meta(
-				$post_id,
-				'__data_fim',
-				$data_fim_formatted
-			);
-            update_post_meta(
-				$post_id,
-				'__data_fim_original',
-				$_POST['data_fim'],
-			);
-		}
+            $data_inicio_formatted = strtotime($_POST['data_inicio']);
+            if ($data_fim_formatted >= $data_inicio_formatted) {
+                update_post_meta(
+                    $post_id,
+                    '__data_fim',
+                    $data_fim_formatted
+                );
+                update_post_meta(
+                    $post_id,
+                    '__data_fim_original',
+                    $_POST['data_fim'],
+                );
+            } else {
+                update_post_meta(
+                    $post_id,
+                    '__data_fim',
+                    $data_inicio_formatted
+                );
+                update_post_meta(
+                    $post_id,
+                    '__data_fim_original',
+                    $_POST['data_inicio'],
+                );
+            }
+		}        
         if ( array_key_exists( 'local', $_POST ) ) {
 			update_post_meta(
 				$post_id,
