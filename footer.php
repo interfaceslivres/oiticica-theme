@@ -2,7 +2,7 @@
   <footer>
   <div id="footer-top">
       <div id="footer-dados">
-        <a href="https://ufpb.br"><img id="footer-logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/ufpb-brasao-pb.png"></a>
+        <a href="http://ufpb.br"><img id="footer-logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/ufpb-brasao-pb.png"></a>
         <div>
           <div><?php echo get_bloginfo( 'name' ); ?></div>
           <?php
@@ -22,6 +22,8 @@
           $x            = get_theme_mod('custom_x');
           $facebook     = get_theme_mod('custom_facebook');
           $youtube      = get_theme_mod('custom_youtube');
+          $linkedin     = get_theme_mod('custom_linkedin');
+          $spotify      = get_theme_mod('custom_spotify');
                              
           if (!empty($logradouro)) {
               echo '<address>' . wp_kses_post($logradouro);
@@ -73,6 +75,12 @@
           if (!empty($youtube)) {
             echo '<a href="' . esc_url($youtube) . '"><i class="fa-brands fa-youtube"></i></a>';
           } 
+          if (!empty($linkedin)) {
+            echo '<a href="' . esc_url($linkedin) . '"><i class="fa-brands fa-linkedin-in"></i></a>';
+          } 
+          if (!empty($spotify)) {
+            echo '<a href="' . esc_url($spotify) . '"><i class="fa-brands fa-spotify"></i></i></a>';
+          } 
 
           echo '</div>' //div fim redes sociais          
           ?>
@@ -83,7 +91,7 @@
         <div id="footer-creditos">
           <!--<a href="https://github.com/interfaceslivres"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/logo-interfaces2.png" alt="Logo do Projeto Interfaces Livres"></a>-->
           <a href="https://www.sti.ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/sti-logo-branco.png" alt="Marca da STI"></a>
-          <a href="https://ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg" alt="Marca da UFPB"></a>
+          <a href="http://ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg" alt="Marca da UFPB"></a>
         </div>
       </div>
     </div>
@@ -92,7 +100,7 @@
 
     <div id="footer-bottom">
       <div id="footer-ultima-linha">
-        <div>© 2023 Universidade Federal da Paraíba.</div>
+        <div>© <?php echo wp_date('Y') ?> Universidade Federal da Paraíba.</div>
         <div id="footer-acesso-info">
           <a href="https://www.ufpb.br/ouvidoria">Ouvidoria</a>
           <a href="https://www.ufpb.br/acessoainformacao/">Acesso à Informação</a>

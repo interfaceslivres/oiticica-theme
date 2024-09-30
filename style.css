@@ -35,7 +35,7 @@ body {
   --cor-background: white;
   --cor-footer: var(--cor-tema);
   --cor-middleground: #F6F6F6;
-  --cor-middleground-hover: #F8F8F8;
+  --cor-middleground-hover: #F6F6F6;
   --cor-footer-conteudo: white;
   --cor-item-nav: var(--cor-background);
   --cor-texto-escuro: #383838;
@@ -1335,7 +1335,7 @@ input[type="search"]:focus {
   background-image: linear-gradient(180deg, rgba(0,0,0,.3) 0px, transparent 50px), linear-gradient(0deg, rgb(0, 0, 0), transparent 100px);
 }
 
-.noticia-wrapper:hover .noticia-titulo, .noticia-com-img:hover .noticia-titulo {
+.noticia-wrapper:hover .noticia-titulo, .noticia-com-img:hover .noticia-titulo, .evento-wrapper-solo:hover h2 {
   text-decoration: underline;
 }
 

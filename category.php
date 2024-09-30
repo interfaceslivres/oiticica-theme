@@ -12,7 +12,8 @@
                                 'theme_location' => 'side-menu',
                                 'items_wrap' => '%3$s',
                                 'container' => false,
-                                'link_class'   => 'mais-link'
+                                'link_class'   => 'mais-link',
+                                'fallback_cb' => '__return_false'
                             ) 
                         ); 
                     ?>
@@ -20,84 +21,59 @@
             </div>                
         </div>
         
-        <div class="content-grid">            
-            <h1>Postagens sobre <?php single_cat_title(); ?></h1>
-            <div class="cards-lista">
-                <?php if (have_posts() ) : ?>
-                    <!-- begin loop -->
-                    <?php while (have_posts() ) : the_post(); ?>  
-                    <?php if ( has_post_thumbnail()) : ?>
-                        <div class="noticia-wrapper camada-1">
-                            <div class="rotulo-claro">
-                                <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>                                
-                                <div class="categorias">
-                                    <?php                                        
-                                    $categories = get_the_category();   // Obtém as categorias do post                                        
-                                    if ($categories) {  // Verifica se existem categorias                                            
-                                        $categories = array_slice($categories, 0, 2); // Limita a exibição a duas categorias                                            
-                                        foreach ($categories as $category) {    // Loop pelas categorias
-                                            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';                                                
-                                            if (next($categories)) {    // Adiciona uma vírgula após a categoria, exceto pela última
-                                                echo ', ';
-                                            }
+        <div class="content-grid"> <?php
+            echo '<h1>Postagens sobre ' , single_cat_title() , '</h1>
+            <div class="cards-lista">';
+            if (have_posts() ) {
+                    while (have_posts()){
+                        the_post();                      
+                        echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';
+                        if (has_post_thumbnail()) {
+                            echo '<div class="noticia-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
+                        }
+                        echo '<div class="noticia-sem-img">'; 
+                            echo '<div class="rotulo-escuro">';                                                               
+                            echo '
+                            <div>' . get_the_date( 'd \d\e F \d\e Y' ) . '</div>';
+                            /*echo '<div class="categorias">';
+                                $categories = get_the_category();
+                                
+                                if ($categories) {
+                                    $categories = array_slice($categories, 0, 2);
+                                    foreach ($categories as $category) {                                                    
+                                        echo '<div>' , esc_html($category->name) , '</div>';
+                                        if (next($categories)) {
+                                            echo ', ';
                                         }
                                     }
-                                    ?>
-                                </div><!-- fecha div categorias -->
-                            </div><!-- fecha div rotulo -->
-                            <img class="noticia-img" src="<?php the_post_thumbnail_url(); ?>">
-                            <a href="<?php the_permalink();?>" class="noticia-com-img">
-                                <div class="noticia-titulo">                  
-                                    <?php the_title(); ?>
-                                </div>                          
-                            </a>
-                        </div>
-                    <?php else : ?> 
-                        <div class="noticia-wrapper camada-1">
-                            <div class="rotulo-escuro">
-                                <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
-                                <div class="categorias">
-                                    <?php                                        
-                                    $categories = get_the_category();   // Obtém as categorias do post                                        
-                                    if ($categories) {  // Verifica se existem categorias                                            
-                                        $categories = array_slice($categories, 0, 2); // Limita a exibição a duas categorias                                            
-                                        foreach ($categories as $category) {    // Loop pelas categorias
-                                            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';                                                
-                                            if (next($categories)) {    // Adiciona uma vírgula após a categoria, exceto pela última
-                                                echo ', ';
-                                            }
-                                        }
-                                    }
-                                    ?>
-                                </div><!-- fecha div categorias -->
-                            </div><!-- fecha div rotulo -->
-                            <a class="noticia-sem-img" href="<?php the_permalink();?>"> 
-                                <div class="noticia-titulo" ><?php the_title(); ?></div>
-                            </a>
-                        </div>                                                        
-                    <?php endif; ?> 
-                    <?php endwhile; ?> 
-
+                                }
+                            echo '    
+                                </div>';<!-- fecha div categorias -->*/
+                            echo '</div><!-- fecha div rotulo -->';
+                            echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
+                    
+                            echo '</div>'; //noticia-com/sem-img
+                        echo '</a>'; //noticia-wrapper    
+                    }
+                    echo '
                     <div class="paginas-nav">
-                        <div class="pagination">
-                            <?php 
+                        <div class="pagination">';
                             // Adiciona a paginação
                             the_posts_pagination(array(
                                 'prev_text' => __('Anterior', 'text-domain'),
                                 'next_text' => __('Próximo', 'text-domain'),
                                 ));
-                            ?>
-                        </div>
-                    </div>
-                <?php else : ?>
-                    <p><?php _e( 'Desculpe, nenhum post corresponde aos seus critérios.' ); ?></p>
-                <?php endif; ?>
+                        echo '</div>
+                    </div>';
+                } else {
+                    echo '<p>Desculpe, nenhum post corresponde aos seus critérios.</p>';
+                }
+                echo '
             </div>     
         </div>
     </div>
 
-        <div class="imagem-grande">
-            <?php
+        <div class="imagem-grande">';
             // Obtém a URL da imagem do Customizer
             $imagem_banner_url = get_theme_mod('imagem_banner');
 
@@ -105,11 +81,11 @@
                 echo '<img src="' . esc_url($imagem_banner_url) . '" alt="Imagem decorativa do site">';
                 /*echo '<div class="imagem" style="background-image: url("' . esc_url($imagem_banner_url) . '")" alt="Imagem decorativa do site"><div>';*/
             }
-            ?>
+            echo '
             <div class="imagem-sombra"></div>
         </div>    
 
     </div>
-</div>
+</div>';
 
-<?php get_footer(); ?>
+get_footer();

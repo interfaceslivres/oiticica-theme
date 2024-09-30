@@ -12,7 +12,8 @@
                                 'theme_location' => 'side-menu',
                                 'items_wrap' => '%3$s',
                                 'container' => false,
-                                'link_class'   => 'mais-link'
+                                'link_class'   => 'mais-link',
+                                'fallback_cb' => '__return_false'
                             ) 
                         ); 
                     ?>
@@ -53,11 +54,11 @@
 
                 echo '<p><i class="fa-solid fa-calendar"></i><strong>Data: </strong> ';
                 if (empty($data_fim) || $data_inicio == $data_fim) {
-                    echo wp_date('l, d \d\e F \d\e Y', $data_inicio), '</p>';
+                    echo wp_date('l, j \d\e F \d\e Y', $data_inicio), '</p>';
                 } else if (wp_date('F', $data_inicio) == wp_date('F', $data_fim)) {
-                    echo wp_date('d', $data_inicio), '–', wp_date('d \d\e F \d\e Y', $data_fim), '</p>';
+                    echo wp_date('j', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
                 } else {
-                    echo wp_date('d \d\e F', $data_inicio), '–', wp_date('d \d\e F \d\e Y', $data_fim), '</p>';
+                    echo wp_date('j \d\e F', $data_inicio), '–', wp_date('j \d\e F \d\e Y', $data_fim), '</p>';
                 }                
                 if (!empty($horario)) {
                     echo '<p><i class="fa-solid fa-clock"></i><strong>Horário: </strong>', esc_html($horario),  '</p>';
@@ -113,9 +114,7 @@
                     <a href="https://twitter.com/intent/tweet?url=<?php echo get_permalink();?>"  target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink();?>" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                 </div>
-            </div>
-
-            <?php cats_related_post() ?>            
+            </div>                        
         </div>
     </div>
 

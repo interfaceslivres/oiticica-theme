@@ -138,91 +138,45 @@ function cats_related_post() {
 
     $related_cats_post = new WP_Query( $query_args );
 
-    if($related_cats_post->have_posts()): ?>
-
-        <h2 id="outras-n">Notícias Relacionadas</h2>
-        <div class="noticias-relacionadas">
-
-        <?php while($related_cats_post->have_posts()): $related_cats_post->the_post(); ?>
-            <?php if ( has_post_thumbnail() ) { ?>
-                    <div class="noticia-wrapper camada-1">
-                          <div class="rotulo-claro">                              
-                            <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
-                            <div class="categorias">
-                              <?php
-                            // Obtém as categorias do post
-                            $categories = get_the_category();
-
-                            // Verifica se existem categorias
-                            if ($categories) {
-                                // Limita a exibição a duas categorias
-                                $categories = array_slice($categories, 0, 2);
-
-                                // Loop pelas categorias
-                                foreach ($categories as $category) {
-                                    // Exibe o nome da categoria como um link
-                                    echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
-
-                                    // Adiciona uma vírgula após a categoria, exceto pela última
-                                    if (next($categories)) {
-                                        echo ', ';
-                                    }
-                                }
+    if($related_cats_post->have_posts()){
+        echo '<h2 id="outras-n">Notícias Relacionadas</h2>
+        <div class="noticias-relacionadas">';
+        while($related_cats_post->have_posts()){
+            $related_cats_post->the_post();
+            echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';
+            if (has_post_thumbnail()) {
+                echo '<div class="noticia-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
+            }
+            echo '<div class="noticia-sem-img">'; 
+                echo '<div class="rotulo-escuro">';                                                               
+                echo '
+                <div>' . get_the_date( 'd \d\e F \d\e Y' ) . '</div>';
+                /*echo '<div class="categorias">';
+                    $categories = get_the_category();
+                    
+                    if ($categories) {
+                        $categories = array_slice($categories, 0, 2);
+                        foreach ($categories as $category) {                                                    
+                            echo '<div>' , esc_html($category->name) , '</div>';
+                            if (next($categories)) {
+                                echo ', ';
                             }
-                            ?>
-                            </div> <!-- fecha categorias -->                            
-                        </div> <!-- fecha div rotulo-claro -->
-
-                        <img class="noticia-img" src="<?php the_post_thumbnail_url(); ?>">
-                        <a href="<?php the_permalink();?>" class="noticia-com-img">
-                            <div class="noticia-titulo"><?php the_title(); ?></div>         
-                        </a>  
-                    </div>
-            <?php } else { ?> 
-
-                    <div class="noticia-wrapper camada-1">
-                          <div class="rotulo-escuro">                              
-                            <div><?php echo get_the_date( 'd \d\e F Y' ); ?></div>
-                            <div class="categorias">
-                              <?php
-                            // Obtém as categorias do post
-                            $categories = get_the_category();
-
-                            // Verifica se existem categorias
-                            if ($categories) {
-                                // Limita a exibição a duas categorias
-                                $categories = array_slice($categories, 0, 2);
-
-                                // Loop pelas categorias
-                                foreach ($categories as $category) {
-                                    // Exibe o nome da categoria como um link
-                                    echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
-
-                                    // Adiciona uma vírgula após a categoria, exceto pela última
-                                    if (next($categories)) {
-                                        echo ', ';
-                                    }
-                                }
-                            }
-                            ?>
-                            </div> <!-- fecha categorias -->                            
-                        </div> <!-- fecha div rotulo-claro -->
-                        <a href="<?php the_permalink();?>" class="noticia-sem-img">
-                            <div class="noticia-titulo"><?php the_title(); ?></div>         
-                        </a>  
-                    </div>
-
-
-        <?php 
-         } 
-        endwhile;
-
+                        }
+                    }
+                echo '    
+                    </div>';<!-- fecha div categorias -->*/
+                echo '</div><!-- fecha div rotulo -->';
+                echo '<div class="noticia-titulo">' , esc_html(the_title()) , '</div>';                                    
+        
+                echo '</div>'; //noticia-com/sem-img
+            echo '</a>'; //noticia-wrapper 
+        }
+    }
         // Restore original Post Data
         wp_reset_postdata();
         ?> 
         </div> <!-- fecha div noticias-relacionadas -->
         <?php
-     endif;
 
 }
 
@@ -261,7 +215,7 @@ function customizer_centro($wp_customize) {
     ));
     // Campo de URL personalizado
     $wp_customize->add_setting('custom_urlcentro', array(
-        'default' => 'https://ufpb.br',
+        'default' => 'http://ufpb.br',
         'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
     ));
     $wp_customize->add_control('custom_urlcentro', array(
@@ -441,6 +395,28 @@ function customizer_contato($wp_customize) {
             'placeholder' => __('Ex.: https://www.youtube.com/user/TVUFPB'),
         ),
         'label' => 'URL do canald o YouTube',
+        'section' => 'customizer_contato',
+        'type' => 'url',
+    ));
+    $wp_customize->add_setting('custom_linkedin', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('custom_linkedin', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: https://br.linkedin.com/school/ufpb/'),
+        ),
+        'label' => 'URL da página do Linkedin',
+        'section' => 'customizer_contato',
+        'type' => 'url',
+    ));
+    $wp_customize->add_setting('custom_spotify', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('custom_spotify', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: https://open.spotify.com/intl-pt/artist/1DFr97A9HnbV3SKTJFu62M'),
+        ),
+        'label' => 'URL da página do Spotify',
         'section' => 'customizer_contato',
         'type' => 'url',
     ));

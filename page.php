@@ -37,7 +37,8 @@
                                 'theme_location' => 'side-menu',
                                 'items_wrap' => '%3$s',
                                 'container' => false,
-                                'link_class'   => 'mais-link'
+                                'link_class'   => 'mais-link',
+                                'fallback_cb' => '__return_false'
                             ) 
                         ); 
                     ?>
