@@ -3,25 +3,9 @@
 <div class="corpo" id="conteudo_pagina">
     <div class="corpo-grid">
         <div class="sidebar">
-            <div class="sidebar-wrapper" id="sidebar-menu">
-                <h2 class="menu-lateral-h2">Acesso Rápido</h2>
-                <ul class="menu-lateral">
-                    <?php 
-                        wp_nav_menu(   
-                            array ( 
-                                'theme_location' => 'side-menu',
-                                'items_wrap' => '%3$s',
-                                'container' => false,
-                                'link_class'   => 'mais-link',
-                                'fallback_cb' => '__return_false'
-                            ) 
-                        ); 
-                    ?>
-                    <!--li><a href="#">Notícias</a></li>
-                    <li><a href="#">Eventos</a></li>
-                    <li><a href="#">Eventos passados</a></li-->
-            </ul>
-            </div>                    
+            <?php
+            summon_side_menu();  
+            ?>                              
         </div>
         <?php
         while ( have_posts() ) :

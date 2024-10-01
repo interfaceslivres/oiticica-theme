@@ -3,10 +3,10 @@ Theme Name: Oiticica Theme UFPB
 Theme URI: https://github.com/interfaceslivres/oiticica-theme
 Author: Fleig {IL}
 Author URI: https://github.com/gfleig
-Description: Uuuuu uuuuuu A multitude of possibilities open up with just a few adjustments to color and typography. Twenty Twenty-Four comes with style variations and full page designs to help speed up the site building process, is fully compatible with the site editor, and takes advantage of new design tools introduced in WordPress 6.4.
-Version: 1.0
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Description: Tema de torar feito inhouse, artesanalmente (zero plugins), e com carinho. Possui funcionalidades incríveis como, além do óbvio, sistema de eventos, widgets de destaque, navegação via menus dinâmicos (sidebar) e flexibilidade de customização gráfica e de conteúdo. 
+Version: 1.2
+License: GNU General Public License v3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, sticky-post, threaded-comments, translation-ready, wide-blocks, block-styles, style-variations, accessibility-ready, blog, portfolio, news
 */
 
@@ -17,13 +17,6 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 :root {
   font-size: 18px;
 }
-
-/*body1 {
-  margin-top: 0px;
-  font-family: 'Open Sans', 'Rawline', sans-serif;
-  background-color: var(--cor-background);
-  margin: 0px;
-}*/
 
 body {
   margin-top: 0px;
@@ -40,9 +33,7 @@ body {
   --cor-item-nav: var(--cor-background);
   --cor-texto-escuro: #383838;
   --cor-texto-medio: #777;
-  --cor-texto-claro: white;
-
-  
+  --cor-texto-claro: white;  
 
   --fonte-1down: 0.84rem;
   --fonte-base: 1rem;
@@ -82,6 +73,11 @@ p a:visited, .wp-block-list a:visited {
 p a:hover, .wp-block-list a:hover {
   
   text-decoration: underline;
+}
+
+.wp-block-buttons.is-layout-flex {
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 h1 {
@@ -291,7 +287,7 @@ a.camada-1:hover, div.camada-1:hover, div.camada-1-alt:hover, .destaque:hover di
 
 .departamento-titulo {
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-size: var(--fonte-1up);
   line-height: 1.15;
 
@@ -664,7 +660,7 @@ input[type="search"]:focus {
 
   color: white;
   font-size: var(--fonte-base);
-  font-weight: 500;
+  font-weight: 400;
   list-style-type: none;
   line-height: 1.15;  
   /*! border-bottom: 1px solid blue; */
@@ -867,14 +863,11 @@ input[type="search"]:focus {
 
 .sidebar h2 {
   font-size: var(--fonte-1up);
+  font-variation-settings: 'wdth' 85;
 }
 
 .content-grid {
   grid-area: ct;
-}
-
-.menu-lateral-h2 {
-  font-variation-settings: 'wdth' 85;
 }
 
 .menu-lateral {
@@ -892,10 +885,12 @@ input[type="search"]:focus {
 .menu-navegacao .menu-lateral .current_page_item a {
   list-style: none;
   color: #b0b0b0;
+  font-weight: 600;
 }
 
 .menu-navegacao .menu-lateral .current_page_item a:hover {  
   cursor: default;
+  text-decoration: none;
 }
 
 .menu-navegacao .menu-lateral .current_page_item a::after, .menu-navegacao .menu-lateral .current_page_item a:hover::after{

@@ -2,6 +2,9 @@
 
 add_theme_support( 'post-thumbnails' );
 
+add_theme_support('editor-styles');
+add_editor_style( 'editor-style.css' );
+
 // Adding excerpt for page
 add_post_type_support( 'page', 'excerpt' );
 
@@ -63,37 +66,6 @@ function adicionar_controle_imagem_banner($wp_customize) {
     )));
 }
 add_action('customize_register', 'adicionar_controle_imagem_banner');
-
-// imagens na seção de mapa
-function adicionar_controle_imagens_mapa($wp_customize) {
-    $wp_customize->add_section('secao_imagens_mapa', array(
-        'title' => 'Imagems de apresentação',
-        'priority' => 30,
-    ));
-
-    $wp_customize->add_setting('imagem1_mapa', array(
-        'default' => '',
-        'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'imagem1_mapa', array(
-        'label' => 'Escolha a primeira para apresentar a instituição, que aparecerá abaixo do mapa (use https://tinypng.com/ para otimizar o carregamento.)',
-        'section' => 'secao_imagens_mapa',
-        'settings' => 'imagem1_mapa',        
-    )));   
-
-    $wp_customize->add_setting('imagem2_mapa', array(
-        'default' => '',
-        'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'imagem2_mapa', array(
-        'label' => 'Escolha a segunda imagem, que aparecerá ao lado do mapa',
-        'section' => 'secao_imagens_mapa',
-        'settings' => 'imagem2_mapa',        
-    )));   
-}
-add_action('customize_register', 'adicionar_controle_imagens_mapa');
 
 //registrar menus
 function register_menus() { 
@@ -417,6 +389,17 @@ function customizer_contato($wp_customize) {
             'placeholder' => __('Ex.: https://open.spotify.com/intl-pt/artist/1DFr97A9HnbV3SKTJFu62M'),
         ),
         'label' => 'URL da página do Spotify',
+        'section' => 'customizer_contato',
+        'type' => 'url',
+    ));
+    $wp_customize->add_setting('custom_flickr', array(
+        'sanitize_callback' => 'esc_url_raw', // Limpa a entrada do usuário como uma URL
+    ));
+    $wp_customize->add_control('custom_flickr', array(
+        'input_attrs' => array(
+            'placeholder' => __('Insira a URL da página do Flickr'),
+        ),
+        'label' => 'URL da página do Flickr',
         'section' => 'customizer_contato',
         'type' => 'url',
     ));
@@ -1573,9 +1556,9 @@ class WidgetMapaEFotos extends WP_Widget {
     public function __construct() {
         parent::__construct(
             'widget_mapa',
-            'Widget de Mapa e Fotos',
+            'Widget de Mapa e Foto',
             array(
-                'description' => 'Widget com a localização e fotos da instituição.'
+                'description' => 'Widget com a localização e foto ilustrativa.'
             )
         );
     }
@@ -1584,7 +1567,7 @@ class WidgetMapaEFotos extends WP_Widget {
         // Extrair os valores dos campos do widget
         $titulo = !empty($instance['titulo']) ? $instance['titulo'] : 'Encontre-nos!';
         $mapa_iframe = !empty($instance['mapa_iframe']) ? $instance['mapa_iframe'] : '';
-        $image_2 = ! empty(get_theme_mod('imagem1_mapa')) ? get_theme_mod('imagem1_mapa') : '';         
+        $image_2 = !empty($instance['img_url']) ? $instance['img_url'] : '';         
 
         echo $args['before_widget'];
         echo '
@@ -1611,6 +1594,7 @@ class WidgetMapaEFotos extends WP_Widget {
         // Exibir o formulário de configuração do widget
         $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : 'Encontre-nos!';
         $mapa_iframe = !empty($instance['mapa_iframe']) ? $instance['mapa_iframe'] : 'iframe_do_mapa';         
+        $img_url = !empty($instance['img_url']) ? $instance['img_url'] : 'else_img_url';
 
         // Formulário de configuração do widget
         ?>
@@ -1623,6 +1607,11 @@ class WidgetMapaEFotos extends WP_Widget {
             <label for="<?php echo $this->get_field_id('mapa_iframe'); ?>">Código de embed (iframe) do google maps, obtido através do compartilhar do maps:</label>
             <textarea class="widefat" id="<?php echo $this->get_field_id('mapa_iframe'); ?>" name="<?php echo $this->get_field_name('mapa_iframe'); ?>" type="html" value="<?php echo $mapa_iframe; ?>"></textarea>
         </p> 
+
+        <p>
+            <label for="<?php echo $this->get_field_id('img_url'); ?>">URL da imagem a ser exibida junto com o mapa:</label>
+            <textarea class="widefat" id="<?php echo $this->get_field_id('img_url'); ?>" name="<?php echo $this->get_field_name('img_url'); ?>" type="text" value="<?php echo $img_url; ?>"></textarea>
+        </p> 
         <?php
     }
 
@@ -1630,7 +1619,8 @@ class WidgetMapaEFotos extends WP_Widget {
         // Atualizar os valores do widget
         $instance = $old_instance;
         $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : '';
-        $instance['mapa_iframe'] = !empty($new_instance['mapa_iframe']) ? $new_instance['mapa_iframe'] : 'cagou-se';  
+        $instance['mapa_iframe'] = !empty($new_instance['mapa_iframe']) ? $new_instance['mapa_iframe'] : 'cagou-se';
+        $instance['img_url'] = !empty($new_instance['img_url']) ? $new_instance['img_url'] : 'link da imagem';  
         return $instance;
     }
 }
@@ -1868,5 +1858,17 @@ function create_eventos() {
 	);
 }
 
+function summon_side_menu() {
+    wp_nav_menu(   
+        array ( 
+            'theme_location' => 'side-menu',
+            'items_wrap' => '%3$s',
+            'container' => false,
+            'link_class'   => 'mais-link',
+            'fallback_cb' => '__return_false',
+            'items_wrap' => '<div><h2 class="menu-lateral-h2">Acesso Rápido</h2><ul class="menu-lateral">%3$s</ul></div>'
+        ) 
+    ); 
+}
 
 ?>
