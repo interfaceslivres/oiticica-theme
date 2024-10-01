@@ -16,7 +16,7 @@
 
           $telefone     = get_theme_mod('custom_telefone', '+55 (83) 3216-7200');
           $contato      = get_theme_mod('custom_url_contato');
-          $horario      = get_theme_mod('custom_url_horário','De Segunda à Sexta, das 8h às 18h');
+          $horario      = get_theme_mod('custom_horario');
 
           $instagram    = get_theme_mod('custom_instagram');
           $x            = get_theme_mod('custom_x');

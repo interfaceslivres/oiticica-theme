@@ -312,13 +312,16 @@ function customizer_contato($wp_customize) {
     ));
 
     $wp_customize->add_setting('custom_horario', array(
-        'default' => 'De Segunda à Sexta, das 8h às 18h',
         'sanitize_callback' => 'sanitize_text_field', // Limpa a entrada do usuário
     ));
     $wp_customize->add_control('custom_horario', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: De Segunda à Sexta, das 8h às 18h'),
+        ),
         'label' => 'Horário de Atendimento',
         'section' => 'customizer_contato',
-        'type' => 'text',
+        'type' => 'text'
+        
     ));
 
     // ======= REDES SOCIAIS ========
