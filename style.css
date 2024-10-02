@@ -80,6 +80,30 @@ p a:hover, .wp-block-list a:hover {
   align-items: flex-start;
 }
 
+.wp-block-media-text__content .wp-block-heading {
+  margin-top: 0;  
+  hyphens: none;
+}
+
+.wp-block-media-text p {
+  hyphens: none;
+}
+
+.the-content-container .wp-block-media-text .wp-block-media-text__content {
+  padding: var(--fonte-1up) var(--fonte-1up) var(--fonte-2up);
+}
+
+.wp-block-media-text {
+  margin-bottom: 30px;
+  background-color: var(--cor-middleground);
+  transition: .15s;
+}
+
+.the-content-container .wp-block-media-text__media img, .wp-block-media-text>.wp-block-media-text__media {
+  height: 100%;
+  object-fit: cover;
+}
+
 h1 {
   font-size: var(--fonte-2up);
   font-weight: 700;
@@ -185,16 +209,7 @@ strong {
   display: none;
 }
 
-.camada-1 {
-  /*box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2),0 3px 6px -6px rgba(0,0,0,0.2);*/
-}
-
-.camada-1-alt {
-  /*box-shadow: 3px 0px 10px rgba(0,0,0,.05),0 3px 3px rgba(0,0,0,.05);*/
-}
-
-
-a.camada-1:hover, div.camada-1:hover, div.camada-1-alt:hover, .destaque:hover div:nth-child(2), .destaque-solo:hover div:first-child {
+a.camada-1:hover, div.camada-1:hover, div.camada-1-alt:hover, .destaque:hover div:nth-child(2), .destaque-solo:hover div:first-child, .wp-block-media-text:hover {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2),0 6px 6px -6px rgba(0,0,0,0.2);
 }
 
@@ -1673,7 +1688,7 @@ a:hover div .noticia-com-img-titulo, a:hover .noticia-sem-img-titulo {
 
 .content-grid .wp-block-button__link {
   color: var(--cor-tema);
-  background-color: var(--cor-background);
+  background-color: transparent;
   border-radius: 0px;
   box-shadow: none;
   text-decoration: none;

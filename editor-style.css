@@ -63,7 +63,7 @@ li.block-editor-block-list__block {
 }
 
 .wp-block-button__link.block-editor-rich-text__editable {
-    background-color: white;
+    background-color: transparent;
     color: #2271b1;
     border-radius: 0px;
     box-shadow: none;
@@ -106,5 +106,26 @@ li.block-editor-block-list__block {
     font-style: normal;
     font-variant: normal;
     line-height: 1;
+}
+
+.wp-block-media-text>.wp-block-media-text__content .wp-block-heading {
+    margin-top: 0;
+    hyphens: none;
+}
+
+.wp-block-media-text>.wp-block-media-text__content {
+    padding: 1.2rem 1.2rem 1.5rem;
+}
+
+.wp-block-media-text {
+    margin-bottom: 30px;
+    background-color: #F6F6F6;
+    transition: .15s;
+}
+
+.wp-block-media-text__media img,
+.wp-block-media-text>.wp-block-media-text__media {
+    height: 100% !important;
+    object-fit: cover;
 }
 

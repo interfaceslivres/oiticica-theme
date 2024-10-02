@@ -410,19 +410,19 @@ function customizer_contato($wp_customize) {
 add_action('customize_register', 'customizer_contato');
 
 // Registrar Widget de Destaque solo
-function registrar_widget_noticias() {
-    register_widget('WidgetNoticias');
+function registrar_widget_noticias_antiga() {
+    register_widget('WidgetNoticiasAntiga');
 }
-add_action('widgets_init', 'registrar_widget_noticias');
+add_action('widgets_init', 'registrar_widget_noticias_antiga');
 
-class WidgetNoticias extends WP_Widget {
+class WidgetNoticiasAntiga extends WP_Widget {
 
     public function __construct() {
         parent::__construct(
-            'Widget_Noticias',
-            'Widget de Notícias',
+            'Widget_Noticias_Antiga',
+            '[Antigo] Widget de Notícias',
             array(
-                'description' => 'Exibe as 3 últimas notícias'
+                'description' => 'Exibe as 3 últimas notícias (estilo antigo, não usar)'
             )
         );
     }
@@ -639,19 +639,19 @@ class WidgetEventos extends WP_Widget {
 }
 
 // Registrar Widget de Noticias novo
-function registrar_widget_noticias2() {
-    register_widget('WidgetNoticias2');
+function registrar_widget_noticias() {
+    register_widget('WidgetNoticias');
 }
-add_action('widgets_init', 'registrar_widget_noticias2');
+add_action('widgets_init', 'registrar_widget_noticias');
 
-class WidgetNoticias2 extends WP_Widget {
+class WidgetNoticias extends WP_Widget {
 
     public function __construct() {
         parent::__construct(
-            'Widget_Noticias_2',
-            'Widget de Notícias Alternativo',
+            'Widget_Noticias',
+            'Widget de Notícias',
             array(
-                'description' => 'Exibe as 4 últimas notícias, com apenas a última possuindo a possibilidade de thumbnail'
+                'description' => 'Exibe as 5 últimas notícias, sendo 2 em formato grande e 3 pequenas (apenas manchete)'
             )
         );
     }
