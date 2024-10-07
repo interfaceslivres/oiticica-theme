@@ -23,7 +23,7 @@
             </div>
 
             <div class = "evento-ficha">                
-                <h2>Ficha Técnica</h2>
+                <h2>Serviço</h2>
                 <?php
                 $data_inicio = get_post_meta( get_the_ID(), '__data_inicio', true );
                 $data_fim = get_post_meta( get_the_ID(), '__data_fim', true );

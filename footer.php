@@ -94,6 +94,23 @@
       <div class="footer-direita">
         <div id="footer-creditos">
           <!--<a href="https://github.com/interfaceslivres"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/logo-interfaces2.png" alt="Logo do Projeto Interfaces Livres"></a>-->
+          <a class="logo-acesso-footer" href="https://www.gov.br/acessoainformacao/pt-br" title="Acesse o portal sobre o acesso à informação">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 49" height="100%" width="auto" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+              <defs>
+                <style type="text/css">.a {font: normal bold 11px Open Sans, sans-serif;}</style>
+              </defs>
+              <circle cx="22" cy="23" r="22" fill="#fff"></circle>
+              <path style="stroke:var(--cor-tema);stroke-width:9;stroke-linecap:round;" d="m 22,23 v 13"></path>
+              <path style="stroke:#fff;stroke-width:4;stroke-linejoin:round;" d="m 4,43 3,-6 4,3 z"></path>
+              <circle r="4.5" cy="11" cx="22" fill="var(--cor-tema)"></circle>
+              <g fill="#fff">
+                <text x="47" y="22">
+                  <tspan class="a" y="18">Acesso à</tspan>
+                  <tspan class="a" x="47" y="31">Informação</tspan>
+                </text>
+              </g>
+            </svg>
+          </a>
           <a href="https://www.sti.ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/sti-logo-branco.png" alt="Marca da STI"></a>
           <a href="http://ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg" alt="Marca da UFPB"></a>
         </div>

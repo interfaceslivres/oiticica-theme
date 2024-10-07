@@ -1169,15 +1169,15 @@ class WidgetDestaqueTriplo extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('pagina_link_3'); ?>">Link da segunda página a ser destacada:</label>
+            <label for="<?php echo $this->get_field_id('pagina_link_3'); ?>">Link da terceira página a ser destacada:</label>
             <input class="widefat" id="<?php echo $this->get_field_id('pagina_link_3'); ?>" name="<?php echo $this->get_field_name('pagina_link_3'); ?>" type="text" value="<?php echo $pagina_link_3; ?>">
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('titulo_3'); ?>">Título do segundo bloco de destaque (opcional):</label>
+            <label for="<?php echo $this->get_field_id('titulo_3'); ?>">Título do terceiro bloco de destaque (opcional):</label>
             <input class="widefat" id="<?php echo $this->get_field_id('titulo_3'); ?>" name="<?php echo $this->get_field_name('titulo_3'); ?>" type="text" value="<?php echo $titulo_3; ?>">
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('resumo_3'); ?>">Texto do segundo bloco de destaque (opcional):</label>
+            <label for="<?php echo $this->get_field_id('resumo_3'); ?>">Texto do terceiro bloco de destaque (opcional):</label>
             <input class="widefat" id="<?php echo $this->get_field_id('resumo_3'); ?>" name="<?php echo $this->get_field_name('resumo_3'); ?>" type="text" value="<?php echo $resumo_3; ?>">
         </p>
         <p>
@@ -1402,7 +1402,7 @@ class WidgetLinksRapidos extends WP_Widget {
 
     public function form($instance) {
         // Exibir o formulário de configuração do widget
-        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : 'Título da seção de links rápidos';
+        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : 'Acesso Rápido';
 
         // nomes dos links, para exibição
         $text_primeiro = !empty($instance['text_primeiro']) ? esc_html($instance['text_primeiro']) : 'Pri';
