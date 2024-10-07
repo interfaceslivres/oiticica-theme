@@ -18,6 +18,7 @@
           $contato      = get_theme_mod('custom_url_contato');
           $horario      = get_theme_mod('custom_horario');
 
+          $whatsapp     = get_theme_mod('custom_whatsapp');
           $instagram    = get_theme_mod('custom_instagram');
           $x            = get_theme_mod('custom_x');
           $facebook     = get_theme_mod('custom_facebook');
@@ -64,11 +65,14 @@
           echo '<div class="redes-sociais">';
                   
           echo '<a href="' , bloginfo('atom_url') , '"><i class="fa-solid fa-rss"></i></a>';
+          if (!empty($whatsapp)) {
+            echo '<a href="https://wa.me/' . esc_html($whatsapp) . '"><i class="fa-brands fa-whatsapp"></i></a>';
+          }
           if (!empty($instagram)) {
-            echo '<a href="https://instagram.com/' . esc_html($instagram) . '"><i class="fa-brands fa-instagram"></i></a>';
+            echo '<a href="' . esc_html($instagram) . '"><i class="fa-brands fa-instagram"></i></a>';
           }
           if (!empty($x)) {
-            echo '<a href="https://x.com/' . esc_html($x) . '"><i class="fa-brands fa-x-twitter"></i></a>';
+            echo '<a href="' . esc_html($x) . '"><i class="fa-brands fa-x-twitter"></i></a>';
           }
           if (!empty($facebook)) {
             echo '<a href="' . esc_url($facebook) . '"><i class="fa-brands fa-facebook"></i></a>';

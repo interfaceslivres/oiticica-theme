@@ -326,14 +326,26 @@ function customizer_contato($wp_customize) {
 
     // ======= REDES SOCIAIS ========
 
+    $wp_customize->add_setting('custom_whatsapp', array(
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('custom_whatsapp', array(
+        'input_attrs' => array(
+            'placeholder' => __('Ex.: +558399991-0105'),
+        ),
+        'label' => 'Número do Whatsapp, em formato +5583XXXXX-XXXX',
+        'section' => 'customizer_contato',
+        'type' => 'text',
+    ));
+
     $wp_customize->add_setting('custom_instagram', array(
         'sanitize_callback' => 'sanitize_text_field',
     ));
     $wp_customize->add_control('custom_instagram', array(
         'input_attrs' => array(
-            'placeholder' => __('Ex.: ufpb.oficial'),
+            'placeholder' => __('Ex.: https://instagram.com/ufpb.oficial'),
         ),
-        'label' => 'Nome de usuário da página do Instagram',
+        'label' => 'Link da página do Instagram',
         'section' => 'customizer_contato',
         'type' => 'text',
     ));
@@ -343,9 +355,9 @@ function customizer_contato($wp_customize) {
     ));
     $wp_customize->add_control('custom_x', array(
         'input_attrs' => array(
-            'placeholder' => __('Ex.: ufpboficial'),
+            'placeholder' => __('Ex.: https://x.com/ufpboficial'),
         ),
-        'label' => 'Nome de usuário da página do X',
+        'label' => 'Link da página do X',
         'section' => 'customizer_contato',
         'type' => 'text',
     ));
@@ -369,7 +381,7 @@ function customizer_contato($wp_customize) {
         'input_attrs' => array(
             'placeholder' => __('Ex.: https://www.youtube.com/user/TVUFPB'),
         ),
-        'label' => 'URL do canald o YouTube',
+        'label' => 'URL do canal do YouTube',
         'section' => 'customizer_contato',
         'type' => 'url',
     ));
