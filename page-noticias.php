@@ -14,7 +14,7 @@
             <div class="cards-lista">
                 <?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // Página atual
                 $args = array(
-                    'post_type' => 'edital',
+                    'post_type' => 'post',
                     'paged' => $paged,
                 );
 
