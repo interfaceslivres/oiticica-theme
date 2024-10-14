@@ -49,7 +49,10 @@
         <div class="content-grid">            
             <h1><?php the_title(); ?></h1>           
 
-            <?php the_content(); ?>
+            <div class="the-content-container">
+                <?php the_content(); ?>
+            </div>
+            
                                 
         <?php endwhile; ?>           
 

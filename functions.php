@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Recife');
 
 add_theme_support( 'post-thumbnails' );
 
@@ -122,7 +123,7 @@ function cats_related_post() {
             echo '<div class="noticia-sem-img">'; 
                 echo '<div class="rotulo-escuro">';                                                               
                 echo '
-                <div>' . get_the_date( 'd \d\e F \d\e Y' ) . '</div>';
+                <div>' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>';
                 /*echo '<div class="categorias">';
                     $categories = get_the_category();
                     
@@ -467,7 +468,7 @@ class WidgetNoticiasAntiga extends WP_Widget {
                                     echo '<div class="rotulo-escuro">';
                                 }                                
                                     echo '
-                                    <div>' . get_the_date( 'd \d\e F Y' ) . '</div>
+                                    <div>' . get_the_date( 'j \d\e F Y' ) . '</div>
                                     <div class="categorias">';
                                         $categories = get_the_category();
                                         
@@ -539,7 +540,7 @@ class WidgetEventos extends WP_Widget {
             'meta_query' => array(
                 array(
                     'key' => '__data_fim',  // usa a data de fim do evento
-                    'value' => current_time('timestamp') - 86400 - 3 * 3600,
+                    'value' => current_time('timestamp') - 86400, // - 3 * 3600,
                     'compare' => '>='       // pra comprar com a data atual. 
                 )                           // (eventos que já acabaram não são exibidos)
             )
@@ -701,7 +702,7 @@ class WidgetNoticias extends WP_Widget {
                                     echo '<div class="noticia-sem-img">'; 
                                         echo '<div class="rotulo-escuro">';                                                               
                                         echo '
-                                        <div>' . get_the_date( 'd \d\e F \d\e Y' ) . '</div>';
+                                        <div>' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>';
                                         /*echo '<div class="categorias">';
                                             $categories = get_the_category();
                                             
@@ -1674,7 +1675,7 @@ abstract class DatePicker_Meta_Box {
 	public static function add() {
         add_meta_box(
             'datepicker_inicio',       // Unique ID
-            'Data do início do evento',         // Box title
+            'Informações do evento',         // Box title
             [ self::class, 'html' ],   // Content callback, must be of type callable
             'evento',                    // Post type
             'side'                     // local onde fica
@@ -1873,6 +1874,42 @@ function create_eventos() {
 	);
 }
 
+add_action( 'init', 'create_editais');
+
+function create_editais() {
+	register_post_type('edital',
+		array(
+			'labels'      => array(
+				'name'              => __('Editais', 'textdomain'),
+				'singular_name'     => __('Edital', 'textdomain'),
+                'add_new'           => _x('Adicionar novo', 'Edital'),
+                'add_new_item'      => __('Adicionar novo edital'),
+                'edit_item'         => __('Editar edital'),
+                'new_item'          => __('Novo edital'),
+                'view_item'         => __('Ver edital'),
+                'search_items'      => __('Buscar editais'),
+                'not_found'         => __('Nenhum edital encontrado'),
+                'not_found_in_trash'=> __('Nenhum edital encontrado na lixeira'),
+                'parent_item_colon' => ''
+			),
+			'public'      => true,
+			'has_archive' => false,
+            'rewrite'     => array( 'slug' => 'editais' ), // my custom slug
+            'menu_icon'   => 'dashicons-media-document',
+            'supports'    => array(
+                'title',
+                'editor',
+                'custom-fields',
+                'revisions',
+                'excerpt',
+                'thumbnail'
+            ),
+            'show_in_rest' => true, //permite editor gutenberg
+            
+		)
+	);
+}
+
 function summon_side_menu() {
     wp_nav_menu(   
         array ( 
@@ -1885,5 +1922,105 @@ function summon_side_menu() {
         ) 
     ); 
 }
+
+function summon_categorias_menu() {
+    $categorias = get_categories(array(
+        "type"      => "post",      
+        "orderby"   => "name",
+        "order"     => "ASC"
+    )); 
+    if (!empty($categorias)) {
+        echo '<div>';
+        echo '<h2 class="menu-lateral-h2">Categorias</h2>';
+        echo '<ul class="menu-lateral">';
+        foreach ($categorias as $categoria){
+            echo '<li><a class="mais-link" href="' , esc_url(get_category_link($categoria->term_id)) , '">', esc_html($categoria->name) ,'</a></li>';
+        }
+        echo '</ul>';
+        echo '</div>';
+    }
+}
+
+//============================EDITAIS===================================//
+
+class WidgetEditais extends WP_Widget {
+    public function __construct() {
+        parent::__construct(
+            'widget_editais',
+            'Widget de Editais',
+            array(
+                'description' => 'Widget para exibir os últimos editais cadastrados ou atualizados'
+            )
+        );
+    }
+
+    public function widget($args, $instance) {
+        $titulo = $instance['titulo']; 
+        $the_query = new WP_Query( array(
+            'posts_per_page' => 4,
+            'post_type' => 'edital',
+            'orderby' => 'modified',
+        ));
+
+        echo $args['before_widget'];
+
+        if ($the_query->have_posts()) {
+            echo '
+            <div class="links-wrapper">
+            <h2> ' , esc_html($titulo) , ' </h2>
+            <div class="editais">';
+            $postCount = 0;
+            while ($the_query->have_posts() && $postCount < 4) {
+                $postCount++;
+                $the_query->the_post();
+                echo '
+                <a href="' , esc_url(the_permalink()) , '" class="edital-full camada-1">
+                    <div class="link-image-wrapper">';    
+                    if ($postCount == 1){
+                        echo '<i class="fa-solid fa-file-circle-exclamation"></i>';
+                    } else {
+                        echo '<i class="fa-solid fa-file"></i>';
+                    }         
+                                      
+                echo '</div>     
+                    <div>
+                        <div class="edital-data" href="#">' , esc_html(the_modified_date('j \d\e F \d\e Y')) , '</div>
+                        <div class="edital-text" href="#">' , esc_html(the_title()) , '</div>
+                    </div>                      
+                </a>';
+            }
+
+            echo
+        '       </div>
+                <div class="link-wrapper justify-end">
+                <a class="mais-link" href="', get_home_url(), '/editais/">Mais Editais</a>           
+                </div>                
+            </div>';
+        }
+        echo $args['after_widget'];            
+    }
+
+    public function form($instance) { 
+        $titulo = !empty($instance['titulo']) ? esc_html($instance['titulo']) : 'Editais';
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('titulo'); ?>">Título da seção:</label>
+            <input class="widefat" maxlength="50" id="<?php echo $this->get_field_id('titulo'); ?>" name="<?php echo $this->get_field_name('titulo'); ?>" type="text" value="<?php echo $titulo; ?>">
+        </p>
+        <?php
+    }
+
+    public function update($new_instance, $old_instance) {
+        $instance = $old_instance;
+        $instance['titulo'] = !empty($new_instance['titulo']) ? esc_html($new_instance['titulo']) : 'erro';
+        return $instance;
+    }    
+}
+
+function registrar_widget_editais() {
+    register_widget('WidgetEditais');
+}
+add_action('widgets_init', 'registrar_widget_editais');
+
 
 ?>

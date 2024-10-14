@@ -2,7 +2,7 @@
   <footer>
   <div id="footer-top">
       <div id="footer-dados">
-        <a href="http://ufpb.br"><img id="footer-logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/ufpb-brasao-pb.png"></a>
+        <a target="_blank" rel="noopener noreferrer" href="http://ufpb.br"><img id="footer-logo" src="<?php echo get_bloginfo("template_directory"); ?>/img/ufpb-brasao-pb.png"></a>
         <div>
           <div><?php echo get_bloginfo( 'name' ); ?></div>
           <?php
@@ -66,28 +66,28 @@
                   
           echo '<a href="' , bloginfo('atom_url') , '"><i class="fa-solid fa-rss"></i></a>';
           if (!empty($whatsapp)) {
-            echo '<a href="https://wa.me/' . esc_html($whatsapp) . '"><i class="fa-brands fa-whatsapp"></i></a>';
+            echo '<a target="_blank" rel="noopener noreferrer" href="https://wa.me/' . esc_html($whatsapp) . '"><i class="fa-brands fa-whatsapp"></i></a>';
           }
           if (!empty($instagram)) {
-            echo '<a href="' . esc_html($instagram) . '"><i class="fa-brands fa-instagram"></i></a>';
+            echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_html($instagram) . '"><i class="fa-brands fa-instagram"></i></a>';
           }
           if (!empty($x)) {
-            echo '<a href="' . esc_html($x) . '"><i class="fa-brands fa-x-twitter"></i></a>';
+            echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_html($x) . '"><i class="fa-brands fa-x-twitter"></i></a>';
           }
           if (!empty($facebook)) {
-            echo '<a href="' . esc_url($facebook) . '"><i class="fa-brands fa-facebook"></i></a>';
+            echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_url($facebook) . '"><i class="fa-brands fa-facebook"></i></a>';
           }
           if (!empty($youtube)) {
-            echo '<a href="' . esc_url($youtube) . '"><i class="fa-brands fa-youtube"></i></a>';
+            echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_url($youtube) . '"><i class="fa-brands fa-youtube"></i></a>';
           } 
           if (!empty($linkedin)) {
-            echo '<a href="' . esc_url($linkedin) . '"><i class="fa-brands fa-linkedin-in"></i></a>';
+            echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_url($linkedin) . '"><i class="fa-brands fa-linkedin-in"></i></a>';
           } 
           if (!empty($spotify)) {
-            echo '<a href="' . esc_url($spotify) . '"><i class="fa-brands fa-spotify"></i></i></a>';
+            echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_url($spotify) . '"><i class="fa-brands fa-spotify"></i></i></a>';
           } 
           if (!empty($flickr)) {
-            echo '<a href="' . esc_url($flickr) . '"><i class="fa-brands fa-flickr"></i></i></a>';
+            echo '<a target="_blank" rel="noopener noreferrer" href="' . esc_url($flickr) . '"><i class="fa-brands fa-flickr"></i></i></a>';
           } 
 
           echo '</div>' //div fim redes sociais          
@@ -98,7 +98,7 @@
       <div class="footer-direita">
         <div id="footer-creditos">
           <!--<a href="https://github.com/interfaceslivres"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/logo-interfaces2.png" alt="Logo do Projeto Interfaces Livres"></a>-->
-          <a class="logo-acesso-footer" href="https://www.gov.br/acessoainformacao/pt-br" title="Acesse o portal sobre o acesso à informação">
+          <a class="logo-acesso-footer" target="_blank" rel="noopener noreferrer" href="https://www.gov.br/acessoainformacao/pt-br" title="Acesse o portal sobre o acesso à informação">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 49" height="100%" width="auto" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
               <defs>
                 <style type="text/css">.a {font: normal bold 11px Open Sans, sans-serif;}</style>
@@ -115,8 +115,8 @@
               </g>
             </svg>
           </a>
-          <a href="https://www.sti.ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/sti-logo-branco.png" alt="Marca da STI"></a>
-          <a href="http://ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg" alt="Marca da UFPB"></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://www.sti.ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/sti-logo-branco.png" alt="Marca da STI"></a>
+          <a target="_blank" rel="noopener noreferrer" href="http://ufpb.br/"><img class="img-creditos" src="<?php echo get_bloginfo("template_directory"); ?>/img/fundo preto.svg" alt="Marca da UFPB"></a>
         </div>
       </div>
     </div>

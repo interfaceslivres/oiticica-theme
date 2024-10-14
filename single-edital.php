@@ -4,13 +4,13 @@
     <div class="corpo-grid">
         <div class="sidebar">
             <?php
-            summon_categorias_menu();
-            summon_side_menu();             
-            ?>                                
+            summon_side_menu();  
+            ?>                              
         </div>
         <?php
         while ( have_posts() ) :
-        the_post(); ?>
+        the_post(); 
+        ?>        
         <div class="content-grid">            
             <h1 class="noticia-pagina-titulo"><?php the_title(); ?></h1>
             <?php if ( has_excerpt() ) : ?>
@@ -18,7 +18,13 @@
             <?php endif; ?>             
             <div class="noticia-h2">
                 <div>
-                    <div><?php echo get_the_date( 'l, j \d\e F \d\e Y' ); ?></div>                    
+                    <div>Publicado: <?php echo get_the_date( 'j \d\e F \d\e Y' ); ?></div> 
+                    <?php
+                    if(get_the_date() != get_the_modified_date()) {
+                        echo '<div>Atualizado: ', get_the_modified_date( 'j \d\e F \d\e Y' ), '</div>';
+                    }
+                    ?>
+                                       
                 </div>  
                 <?php
                 // Obtém as categorias do post
@@ -57,7 +63,7 @@
 
             <div class="the-content-container">
                 <?php the_content(); ?>
-            </div>
+            </div>            
                                 
         <?php endwhile; ?>
 
@@ -74,9 +80,7 @@
                     <a href="https://twitter.com/intent/tweet?url=<?php echo get_permalink();?>"  target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink();?>" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                 </div>
-            </div>
-
-            <?php cats_related_post() ?>            
+            </div>                        
         </div>
     </div>
 

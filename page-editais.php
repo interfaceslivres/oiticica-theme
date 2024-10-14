@@ -4,16 +4,25 @@
     <div class="corpo-grid">
         <div class="sidebar">  
             <?php
+            summon_categorias_menu();
             summon_side_menu();  
             ?>                  
         </div>
         
-        <div class="content-grid"> <?php
-            echo '<h1>Postagens sobre ' , single_cat_title() , '</h1>
-            <div class="cards-lista">';
-            if (have_posts() ) {
-                    while (have_posts()){
-                        the_post();                      
+        <div class="content-grid">            
+            <h1>Editais</h1>
+            <div class="cards-lista">
+                <?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // Página atual
+                $args = array(
+                    'post_type' => 'edital',
+                    'paged' => $paged,
+                    'orderby' => 'modified',
+                );
+
+                $post_query = new WP_Query($args);
+                if ($post_query->have_posts() ) {
+                    while ($post_query->have_posts()){
+                        $post_query->the_post();                      
                         echo '<a href="' , esc_url(the_permalink()) , '" class="noticia-wrapper camada-1">';
                         if (has_post_thumbnail()) {
                             echo '<div class="noticia-img2-wrapper"><img class="noticia-img2" src="', esc_url(the_post_thumbnail_url()), '"></div>';
@@ -46,11 +55,12 @@
                     <div class="paginas-nav">
                         <div class="pagination">';
                             // Adiciona a paginação
-                            the_posts_pagination(array(
-                                'prev_text' => __('«', 'text-domain'),
-                                'next_text' => __('»', 'text-domain'),
-                                'mid_size' => 1,
-                                ));
+                            echo paginate_links(array(
+                                'total' => $post_query->max_num_pages,
+                                'current' => max(1, $paged),
+                                'prev_text' => __('Anterior'),
+                                'next_text' => __('Próximo'),
+                            ));
                         echo '</div>
                     </div>';
                 } else {

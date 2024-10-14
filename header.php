@@ -45,13 +45,13 @@
                         
                         <?php the_custom_logo(); ?>
                         <div class="site-titulos">
-                            <a href="<?php $custom_urlcentro = esc_url(get_theme_mod('custom_urlcentro', 'https://www.ufpb.br')); echo esc_url($custom_urlcentro) ?>" class="centro-titulo">
+                            <a target="_blank" rel="noopener noreferrer" href="<?php $custom_urlcentro = esc_url(get_theme_mod('custom_urlcentro', 'https://www.ufpb.br')); echo esc_url($custom_urlcentro) ?>" class="centro-titulo">
                                 <?php $custom_centro = get_theme_mod('custom_centro', 'Universidade Federal da Paraíba'); echo esc_html($custom_centro);?>
                             </a>
                             <a href="<?php echo get_home_url(); ?>" class="departamento-titulo"><?php echo get_bloginfo( 'name' ); ?></a>
                         </div>
                     </div>
-                    <a href="http://ufpb.br" class="brasao">
+                    <a target="_blank" rel="noopener noreferrer" href="http://ufpb.br" class="brasao">
                         <div class="ufpb-nome">UNIVERSIDADE<br>FEDERAL<br>DA PARAÍBA</div>
                         <!--img src="<?php echo get_bloginfo("template_directory"); ?>/img/SVG final.svg"-->
                         <img src="<?php echo get_bloginfo("template_directory"); ?>/img/brasao_gradiente.png">

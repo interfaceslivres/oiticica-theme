@@ -4,6 +4,7 @@
     <div class="corpo-grid">
         <div class="sidebar">  
             <?php
+            summon_categorias_menu();
             summon_side_menu();  
             ?>                  
         </div>
@@ -13,7 +14,7 @@
             <div class="cards-lista">
                 <?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // Página atual
                 $args = array(
-                    'post_type' => 'post',
+                    'post_type' => 'edital',
                     'paged' => $paged,
                 );
 
@@ -28,7 +29,7 @@
                         echo '<div class="noticia-sem-img">'; 
                             echo '<div class="rotulo-escuro">';                                                               
                             echo '
-                            <div>' . get_the_date( 'd \d\e F \d\e Y' ) . '</div>';
+                            <div>' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>';
                             /*echo '<div class="categorias">';
                                 $categories = get_the_category();
                                 

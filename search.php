@@ -21,7 +21,7 @@
                         echo '<div class="noticia-sem-img">'; 
                             echo '<div class="rotulo-escuro">';                                                               
                             echo '
-                            <div>' . get_the_date( 'd \d\e F \d\e Y' ) . '</div>';
+                            <div>' . get_the_date( 'j \d\e F \d\e Y' ) . '</div>';
                             /*echo '<div class="categorias">';
                                 $categories = get_the_category();
                                 
@@ -47,8 +47,9 @@
                         <div class="pagination">';
                             // Adiciona a paginação
                             the_posts_pagination(array(
-                                'prev_text' => __('Anterior', 'text-domain'),
-                                'next_text' => __('Próximo', 'text-domain'),
+                                'prev_text' => __('«', 'text-domain'),
+                                'next_text' => __('»', 'text-domain'),
+                                'mid_size' => 1,
                                 ));
                         echo '</div>
                     </div>';
